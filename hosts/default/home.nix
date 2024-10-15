@@ -20,7 +20,7 @@ in
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-long.nix
     ../../config/swaync.nix
-    ../../config/waybar.nix
+    ../../config/waybar/waybar.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
   ];
