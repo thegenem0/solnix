@@ -208,7 +208,7 @@ with lib;
           on-click = "";
           tooltip = false;
         };
-      }
+      };
     ];
     style = concatStrings [
       ''
