@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) keyboardLayout, amdEnable, nvidiaEnable, intelEnable;
+  inherit (import ./variables.nix) keyboardLayout amdEnable nvidiaEnable intelEnable;
 in
 {
   imports = [
