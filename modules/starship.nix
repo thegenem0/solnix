@@ -53,163 +53,167 @@ in
         };
       };
 
-    gcloud = {
-      symbol = "󱇶 ";
-      format = "(on [$symbol$account]($style)) ";
-      style = "bold blue";
-    };
+      gcloud = {
+        symbol = "󱇶 ";
+        format = "(on [$symbol$account]($style)) ";
+        style = "bold blue";
+      };
 
-    c = {
-      symbol = " ";
-      format = "(via [$symbol($version(-$name) )]($style))";
-      detect_files = [
-        "*.c"
-        "*.h"
-      ];
-    };
+      c = {
+        symbol = " ";
+        format = "(via [$symbol($version(-$name) )]($style))";
+        detect_files = [
+          "*.c",
+          "*.h"
+        ];
+      };
 
-    cmake = {
-      symbol = "🔧 ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = [
-        "CMakeLists.txt"
-        "*.cmake"
-      ];
-    };
+      cmake = {
+        symbol = "🔧 ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = [
+          "CMakeLists.txt",
+          "*.cmake"
+        ];
+      };
 
-    dotnet = {
-      symbol = "󰪮 ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = [
-        "*.csproj"
-        "*.sln"
-      ];
-    };
+      dotnet = {
+        symbol = "󰪮 ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = [
+          "*.csproj",
+          "*.sln"
+        ];
+      };
 
-    directory = {
-      read_only = " ro";
-      read_only_style = "bold red";
-      style = "bold blue";
-      format = "[  ](bold blue) [$path]($style)[$read_only]($read_only_style) ";
-    };
+      directory = {
+        read_only = " ro";
+        read_only_style = "bold red";
+        style = "bold blue";
+        format = "[  ](bold blue) [$path]($style)[$read_only]($read_only_style) ";
+      };
 
-    docker_context = {
-      symbol = " ";
-      format = "(via [$symbol$context]($style))";
-      style = "blue bold";
-      only_with_files = true;
-      detect_files = [
-        "docker-compose.yml"
-        "docker-compose.yaml"
-        "Dockerfile"
-      ];
-    };
+      docker_context = {
+        symbol = " ";
+        format = "(via [$symbol$context]($style))";
+        style = "blue bold";
+        only_with_files = true;
+        detect_files = [
+          "docker-compose.yml",
+          "docker-compose.yaml",
+          "Dockerfile"
+        ];
+      };
 
-    git_branch = {
-      symbol = " ";
-    };
+      git_branch = {
+        symbol = " ";
+      };
 
-    golang = {
-      symbol = " ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = ["*.go"];
-    };
+      golang = {
+        symbol = " ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = ["*.go"];
+      };
 
-    java = {
-      symbol = " ";
-      format = "(via [$symbol]($style))";
-      detect_files = [
-        "*.java"
-        "pom.xml"
-      ];
-    };
+      java = {
+        symbol = " ";
+        format = "(via [$symbol]($style))";
+        detect_files = [
+          "*.java",
+          "pom.xml"
+        ];
+      };
 
-    kotlin = {
-      symbol = " ";
-      format = "via [$symbol]($style)";
-      detect_files = [
-        "*.kt"
-        "*.kts"
-      ];
-    };
+      kotlin = {
+        symbol = " ";
+        format = "via [$symbol]($style)";
+        detect_files = [
+          "*.kt",
+          "*.kts"
+        ];
+      };
 
-    scala = {
-      symbol = " ";
-      format = "(via [$symbol]($style))";
-      detect_files = ["*.scala"];
-    };
+      scala = {
+        symbol = " ";
+        format = "(via [$symbol]($style))";
+        detect_files = ["*.scala"];
+      };
 
-    gradle = {
-      symbol = " ";
-      format = "(via [$symbol]($style))";
-      detect_files = [
-        "build.gradle"
-        "settings.gradle"
-      ];
-    };
+      gradle = {
+        symbol = " ";
+        format = "(via [$symbol]($style))";
+        detect_files = [
+          "build.gradle",
+          "settings.gradle"
+        ];
+      };
 
-    lua = {
-      symbol = " ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = ["*.lua"];
-    };
+      lua = {
+        symbol = " ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = ["*.lua"];
+      };
 
-    nodejs = {
-      format = "(via [ Node.js ($version )](bold green))";
-      detect_files = [
-        "package.json"
-        ".node-version"
-      ];
-      detect_folders = ["node_modules"];
-    };
+      nodejs = {
+        format = "(via [ Node.js ($version )](bold green))";
+        detect_files = [
+          "package.json",
+          ".node-version"
+        ];
+        detect_folders = ["node_modules"];
+      };
 
-    memory_usage = {
-      symbol = "  ";
-    };
+      memory_usage = {
+        symbol = "  ";
+      };
 
-    os.symbols = {
-      NixOS = " ";
-    };
+      os = {
+        symbols = {
+          NixOS = " ";
+        };
+      };
 
-    package = {
-      symbol = "pkg ";
-    };
+      package = {
+        symbol = "pkg ";
+      };
 
-    python = {
-      symbol = " ";
-      format = "via [$symbol($version )]($style)";
-      detect_files = [
-        "*.py"
-        "requirements.txt"
-        "Pipfile"
-      ];
-    };
+      python = {
+        symbol = " ";
+        format = "via [$symbol($version )]($style)";
+        detect_files = [
+          "*.py",
+          "requirements.txt",
+          "Pipfile"
+        ];
+      };
 
-    conda = {
-      symbol = " ";
-      format = "[$symbol$environment](dimmed green) ";
-    };
+      conda = {
+        symbol = " ";
+        format = "[$symbol$environment](dimmed green) ";
+      };
 
-    rust = {
-      symbol = " ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = ["Cargo.toml"];
-    };
+      rust = {
+        symbol = " ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = ["Cargo.toml"];
+      };
 
-    sudo = {
-      symbol = "sudo ";
-    };
+      sudo = {
+        symbol = "sudo ";
+      };
 
-    terraform = {
-      symbol = "󱁢 ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = ["*.tf"];
-    };
+      terraform = {
+        symbol = "󱁢 ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = ["*.tf"];
+      };
 
-    zig = {
-      symbol = " ";
-      format = "(via [$symbol($version )]($style))";
-      detect_files = ["*.zig"];
+      zig = {
+        symbol = " ";
+        format = "(via [$symbol($version )]($style))";
+        detect_files = ["*.zig"];
+      };
     };
   };
 }
+
