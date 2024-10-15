@@ -7,7 +7,7 @@
 }:
 let
    globalGitConfig = ./gitconfig;
-   personalGitConfig =  ./gitconfig.thegenem0;
+   personalGitConfig =  ./gitconfig.personal;
    workGitConfig = ./gitconfig.work;
 in
 {
