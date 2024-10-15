@@ -25,7 +25,7 @@ with lib;
         mod = "ALT";
       in
       {
-        "$mod" = ${mod};
+        "$mod" = "${mod}";
         env = [
           "NIXOS_OZONE_WL, 1"
           "NIXPKGS_ALLOW_UNFREE, 1"
@@ -180,7 +180,7 @@ with lib;
       in
       concatStrings [
         ''
-          ${extraMonitorSettings}
+          "${extraMonitorSettings}"
         ''
       ];
   };
