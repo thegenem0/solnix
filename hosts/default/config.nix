@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) keyboardLayout amdEnable nvidiaEnable intelEnable;
+  inherit (import ./variables.nix) keyboardLayout amd nvidia intel;
 in
 {
   imports = [
@@ -84,14 +84,14 @@ in
   };
 
   # Extra Module Options
-  drivers.amdgpu.enable = amdEnable;
-  drivers.nvidia.enable = nvidiaEnable.enable;
+  drivers.amdgpu.enable = amd.enable;
+  drivers.nvidia.enable = nvidia.enable;
   drivers.nvidia-prime = {
-    enable = nvidiaEnable.prime;
-    intelBusID = "";
-    nvidiaBusID = "";
+    enable = nvidia.prime.enable;
+    intelBusID = nvidia.prime.intelBusID;
+    nvidiaBusID = nvidia.prime.nvidiaBusID;
   };
-  drivers.intel.enable = intelEnable;
+  drivers.intel.enable = intel.enable;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 

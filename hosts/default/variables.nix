@@ -5,12 +5,19 @@
   # Waybar Settings
   clock24h = true;
 
-  amdEnable = false;
+  amd = {
+    enable = false;
+  };
   nvidia = {
     enable = false;
-    prime = false;
+    prime = {
+      intelBusID = "";
+      nvidiaBusID = "";
+    };
   };
-  intelEnable = true;
+  intel = {
+    enable = true;
+  };
 
   # Program Options
   browser = "firefox";
