@@ -39,5 +39,6 @@
     hyprpicker
     yad
     pavucontrol
+    jetbrains-toolbox
   ];
 }

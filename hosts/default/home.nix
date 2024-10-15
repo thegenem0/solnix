@@ -20,6 +20,7 @@
     ../../config/waybar/waybar.nix
     ../../config/git/git.nix
     ../../config/term/term.nix
+    ../../config/neovim/neovim.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
   ];

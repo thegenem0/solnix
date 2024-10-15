@@ -29,5 +29,11 @@
     tree
     ncdu
     duf
+    lazygit
+    lazydocker
+    awscli2
+    aws-vault
+    nodejs_20
+    go
   ];
 }
