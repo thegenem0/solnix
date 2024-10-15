@@ -52,26 +52,26 @@ with lib;
           "monitor=,preferred,auto,1"
         ];
         general = {
-            "gaps_in" = 5
-            "gaps_out" = 20
-            "border_size" = 0
-            "layout" = "dwindle"
-            "resize_on_border" = true
-            "col.active_border" = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg"
-            "col.inactive_border" = "rgb(${config.stylix.base16Scheme.base01})"
+            "gaps_in" = 5;
+            "gaps_out" = 20;
+            "border_size" = 0;
+            "layout" = "dwindle";
+            "resize_on_border" = true;
+            "col.active_border" = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg";
+            "col.inactive_border" = "rgb(${config.stylix.base16Scheme.base01})";
         };
         input = {
-            "kb_layout" = "${keyboardLayout}"
-            "kb_options" = "grp:alt_shift_toggle"
-            "kb_options" = "caps:super"
-            "follow_mouse" = 1
-            "sensitivity" = 0
-            "accel_profile" = "flat"
-        };
-        input.touchpad = {
-              "natural_scroll" = true
-              "disable_while_typing" = true
-              "scroll_factor" = 0.8
+            "kb_layout" = "${keyboardLayout}";
+            "kb_options" = "grp:alt_shift_toggle";
+            "kb_options" = "caps:super";
+            "follow_mouse" = 1;
+            "sensitivity" = 0;
+            "accel_profile" = "flat";
+            touchpad = {
+              "natural_scroll" = true;
+              "disable_while_typing" = true;
+              "scroll_factor" = 0.8;
+            };
         };
         windowrule = [
           "noborder,^(wofi)$"
@@ -100,31 +100,35 @@ with lib;
           "opacity 0.9 0.7, class:^(thunar)$"
         ];
         gestures = {
-          "workspace_swipe = true"
-          "workspace_swipe_fingers = 3"
+          "workspace_swipe" = true;
+          "workspace_swipe_fingers" = 3;
         };
         misc = {
-          "initial_workspace_tracking = 0"
-          "mouse_move_enables_dpms = true"
-          "key_press_enables_dpms = false"
+          "initial_workspace_tracking" = 0;
+          "mouse_move_enables_dpms" = true;
+          "key_press_enables_dpms" = false;
         };
         animations = {
-          "enabled = yes"
-          "bezier = wind, 0.05, 0.9, 0.1, 1.05"
-          "bezier = winIn, 0.1, 1.1, 0.1, 1.1"
-          "bezier = winOut, 0.3, -0.3, 0, 1"
-          "bezier = liner, 1, 1, 1, 1"
-          "animation = windows, 1, 6, wind, slide"
-          "animation = windowsIn, 1, 6, winIn, slide"
-          "animation = windowsOut, 1, 5, winOut, slide"
-          "animation = windowsMove, 1, 5, wind, slide"
-          "animation = border, 1, 1, liner"
-          "animation = fade, 1, 10, default"
-          "animation = workspaces, 1, 5, wind"
+          "enabled" = true;
+          bezier = [
+            "wind, 0.05, 0.9, 0.1, 1.05"
+            "winIn, 0.1, 1.1, 0.1, 1.1"
+            "winOut, 0.3, -0.3, 0, 1"
+            "liner, 1, 1, 1, 1"
+          ];
+          animation = [
+            "windows, 1, 6, wind, slide"
+            "windowsIn, 1, 6, winIn, slide"
+            "windowsOut, 1, 5, winOut, slide"
+            "windowsMove, 1, 5, wind, slide"
+            "border, 1, 1, liner"
+            "fade, 1, 10, default"
+            "workspaces, 1, 5, wind"
+          ];
         };
         dwindle = {
-          "pseudotile = true"
-          "preserve_split = true"
+          "pseudotile" = true;
+          "preserve_split" = true;
         };
         bind = [
           "${mod}, Return, exec, ${terminal}"
