@@ -20,6 +20,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    nwg-look
+    nwg-displays
     firefox
     brave
     cmatrix
