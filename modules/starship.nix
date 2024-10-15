@@ -4,6 +4,8 @@
   config,
   ...
 }:
+let
+in
 {
   programs.starship = {
     enable = true;
