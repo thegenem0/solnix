@@ -38,5 +38,8 @@
     aws-vault
     nodejs_20
     go
+    zig
+    clang
+    gcc
   ];
 }
