@@ -20,6 +20,9 @@ with lib;
       {
         layer = "top";
         position = "top";
+        margin-top = 14;
+        margin-left = 10;
+        margin-right = 10;
         modules-center = [ "custom/waymedia" ];
         modules-left = [
           "custom/empty"
@@ -385,10 +388,11 @@ with lib;
             font-weight: bold;
             background: #${config.stylix.base16Scheme.base0F};
             color: #${config.stylix.base16Scheme.base00};
-            margin: 4px 0px;
-            margin-right: 7px;
-            border-radius: 10px 24px 10px 24px;
-            padding: 0px 18px;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            border-radius: 15px;
+            padding: 2px 15px 0px 10px;
+            margin: 5px 15px 5px 0px;
+
         }
         #custom-waymedia {
             color: #${config.stylix.base16Scheme.base0B};
