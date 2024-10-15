@@ -424,7 +424,7 @@ with lib;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
             opacity: 0.8;
-        };
+        }
       ''
     ];
   };
