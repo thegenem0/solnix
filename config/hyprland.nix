@@ -145,7 +145,7 @@ with lib;
           "${mod}, PRINT, exec, grim -g \"$(slurp)\" - | wl-copy"
           "${mod} SHIFT, L, exec, wlogout"
           "${mod} SHIFT, W, exec, ~/.config/rofi/wallpapers.sh"
-          "${mod}, D, exec, ~/.config/rofi/launcher.sh"
+          "${mod}, D, exec, rofi-launcher"
           "${mod}, 1, workspace, 1"
           "${mod}, 2, workspace, 2"
           "${mod}, 3, workspace, 3"
