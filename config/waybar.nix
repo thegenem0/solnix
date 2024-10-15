@@ -20,76 +20,59 @@ with lib;
       {
         layer = "top";
         position = "top";
-        modules-center = [ "hyprland/workspaces" ];
+        modules-center = [ "custom/waymedia" ];
         modules-left = [
-          "custom/startmenu"
-          "hyprland/window"
-          "pulseaudio"
-          "cpu"
-          "memory"
-          "idle_inhibitor"
+          "custom/empty"
+          "hyprland/workspaces"
         ];
         modules-right = [
-          "custom/hyprbindings"
-          "custom/notification"
-          "custom/exit"
+          "pulseaudio"
+          "bluetooth"
           "battery"
+          "network"
+          "group/hardware"
+          "custom/empty"
           "tray"
           "clock"
+          "custom/exit"
+          "custom/notification"
         ];
 
-        "hyprland/workspaces" = {
-          format = "{name}";
-          format-icons = {
-            default = " ";
-            active = " ";
-            urgent = " ";
-          };
-          on-scroll-up = "hyprctl dispatch workspace e+1";
-          on-scroll-down = "hyprctl dispatch workspace e-1";
+        "custom/empty" = {
+          format = " ";
         };
+
+        "hyprland/workspaces" = {
+          on-click = "activate";
+          active-only = false;
+          all-outputs = false;
+          format = "{}";
+          format-icons = {
+              urgent = "";
+              active = "";
+              default = "";
+        };
+
+        "custom/waymedia" = {
+          format = "{}";
+          exec = "~/.config/waybar/scripts/waymedia/waymedia";
+          interval = 1;
+          limit = 60;
+          on-click = "playerctl play-pause";
+          on-scroll-up = "playerctl next";
+          on-scroll-down = "playerctl previous";
+          play-icon = " ";
+          pause-icon = " ";
+          divider = " - ";
+          pattern = "{}-{artist}{divider}{title}";
+        };
+
         "clock" = {
           format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
-        "hyprland/window" = {
-          max-length = 22;
-          separate-outputs = false;
-          rewrite = {
-            "" = " 🙈 No Windows? ";
-          };
-        };
-        "memory" = {
-          interval = 5;
-          format = " {}%";
-          tooltip = true;
-        };
-        "cpu" = {
-          interval = 5;
-          format = " {usage:2}%";
-          tooltip = true;
-        };
-        "disk" = {
-          format = " {free}";
-          tooltip = true;
-        };
-        "network" = {
-          format-icons = [
-            "󰤯"
-            "󰤟"
-            "󰤢"
-            "󰤥"
-            "󰤨"
-          ];
-          format-ethernet = " {bandwidthDownOctets}";
-          format-wifi = "{icon} {signalStrength}%";
-          format-disconnected = "󰤮";
-          tooltip = false;
-        };
-        "tray" = {
-          spacing = 12;
-        };
+
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
@@ -112,30 +95,13 @@ with lib;
           };
           on-click = "sleep 0.1 && pavucontrol";
         };
+
         "custom/exit" = {
           tooltip = false;
           format = "";
           on-click = "sleep 0.1 && wlogout";
         };
-        "custom/startmenu" = {
-          tooltip = false;
-          format = "";
-          # exec = "rofi -show drun";
-          on-click = "sleep 0.1 && rofi-launcher";
-        };
-        "custom/hyprbindings" = {
-          tooltip = false;
-          format = "󱕴";
-          on-click = "sleep 0.1 && list-hypr-bindings";
-        };
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          tooltip = "true";
-        };
+
         "custom/notification" = {
           tooltip = false;
           format = "{icon} {}";
@@ -155,6 +121,70 @@ with lib;
           on-click = "sleep 0.1 && task-waybar";
           escape = true;
         };
+
+        "network" = {
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
+          format-ethernet = " {bandwidthDownOctets}";
+          format-wifi = "{icon} {signalStrength}%";
+          format-disconnected = "󰤮";
+          tooltip = false;
+        };
+
+        "tray" = {
+          icon-size: 21;
+          spacing: 10;
+        };
+
+        "custom/system" = {
+          format = " ";
+          tooltip = false;
+        };
+
+        "cpu" = {
+          format = "/  {usage}% ";
+          on-click = "kitty -e btop";
+        };
+
+        "memory" = {
+          format = "/  {}% ";
+          on-click = "kitty -e btop";
+        };
+
+        "disk" = {
+          interval = 30;
+          format = "󰋊 {percentage_used}% ";
+          path = "/";
+          on-click = "kitty -e btop";
+        };
+
+        "hyprland/language" = {
+          format = "/  {short}";
+        };
+
+
+        "group/hardware" = {
+          orientation = "inherit";
+          drawer = {
+              transition-duration =  300;
+              children-class = "not-memory";
+              transition-left-to-right =  false;
+          };
+          modules: [
+              "custom/system"
+              "disk"
+              "cpu"
+              "memory"
+              "hyprland/language"
+              "custom/empty"
+          ];
+        };
+
         "battery" = {
           states = {
             warning = 30;
@@ -236,7 +266,7 @@ with lib;
         tooltip label {
           color: #${config.stylix.base16Scheme.base08};
         }
-        #window, #pulseaudio, #cpu, #memory, #idle_inhibitor {
+        #window, #pulseaudio {
           font-weight: bold;
           margin: 4px 0px;
           margin-left: 7px;
@@ -245,15 +275,7 @@ with lib;
           color: #${config.stylix.base16Scheme.base00};
           border-radius: 24px 10px 24px 10px;
         }
-        #custom-startmenu {
-          color: #${config.stylix.base16Scheme.base0B};
-          background: #${config.stylix.base16Scheme.base02};
-          font-size: 28px;
-          margin: 0px;
-          padding: 0px 30px 0px 15px;
-          border-radius: 0px 0px 40px 0px;
-        }
-        #custom-hyprbindings, #network, #battery,
+        #network, #battery,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};
@@ -262,6 +284,19 @@ with lib;
           margin-right: 7px;
           border-radius: 10px 24px 10px 24px;
           padding: 0px 18px;
+        }
+        #custom-waymedia {
+          color:  #${config.stylix.base16Scheme.base0B};
+        }
+        #custom-system,
+        #disk,
+        #memory,
+        #cpu,
+        #language {
+          margin: 0px;
+          padding: 0px;
+          font-size: 16px;
+          color:  #${config.stylix.base16Scheme.base0B};
         }
         #clock {
           font-weight: bold;
