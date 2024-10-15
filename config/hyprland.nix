@@ -57,8 +57,8 @@ with lib;
             border_size = 0;
             layout = "dwindle";
             resize_on_border = true;
-            col.active_border = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg";
-            col.inactive_border = "rgb(${config.stylix.base16Scheme.base01})";
+            "col.active_border" = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg";
+            "col.inactive_border" = "rgb(${config.stylix.base16Scheme.base01})";
         };
         input = {
             kb_layout = "${keyboardLayout}";
@@ -142,8 +142,6 @@ with lib;
           "${mod}, L, movefocus, r"
           "${mod}, K, movefocus, u"
           "${mod}, J, movefocus, d"
-          "mouse:272, movewindow"
-          "mouse:273, resizewindow"
           "${mod}, PRINT, exec, grim -g \"$(slurp)\" - | wl-copy"
           "${mod} SHIFT, L, exec, wlogout"
           "${mod} SHIFT, W, exec, ~/.config/rofi/wallpapers.sh"
@@ -177,6 +175,10 @@ with lib;
           ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
           ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
         ];
+        bindm = [
+          "mouse:272, movewindow"
+          "mouse:273, resizewindow"
+        ];
         binde = [
           ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ];
@@ -186,7 +188,7 @@ with lib;
       in
       concatStrings [
         ''
-          "${extraMonitorSettings}"
+          ${extraMonitorSettings}
         ''
       ];
   };
