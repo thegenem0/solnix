@@ -11,11 +11,7 @@ let
    workGitConfig = ./gitconfig.work;
 in
 {
-  programs.git = {
-    enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
-  };
+  programs.git.enable = true;
 
   home.file = {
     ".gitconfig".text = builtins.readFile globalGitConfig;
