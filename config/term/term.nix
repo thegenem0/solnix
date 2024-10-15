@@ -16,7 +16,6 @@
         settings = {
           font_family = "JetBrainsMono Nerd Font Mono";
           font_size = 12;
-          background_opacity = "0.75";
           confirm_os_window_close = 0;
           scrollback_lines = 2000;
           wheel_scroll_min_lines = 1;
