@@ -12,7 +12,7 @@ in
 {
   home.file.".zshrc".text = builtins.readFile zshrc;
 
-  home.file.".config/zsh/scripts" = {
+  home.file.".scripts" = {
     source = zshScripts;
     target = "link";
   };
