@@ -10,6 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    neovim
     zsh
     atuin
     fzf
