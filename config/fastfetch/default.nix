@@ -12,21 +12,21 @@
       };
 
       modules = [
-        "title",
-        "separator",
-        "os",
-        "host",
-        "kernel",
-        "uptime",
-        "packages",
-        "shell",
-        "wm",
-        "terminal",
-        "cpu",
-        "gpu",
-        "memory",
-        "disk",
-        "localip",
+        "title"
+        "separator"
+        "os"
+        "host"
+        "kernel"
+        "uptime"
+        "packages"
+        "shell"
+        "wm"
+        "terminal"
+        "cpu"
+        "gpu"
+        "memory"
+        "disk"
+        "localip"
         "break"
       ];
     };
