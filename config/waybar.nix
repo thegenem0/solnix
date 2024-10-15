@@ -137,8 +137,8 @@ with lib;
         };
 
         "tray" = {
-          icon-size: 21;
-          spacing: 10;
+          icon-size = 21;
+          spacing = 10;
         };
 
         "custom/system" = {
@@ -175,7 +175,7 @@ with lib;
               children-class = "not-memory";
               transition-left-to-right =  false;
           };
-          modules: [
+          modules = [
               "custom/system"
               "disk"
               "cpu"
