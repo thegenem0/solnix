@@ -5,19 +5,11 @@
   config,
   ...
 }:
-let
-  zshrc = ./zshrc;
-  zshScripts = ./scripts;
-in
 {
-  home.file.".zshrc".text = builtins.readFile zshrc;
-
-  home.file.".scripts" = {
-    source = zshScripts;
-    target = "link";
-  };
-
   programs.zsh = {
     enable = true;
   };
+
+  home.file.".zshrc".source = ./zshrc;
+  home.file.".scripts".source = ./scripts;
 }

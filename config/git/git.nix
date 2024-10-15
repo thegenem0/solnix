@@ -5,18 +5,13 @@
   config,
   ...
 }:
-let
-   globalGitConfig = ./gitconfig;
-   personalGitConfig =  ./gitconfig.personal;
-   workGitConfig = ./gitconfig.work;
-in
 {
   programs.git.enable = true;
 
   home.file = {
-    ".gitconfig".text = builtins.readFile globalGitConfig;
-    "dev/personal/.gitconfig.thegenem0".text = builtins.readFile personalGitConfig;
-    "dev/work/.gitconfig.work".text = builtins.readFile workGitConfig;
+    ".gitconfig".source = ./gitconfig;
+    "dev/personal/.gitconfig.personal".source = ./gitconfig.personal;
+    "dev/work/.gitconfig.work".source = ./gitconfig.work;
   };
 
   home.sessionPath = [
