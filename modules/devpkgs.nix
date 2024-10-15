@@ -11,9 +11,9 @@
   environment.systemPackages = with pkgs; [
     vim
     neovim
-    lua53Packages.lua
-    lua53Packages.plenary-nvim
-    lua53Packages.luarocks-nix
+    lua51Packages.lua
+    lua51Packages.plenary-nvim
+    lua51Packages.luarocks-nix
     zsh
     atuin
     fzf
