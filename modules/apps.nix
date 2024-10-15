@@ -44,6 +44,6 @@
     jetbrains.datagrip
     jetbrains.webstorm
     jetbrains.pycharm-professional
-    jetbrains.jetbrains-jdk
+    jetbrains.jdk-no-jcef
   ];
 }
