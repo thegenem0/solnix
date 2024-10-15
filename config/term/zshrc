@@ -30,7 +30,7 @@ alias vim="nvim"
 alias nixdev="nix develop"
 
 alias ls='exa --icons --long --git -h --group-directories-first'
-alias ll='exa -lah --icons --group-directories-first'
+alias l='exa -lah --icons --group-directories-first'
 alias cd='z'
 
 alias tf="terraform"
