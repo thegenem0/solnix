@@ -2,61 +2,48 @@
 
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
   echo "Verified this is NixOS."
-  echo "-----"
 else
-  echo "This is not NixOS or the distribution information is not available."
+  echo "Installation is only supported on NixOS."
   exit
 fi
 
 if command -v git &> /dev/null; then
   echo "Git is installed, continuing with installation."
-  echo "-----"
 else
   echo "Git is not installed. Please install Git and try again."
   echo "Example: nix-shell -p git"
   exit
 fi
 
-echo "Default options are in brackets []"
-echo "Just press enter to select the default"
-sleep 2
-
-echo "-----"
-
 echo "Ensure In Home Directory"
 cd || exit
 
-echo "-----"
-
-read -rp "Enter Your New Hostname: [ default ] " hostName
+read -rp "Enter Your New Hostname: " hostName
 if [ -z "$hostName" ]; then
-  hostName="default"
+  echo "Hostname must be provided."
+  exit
 fi
 
-echo "-----"
-
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
-if [ -d "sol-os" ]; then
-  echo "Sol-OS exists, backing up to .config/sol-os-backups folder."
-  if [ -d ".config/solos-backups" ]; then
-    echo "Moving current version of Sol-OS to backups folder."
-    mv "$HOME"/sol-os .config/sol-os-backups/"$backupname"
+if [ -d "solnix" ]; then
+  echo "SolNix exists, backing up to .config/solnix-backups folder."
+  if [ -d ".config/solnix-backups" ]; then
+    echo "Moving current version of SolNix to backups folder."
+    mv "$HOME"/solnix .config/solnix-backups/"$backupname"
     sleep 1
   else
-    echo "Creating the backups folder & moving Sol-OS to it."
-    mkdir -p .config/sol-os-backups
-    mv "$HOME"/sol-os .config/sol-os-backups/"$backupname"
+    echo "Creating the backups folder & moving SolNix to it."
+    mkdir -p .config/solnix-backups
+    mv "$HOME"/solnix .config/solnix-backups/"$backupname"
     sleep 1
   fi
 else
   echo "Nothing to backup, moving on."
 fi
 
-echo "-----"
-
-echo "Cloning & Entering Sol-OS Repository"
-git clone https://gitlab.com/solinaire/sol-os.git
-cd sol-os || exit
+echo "Cloning & Entering SolNix Repository"
+git clone https://gitlab.com/solinaire/solnix.git
+cd solnix || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 git config --global user.name "installer"
@@ -64,29 +51,38 @@ git config --global user.email "installer@mail.com"
 git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
-
-read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
+read -rp "Enter your keyboard layout: [ Default: us ] " keyboardLayout
 if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
 
 sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
 
-echo "-----"
+read -rp "Enter your system theme: [ dracula, cattpuccin ] " basetheme
+if [ -z "$basetheme" ]; then
+  basetheme="dracula"
+  variant="default"
+elif [ "$basetheme" != "dracula" ] && [ "$basetheme" != "cattpuccin" ]; then
+  echo "Invalid system theme. Please choose either dracula or cattpuccin."
+  exit
+elif [ "$basetheme" == "cattpuccin" ]; then
+  read -rp "Enter your cattpuccin theme: [ latte, frappe, macchiato, mocha ] " variant
+  if [ -z "$variant" ]; then
+    variant="macchiato"
+  fi
+fi
+
+sed -i "/^\s*systemTheme[[:space:]]*=[[:space:]]*{/s/\}\(.*\)/\n  name = \"$basetheme\";\n  variant = \"$variant\";\n}/" ./hosts/$hostName/variables.nix
+
+echo "Your system theme will be set to $variant variant of $basetheme."
 
 installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
-echo "-----"
-
 echo "Generating The Hardware Configuration"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
-
-echo "-----"
 
 echo "Setting Required Nix Settings Then Going To Install"
 NIX_CONFIG="experimental-features = nix-command flakes"
 
-echo "-----"
-
-sudo nixos-rebuild switch --flake ~/sol-os/#${hostName}
+sudo nixos-rebuild switch --flake ~/solnix/#${hostName}
