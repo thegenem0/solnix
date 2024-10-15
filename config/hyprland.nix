@@ -176,8 +176,8 @@ with lib;
           ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
         ];
         bindm = [
-          "mouse:272, movewindow"
-          "mouse:273, resizewindow"
+          "${mod}, mouse:272, movewindow"
+          "${mod}, mouse:273, resizewindow"
         ];
         binde = [
           ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
