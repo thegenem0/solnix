@@ -221,92 +221,210 @@ with lib;
           min-height: 0px;
         }
         window#waybar {
-          background: rgba(0,0,0,0);
+            background-color: rgba(50, 50, 50, 0.5);
+            border-bottom: 0px solid #ffffff;
+            background: rgba(50, 50, 50, 0.8);
+            transition-property: background-color;
+            border-radius: 30px;
+            transition-duration: .5s;
         }
         #workspaces {
-          color: #${config.stylix.base16Scheme.base00};
-          background: #${config.stylix.base16Scheme.base01};
-          margin: 4px 4px;
-          padding: 5px 5px;
-          border-radius: 16px;
+            background: transparent;
+            margin: 2px 1px 3px 1px;
+            padding: 0px 1px;
+            border-radius: 15px;
+            border: 0px;
+            font-weight: bold;
+            font-style: normal;
+            opacity: 0.8;
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
         }
         #workspaces button {
-          font-weight: bold;
-          padding: 0px 5px;
-          margin: 0px 3px;
-          border-radius: 16px;
-          color: #${config.stylix.base16Scheme.base00};
-          background: linear-gradient(45deg, #${config.stylix.base16Scheme.base08}, #${config.stylix.base16Scheme.base0D});
-          opacity: 0.5;
-          transition: ${betterTransition};
+            padding: 0px 5px;
+            border: 3px solid #${config.stylix.base16Scheme.base0F};
+            margin: 4px 3px;
+            border-radius: 15px;
+            border: 0px;
+            color: #${config.stylix.base16Scheme.base0B};
+            background-color: #${config.stylix.base16Scheme.base0F};
+            transition: all 0.3s ease-in-out;
+            opacity: 0.4;
         }
         #workspaces button.active {
-          font-weight: bold;
-          padding: 0px 5px;
-          margin: 0px 3px;
-          border-radius: 16px;
-          color: #${config.stylix.base16Scheme.base00};
-          background: linear-gradient(45deg, #${config.stylix.base16Scheme.base08}, #${config.stylix.base16Scheme.base0D});
-          transition: ${betterTransition};
-          opacity: 1.0;
-          min-width: 40px;
+            color: #${config.stylix.base16Scheme.base0B};
+            background: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            min-width: 40px;
+            transition: all 0.3s ease-in-out;
+            opacity: 1.0;
         }
         #workspaces button:hover {
-          font-weight: bold;
-          border-radius: 16px;
-          color: #${config.stylix.base16Scheme.base00};
-          background: linear-gradient(45deg, #${config.stylix.base16Scheme.base08}, #${config.stylix.base16Scheme.base0D});
-          opacity: 0.8;
-          transition: ${betterTransition};
+            color: #${config.stylix.base16Scheme.base0F};
+            background: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            opacity: 0.7;
         }
         tooltip {
-          background: #${config.stylix.base16Scheme.base00};
-          border: 1px solid #${config.stylix.base16Scheme.base08};
-          border-radius: 12px;
+            border-radius: 10px;
+            background-color: transparent;
+            opacity: 0.8;
+            padding: 20px;
+            margin: 0px;
         }
         tooltip label {
-          color: #${config.stylix.base16Scheme.base08};
+            color: #${config.stylix.base16Scheme.base0F};
         }
-        #window, #pulseaudio {
-          font-weight: bold;
-          margin: 4px 0px;
-          margin-left: 7px;
-          padding: 0px 18px;
-          background: #${config.stylix.base16Scheme.base04};
-          color: #${config.stylix.base16Scheme.base00};
-          border-radius: 24px 10px 24px 10px;
+        #clock {
+            background-color: transparent;
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 1px 10px 0px 10px;
+            margin: 3px 15px 3px 0px;
+            opacity: 0.8;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
         }
-        #network, #battery,
-        #custom-notification, #tray, #custom-exit {
-          font-weight: bold;
-          background: #${config.stylix.base16Scheme.base0F};
-          color: #${config.stylix.base16Scheme.base00};
-          margin: 4px 0px;
-          margin-right: 7px;
-          border-radius: 10px 24px 10px 24px;
-          padding: 0px 18px;
+        #pulseaudio {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
+        }
+        #pulseaudio.muted {
+            background-color: #${config.stylix.base16Scheme.base0B};
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            color: #${config.stylix.base16Scheme.base0F};
+        }
+        #network {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
+        }
+        #network.ethernet {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            color: #${config.stylix.base16Scheme.base0F};
+        }
+        #network.wifi {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            color: #${config.stylix.base16Scheme.base0F};
+        }
+        #bluetooth,
+        #bluetooth.on,
+        #bluetooth.connected {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
+        }
+        #bluetooth.off {
+            background-color: transparent;
+            padding: 0px;
+            margin: 0px;
+        }
+        #battery {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 2px 15px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
+        }
+        #battery.charging,
+        #battery.plugged {
+            color: #${config.stylix.base16Scheme.base0F};
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            background-color: transparent;
+        }
+        @keyframes blink {
+            to {
+                background-color: transparent;
+                color: #${config.stylix.base16Scheme.base0F};
+            }
+        }
+        #battery.critical:not(.charging) {
+            background-color: #f53c3c;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            color: #${config.stylix.base16Scheme.base0F};
+            animation-name: blink;
+            animation-duration: 0.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        #tray {
+            padding: 0px 15px 0px 0px;
+        }
+        #tray>.passive {
+            -gtk-icon-effect: dim;
+        }
+        #custom-exit {
+            margin: 0px 20px 0px 0px;
+            padding: 0px;
+            font-size: 20px;
+            color: #${config.stylix.base16Scheme.base0B};
+        }
+        #custom-notification {
+            font-weight: bold;
+            background: #${config.stylix.base16Scheme.base0F};
+            color: #${config.stylix.base16Scheme.base00};
+            margin: 4px 0px;
+            margin-right: 7px;
+            border-radius: 10px 24px 10px 24px;
+            padding: 0px 18px;
         }
         #custom-waymedia {
-          color:  #${config.stylix.base16Scheme.base0B};
+            color: #${config.stylix.base16Scheme.base0B};
         }
         #custom-system,
         #disk,
         #memory,
         #cpu,
         #language {
-          margin: 0px;
-          padding: 0px;
-          font-size: 16px;
-          color:  #${config.stylix.base16Scheme.base0B};
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
         }
-        #clock {
-          font-weight: bold;
-          color: #0D0E15;
-          background: linear-gradient(90deg, #${config.stylix.base16Scheme.base0E}, #${config.stylix.base16Scheme.base0C});
-          margin: 0px;
-          padding: 0px 15px 0px 30px;
-          border-radius: 0px 0px 0px 40px;
+        #group-hardware {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
         }
+        #cpu,
+        #memory,
+        #disk {
+            background-color: transparent;
+            border: 3px solid #${config.stylix.base16Scheme.base0B};
+            font-size: 16px;
+            color: #${config.stylix.base16Scheme.base0F};
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
+        };
       ''
     ];
   };
