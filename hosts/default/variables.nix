@@ -1,13 +1,16 @@
 {
-  # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Gergo Nemeth";
-  gitEmail = "nemethgergo02@gmail.com";
-
   # Hyprland Settings
   extraMonitorSettings = "";
 
   # Waybar Settings
-  clock24h = false;
+  clock24h = true;
+
+  amdEnable = false;
+  nvidia = {
+    enable = false;
+    prime = false;
+  };
+  intelEnable = true;
 
   # Program Options
   browser = "firefox";

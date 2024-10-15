@@ -4,9 +4,6 @@
   host,
   ...
 }:
-let
-  inherit (import ./variables.nix) gitUsername gitEmail;
-in
 {
   # Home Manager Settings
   home.username = "${username}";
@@ -22,21 +19,34 @@ in
     ../../config/swaync.nix
     ../../config/waybar/waybar.nix
     ../../config/git/git.nix
+    ../../config/zsh/zsh.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
   ];
 
-  # Place Files Inside Home Directory
+  # INFO: Wallpapers
   home.file."Pictures/Wallpapers" = {
     source = ../../config/wallpapers;
     recursive = true;
   };
+
+  # INFO: Wlogout
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
   };
+
+  # INFO: Tmux
+  home.file.".config/tmux" = {
+    source = ../../config/tmux;
+    recursive = true;
+  };
+
+  # INFO: Face
   home.file.".face.icon".source = ../../config/face.jpg;
   home.file.".config/face.jpg".source = ../../config/face.jpg;
+
+  # INFO: Swappy
   home.file.".config/swappy/config".text = ''
     [Default]
     save_dir=/home/${username}/Pictures/Screenshots
