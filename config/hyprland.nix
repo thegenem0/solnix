@@ -52,26 +52,26 @@ with lib;
           "monitor=,preferred,auto,1"
         ];
         general = {
-            "gaps_in = 5"
-            "gaps_out = 20"
-            "border_size = 0"
-            "layout = dwindle"
-            "resize_on_border = true"
-            "col.active_border = rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg"
-            "col.inactive_border = rgb(${config.stylix.base16Scheme.base01})"
+            "gaps_in" = 5
+            "gaps_out" = 20
+            "border_size" = 0
+            "layout" = "dwindle"
+            "resize_on_border" = true
+            "col.active_border" = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg"
+            "col.inactive_border" = "rgb(${config.stylix.base16Scheme.base01})"
         };
         input = {
-            "kb_layout = ${keyboardLayout}"
-            "kb_options = grp:alt_shift_toggle"
-            "kb_options = caps:super"
-            "follow_mouse = 1"
-            "touchpad {
-              natural_scroll = true
-              disable_while_typing = true
-              scroll_factor = 0.8
-            }"
-            "sensitivity = 0"
-            "accel_profile = flat"
+            "kb_layout" = "${keyboardLayout}"
+            "kb_options" = "grp:alt_shift_toggle"
+            "kb_options" = "caps:super"
+            "follow_mouse" = 1
+            "sensitivity" = 0
+            "accel_profile" = "flat"
+        };
+        input.touchpad = {
+              "natural_scroll" = true
+              "disable_while_typing" = true
+              "scroll_factor" = 0.8
         };
         windowrule = [
           "noborder,^(wofi)$"
