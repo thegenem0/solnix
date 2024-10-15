@@ -158,7 +158,7 @@ in
     tmux
     zoxide
     pyenv
-    antigen
+    antidote
     wget
     killall
     eza

@@ -17,30 +17,6 @@ setopt    appendhistory     #Append history to the history file (no overwriting)
 setopt    sharehistory      #Share history across terminals
 setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 
-
-## ANTIGEN
-eval "$(antigen)"
-antigen use oh-my-zsh
-
-antigen bundle reegnz/aws-vault-zsh-plugin
-antigen bundle lukechilds/zsh-nvm
-antigen bundle git
-antigen bundle npm
-antigen bundle encode64
-antigen bundle colorize
-antigen bundle github
-antigen bundle bundler
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle Aloxaf/fzf-tab
-antigen bundle atuinsh/atuin@main
-antigen bundle MichaelAquilina/zsh-auto-notify
-antigen bundle unixorn/autoupdate-antigen.zshplugin
-antigen bundle reegnz/jq-zsh-plugin
-antigen bundle aubreypwd/zsh-plugin-reload
-antigen bundle qoomon/zsh-lazyload
-
-antigen apply
-
 ### GLOBAL SETTINGS ###
 export EDITOR="nvim"
 export PATH="$PATH:$HOME/.config/scripts:$HOME/.cargo/bin:$HOME/.spicetify:$HOME/.local/bin"

@@ -13,6 +13,20 @@
     zsh = {
       enable = true;
     };
+    antidote = {
+      enable = true;
+      plugins = [
+        "reegnz/aws-vault-zsh-plugin"
+        "lukechilds/zsh-nvm"
+        "zsh-users/zsh-syntax-highlighting"
+        "Aloxaf/fzf-tab"
+        "MichaelAquilina/zsh-auto-notify"
+        "unixorn/autoupdate-antigen.zshplugin"
+        "reegnz/jq-zsh-plugin"
+        "aubreypwd/zsh-plugin-reload"
+        "qoomon/zsh-lazyload"
+      ];
+    };
     atuin = {
       enable = true;
     };
