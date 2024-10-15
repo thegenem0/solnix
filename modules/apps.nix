@@ -39,6 +39,11 @@
     hyprpicker
     yad
     pavucontrol
-    jetbrains-toolbox
+    jetbrains.intellij-ultimate
+    jetbrains.clion
+    jetbrains.datagrip
+    jetbrains.webstorm
+    jetbrains.pycharm-professional
+    jetbrains.jetbrains-jdk
   ];
 }
