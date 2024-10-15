@@ -153,6 +153,9 @@ in
   environment.systemPackages = with pkgs; [
     vim
     zsh
+    atuin
+    fzf
+    tmux
     wget
     killall
     eza
