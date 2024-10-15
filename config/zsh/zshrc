@@ -19,6 +19,7 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 
 ## ANTIGEN
+eval "$(antigen)"
 antigen use oh-my-zsh
 
 antigen bundle reegnz/aws-vault-zsh-plugin
