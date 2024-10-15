@@ -51,6 +51,7 @@ with lib;
               urgent = "";
               active = "";
               default = "";
+          };
         };
 
         "custom/waymedia" = {
