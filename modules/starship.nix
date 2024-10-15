@@ -109,13 +109,13 @@
 
     golang = {
       symbol = " ";
-      format = '(via [$symbol($version )]($style))';
+      format = "(via [$symbol($version )]($style))";
       detect_files = ["*.go"];
     };
 
     java = {
       symbol = " ";
-      format = '(via [$symbol]($style))';
+      format = "(via [$symbol]($style))";
       detect_files = [
         "*.java"
         "pom.xml"
@@ -124,7 +124,7 @@
 
     kotlin = {
       symbol = " ";
-      format = 'via [$symbol]($style)';
+      format = "via [$symbol]($style)";
       detect_files = [
         "*.kt"
         "*.kts"
@@ -133,13 +133,13 @@
 
     scala = {
       symbol = " ";
-      format = '(via [$symbol]($style))';
+      format = "(via [$symbol]($style))";
       detect_files = ["*.scala"];
     };
 
     gradle = {
       symbol = " ";
-      format = '(via [$symbol]($style))';
+      format = "(via [$symbol]($style))";
       detect_files = [
         "build.gradle"
         "settings.gradle"
@@ -148,7 +148,7 @@
 
     lua = {
       symbol = " ";
-      format = '(via [$symbol($version )]($style))';
+      format = "(via [$symbol($version )]($style))";
       detect_files = ["*.lua"];
     };
 
@@ -185,12 +185,12 @@
 
     conda = {
       symbol = " ";
-      format = '[$symbol$environment](dimmed green) ';
+      format = "[$symbol$environment](dimmed green) ";
     };
 
     rust = {
       symbol = " ";
-      format = '(via [$symbol($version )]($style))';
+      format = "(via [$symbol($version )]($style))";
       detect_files = ["Cargo.toml"];
     };
 
@@ -200,13 +200,13 @@
 
     terraform = {
       symbol = "󱁢 ";
-      format = '(via [$symbol($version )]($style))';
+      format = "(via [$symbol($version )]($style))";
       detect_files = ["*.tf"];
     };
 
     zig = {
       symbol = " ";
-      format = '(via [$symbol($version )]($style))';
+      format = "(via [$symbol($version )]($style))";
       detect_files = ["*.zig"];
     };
   };
