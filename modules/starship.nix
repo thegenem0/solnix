@@ -63,7 +63,7 @@ in
         symbol = " ";
         format = "(via [$symbol($version(-$name) )]($style))";
         detect_files = [
-          "*.c",
+          "*.c"
           "*.h"
         ];
       };
@@ -72,7 +72,7 @@ in
         symbol = "🔧 ";
         format = "(via [$symbol($version )]($style))";
         detect_files = [
-          "CMakeLists.txt",
+          "CMakeLists.txt"
           "*.cmake"
         ];
       };
@@ -81,7 +81,7 @@ in
         symbol = "󰪮 ";
         format = "(via [$symbol($version )]($style))";
         detect_files = [
-          "*.csproj",
+          "*.csproj"
           "*.sln"
         ];
       };
@@ -99,8 +99,8 @@ in
         style = "blue bold";
         only_with_files = true;
         detect_files = [
-          "docker-compose.yml",
-          "docker-compose.yaml",
+          "docker-compose.yml"
+          "docker-compose.yaml"
           "Dockerfile"
         ];
       };
@@ -119,7 +119,7 @@ in
         symbol = " ";
         format = "(via [$symbol]($style))";
         detect_files = [
-          "*.java",
+          "*.java"
           "pom.xml"
         ];
       };
@@ -128,7 +128,7 @@ in
         symbol = " ";
         format = "via [$symbol]($style)";
         detect_files = [
-          "*.kt",
+          "*.kt"
           "*.kts"
         ];
       };
@@ -143,7 +143,7 @@ in
         symbol = " ";
         format = "(via [$symbol]($style))";
         detect_files = [
-          "build.gradle",
+          "build.gradle"
           "settings.gradle"
         ];
       };
@@ -157,7 +157,7 @@ in
       nodejs = {
         format = "(via [ Node.js ($version )](bold green))";
         detect_files = [
-          "package.json",
+          "package.json"
           ".node-version"
         ];
         detect_folders = ["node_modules"];
@@ -181,8 +181,8 @@ in
         symbol = " ";
         format = "via [$symbol($version )]($style)";
         detect_files = [
-          "*.py",
-          "requirements.txt",
+          "*.py"
+          "requirements.txt"
           "Pipfile"
         ];
       };
