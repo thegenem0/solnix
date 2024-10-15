@@ -39,7 +39,7 @@
     hyprpicker
     yad
     pavucontrol
-    jetbrains.intellij-ultimate
+    jetbrains.idea-ultimate
     jetbrains.clion
     jetbrains.datagrip
     jetbrains.webstorm
