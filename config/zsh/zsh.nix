@@ -23,5 +23,13 @@
     tmux = {
       enable = true;
     };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    pyenv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }

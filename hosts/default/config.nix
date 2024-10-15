@@ -156,6 +156,9 @@ in
     atuin
     fzf
     tmux
+    zoxide
+    pyenv
+    antigen
     wget
     killall
     eza
