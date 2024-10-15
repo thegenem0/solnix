@@ -21,6 +21,7 @@ in
     ../../config/rofi/config-long.nix
     ../../config/swaync.nix
     ../../config/waybar/waybar.nix
+    ../../config/git/git.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
   ];
@@ -48,13 +49,6 @@ in
     early_exit=true
     fill_shape=false
   '';
-
-  # Install & Configure Git
-  programs.git = {
-    enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
-  };
 
   # Create XDG Dirs
   xdg = {

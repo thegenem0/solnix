@@ -1,0 +1,10 @@
+[user]
+	email = gergo@thisishace.com
+	name = gergo-at-hace
+	signingkey = ~/.ssh/work.pub
+
+[github]
+	user = "gergo-at-hace"
+
+[core]
+	sshCommand = "ssh -i ~/.ssh/work"

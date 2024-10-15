@@ -1,0 +1,13 @@
+[user]
+	email = nemethgergo02@gmail.com
+	name = thegenem0
+	signingkey = ~/.ssh/personal
+
+[github]
+	user = "thegenem0"
+
+[gitlab]
+    user = "solinaire"
+
+[core]
+	sshCommand = "ssh -i ~/.ssh/personal"
