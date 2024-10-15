@@ -5,7 +5,6 @@
   config,
   ...
 }:
-
 let
   inherit (import ../hosts/${host}/variables.nix)
     browser

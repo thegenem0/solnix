@@ -20,6 +20,8 @@ in
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
     ../../modules/starship.nix
+    ../../modules/devpkgs.nix
+    ../../modules/apps.nix
   ];
 
   boot = {
@@ -119,7 +121,6 @@ in
   };
 
   programs = {
-    firefox.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -127,20 +128,6 @@ in
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-    virt-manager.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
     };
   };
 
@@ -151,68 +138,31 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    vim
-    zsh
-    atuin
-    fzf
-    tmux
-    zoxide
-    pyenv
-    antidote
-    wget
     killall
-    eza
-    git
-    cmatrix
     lolcat
-    htop
-    brave
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
-    unzip
-    unrar
     libnotify
     v4l-utils
     ydotool
-    duf
-    ncdu
     wl-clipboard
     pciutils
-    ffmpeg
     socat
-    cowsay
-    ripgrep
     lshw
-    bat
     pkg-config
     meson
-    hyprpicker
     ninja
     brightnessctl
-    virt-viewer
     swappy
-    appimage-run
-    networkmanagerapplet
-    yad
     inxi
     playerctl
     nh
     nixfmt-rfc-style
-    discord
     libvirt
     swww
     grim
     slurp
-    file-roller
-    swaynotificationcenter
-    imv
-    mpv
-    gimp
-    pavucontrol
-    tree
-    spotify
-    neovide
     greetd.tuigreet
   ];
 
@@ -367,14 +317,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-  };
-
-  # Virtualization / Containers
-  virtualisation.libvirtd.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
   };
 
   # OpenGL
