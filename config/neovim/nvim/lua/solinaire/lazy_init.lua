@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    spec = 'thegenem0.lazy',
+    spec = 'solinaire.lazy',
     change_detection = {
         notify = true,
     },

@@ -1,4 +1,4 @@
-local utils = require("thegenem0.utils")
+local utils = require("solinaire.utils")
 
 return {
     {
@@ -21,7 +21,8 @@ return {
             })
 
             utils.keymap("n", "<leader>tt", ":ToggleTerm direction=float<cr>", { desc = "Toggle Terminal Vertical" })
-            utils.keymap("n", "<leader>th", ":ToggleTerm direction=horizontal<cr>", { desc = "Toggle Terminal Horizontal" })
+            utils.keymap("n", "<leader>th", ":ToggleTerm direction=horizontal<cr>",
+                { desc = "Toggle Terminal Horizontal" })
             -- map esc to close exit terminal mode
             vim.cmd([[
             tnoremap <esc> <C-\><C-N>

@@ -1,4 +1,4 @@
-local utils = require("thegenem0.utils")
+local utils = require("solinaire.utils")
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

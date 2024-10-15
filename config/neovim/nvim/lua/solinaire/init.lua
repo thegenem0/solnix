@@ -1,23 +1,23 @@
-require("thegenem0.opts")
-require("thegenem0.remap")
-require("thegenem0.lazy_init")
+require("solinaire.opts")
+require("solinaire.remap")
+require("solinaire.lazy_init")
 
-local utils = require("thegenem0.utils")
+local utils = require("solinaire.utils")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-local TheGenem0Group = augroup("TheGenem0", { clear = true })
+local SolinaireGroup = augroup("Solinaire", { clear = true })
 
 -- Remove trailing whitespace on save
 autocmd("BufWritePre", {
-    group = TheGenem0Group,
+    group = SolinaireGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
 -- Attach LSP Keymaps
 autocmd("LspAttach", {
-    group = TheGenem0Group,
+    group = SolinaireGroup,
     callback = function(args)
         local bufnr = args.buf
         local opts = function(desc)
@@ -32,6 +32,5 @@ autocmd("LspAttach", {
         utils.keymap("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts("Signature [H]elp"))
         utils.keymap("n", "<C-j>", function() vim.diagnostic.goto_next() end, opts("Next Diagnostic"))
         utils.keymap("n", "<C-k>", function() vim.diagnostic.goto_prev() end, opts("Previous Diagnostic"))
-
     end,
 })
