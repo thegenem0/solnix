@@ -41,5 +41,7 @@
     zig
     clang
     gcc
+    cargo
+    rustc
   ];
 }
