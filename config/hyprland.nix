@@ -83,17 +83,6 @@ with lib;
           "float, nwg-look|qt5ct|mpv"
           "float, zoom"
         ];
-        workspace = [
-          "1,monitor:DP-1,default:true"
-          "2,monitor:DP-1"
-          "3,monitor:DP-1"
-          "4,monitor:DP-1"
-          "5,monitor:DP-2,default:true"
-          "6,monitor:DP-2"
-          "7,monitor:DP-2"
-          "8,monitor:DP-3,default:true"
-          "9,monitor:DP-3"
-        ];
         windowrulev2 = [
           "stayfocused, title:^()$,class:^(steam)$"
           "minsize 1 1, title:^()$,class:^(steam)$"
@@ -188,6 +177,8 @@ with lib;
       concatStrings [
         ''
           ${extraMonitorSettings}
+          source = ~/.config/hypr/monitors.conf
+          source = ~/.config/hypr/workspaces.conf
         ''
       ];
   };
