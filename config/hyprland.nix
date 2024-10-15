@@ -52,25 +52,27 @@ with lib;
           "monitor=,preferred,auto,1"
         ];
         general = {
-            "gaps_in" = 5;
-            "gaps_out" = 20;
-            "border_size" = 0;
-            "layout" = "dwindle";
-            "resize_on_border" = true;
-            "col.active_border" = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg";
-            "col.inactive_border" = "rgb(${config.stylix.base16Scheme.base01})";
+            gaps_in = 5;
+            gaps_out = 20;
+            border_size = 0;
+            layout = "dwindle";
+            resize_on_border = true;
+            col.active_border = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg";
+            col.inactive_border = "rgb(${config.stylix.base16Scheme.base01})";
         };
         input = {
-            "kb_layout" = "${keyboardLayout}";
-            "kb_options" = "grp:alt_shift_toggle";
-            "kb_options" = "caps:super";
-            "follow_mouse" = 1;
-            "sensitivity" = 0;
-            "accel_profile" = "flat";
+            kb_layout = "${keyboardLayout}";
+            follow_mouse = 1;
+            sensitivity = 0;
+            accel_profile = "flat";
+            kb_options = [
+              "grp:alt_shift_toggle"
+              "caps:super"
+            ];
             touchpad = {
-              "natural_scroll" = true;
-              "disable_while_typing" = true;
-              "scroll_factor" = 0.8;
+              natural_scroll = true;
+              disable_while_typing = true;
+              scroll_factor = 0.8;
             };
         };
         windowrule = [
@@ -100,16 +102,16 @@ with lib;
           "opacity 0.9 0.7, class:^(thunar)$"
         ];
         gestures = {
-          "workspace_swipe" = true;
-          "workspace_swipe_fingers" = 3;
+          workspace_swipe = true;
+          workspace_swipe_fingers = 3;
         };
         misc = {
-          "initial_workspace_tracking" = 0;
-          "mouse_move_enables_dpms" = true;
-          "key_press_enables_dpms" = false;
+          initial_workspace_tracking = 0;
+          mouse_move_enables_dpms = true;
+          key_press_enables_dpms = false;
         };
         animations = {
-          "enabled" = true;
+          enabled = true;
           bezier = [
             "wind, 0.05, 0.9, 0.1, 1.05"
             "winIn, 0.1, 1.1, 0.1, 1.1"
@@ -127,8 +129,8 @@ with lib;
           ];
         };
         dwindle = {
-          "pseudotile" = true;
-          "preserve_split" = true;
+          pseudotile = true;
+          preserve_split = true;
         };
         bind = [
           "${mod}, Return, exec, ${terminal}"
