@@ -56,7 +56,7 @@ in
   # Styling Options
   stylix = {
     enable = true;
-    image = ../../config/wallpapers/beautifulmountainscape.jpg;
+    image = ../../config/wallpapers/9162783.jpg;
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
