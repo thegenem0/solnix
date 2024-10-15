@@ -42,7 +42,7 @@ antigen apply
 
 ### GLOBAL SETTINGS ###
 export EDITOR="nvim"
-export PATH="$PATH:$HOME/.config/scripts:$HOME/.cargo/bin:$HOME/.atuin/bin:$HOME/.spicetify:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.config/scripts:$HOME/.cargo/bin:$HOME/.spicetify:$HOME/.local/bin"
 
 # aliases
 alias gl="lazygit"
