@@ -4,8 +4,10 @@
   host,
   username,
   options,
+  lib,
   ...
 }:
+with lib;
 let
   inherit (import ./variables.nix) keyboardLayout amd nvidia intel systemTheme;
   inherit (import ../../config/themes/theme.nix { inherit config; }) getTheme;
