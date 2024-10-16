@@ -2,7 +2,7 @@
   description = "solnix";
 
   inputs =
-  { ... }
+  { ... }:
   let
     hyprVersion = "0.44.0";
   in {
