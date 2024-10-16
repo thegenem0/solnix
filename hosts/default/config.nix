@@ -8,7 +8,7 @@
 }:
 let
   inherit (import ./variables.nix) keyboardLayout amd nvidia intel systemTheme;
-  inherit (import ../themes/theme.nix { inherit config; }) getTheme;
+  inherit (import ../../config/themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
 in
 {
