@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   username,
   host,
@@ -22,6 +23,9 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
+    plugins = [
+      inputs.hy3.packages.x86_64-linux.hy3
+    ];
     settings =
       let
         mod = "ALT";

@@ -2,10 +2,16 @@
   description = "solnix";
 
   inputs = {
+    hyprlandVersion = "v0.44.1";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=${hyprlandVersion}";
+    hy3 = {
+      url = "github:outfoxxed/hy3?ref=hl${hyprlandVersion}";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs =
