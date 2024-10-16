@@ -5,10 +5,7 @@
   # Waybar Settings
   clock24h = true;
 
-  systemTheme = {
-    name = "dracula";
-    variant = "default";
-  };
+  systemTheme = {};
 
   amd = {
     enable = false;
