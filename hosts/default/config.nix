@@ -59,7 +59,24 @@ in
   stylix = {
     enable = if systemTheme.name == "stylix" then true else false;
     image = if systemTheme.name == "stylix" then ../../config/wallpapers/9162783.jpg else null;
-    colors = if systemTheme.name != "stylix" then currentTheme else null;
+    override = if systemTheme.name != "stylix" {
+      base00 = currentTheme.background;   # Background color
+      base01 = currentTheme.selection;    # Lighter background or selection color
+      base02 = currentTheme.comment;      # Comment or secondary text color
+      base03 = currentTheme.background;   # Slightly darker background (same as background in this case)
+      base04 = currentTheme.foreground;   # Light foreground for secondary elements
+      base05 = currentTheme.foreground;   # Main foreground text color
+      base06 = currentTheme.foreground;   # Same as base05 in this case
+      base07 = currentTheme.foreground;   # Brightest, usually same as main text
+      base08 = currentTheme.red;          # Red (errors)
+      base09 = currentTheme.orange;       # Orange (warnings)
+      base0A = currentTheme.yellow;       # Yellow (highlights, warnings)
+      base0B = currentTheme.green;        # Green (success)
+      base0C = currentTheme.cyan;         # Cyan (informational)
+      base0D = currentTheme.purple;       # Purple (links or active elements)
+      base0E = currentTheme.pink;         # Pink/Magenta (specials)
+      base0F = currentTheme.purple;       # Intense purple (optional, could be same as purple)
+    } else null;
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
