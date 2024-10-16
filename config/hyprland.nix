@@ -25,7 +25,7 @@ with lib;
     xwayland.enable = true;
     systemd.enable = true;
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hy3
+      inputs.hy3.packages.${pkgs.system}.hy3
     ];
     settings =
       let
