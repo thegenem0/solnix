@@ -1,4 +1,5 @@
-{
+{ flavor }:
+let
   draculaDefault = {
     background = "#282A36";
     foreground = "#F8F8F2";
@@ -12,4 +13,7 @@
     cyan = "#8BE9FD";
     pink = "#FF79C6";
   };
-}
+in
+  if flavor == "default" then draculaDefault
+  else draculaDefault
+

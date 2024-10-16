@@ -1,54 +1,60 @@
-{
+{ flavor }:
+
+let
   cattpuccinLatte = {
-    background = "#eff1f5";  # Base
-    foreground = "#4c4f69";  # Text
-    comment = "#8c8fa1";     # Overlay1
-    cyan = "#04a5e5";        # Sky
-    green = "#40a02b";       # Green
-    orange = "#fe640b";      # Peach
-    pink = "#ea76cb";        # Pink
-    purple = "#8839ef";      # Mauve
-    red = "#d20f39";         # Red
-    yellow = "#df8e1d";      # Yellow
+    background = "#eff1f5";
+    foreground = "#4c4f69";
+    comment = "#8c8fa1";
+    cyan = "#04a5e5";
+    green = "#40a02b";
+    orange = "#fe640b";
+    pink = "#ea76cb";
+    purple = "#8839ef";
+    red = "#d20f39";
+    yellow = "#df8e1d";
   };
 
-
   cattpuccinFrappe = {
-    background = "#303446";  # Base
-    foreground = "#c6d0f5";  # Text
-    comment = "#838ba7";     # Overlay1
-    cyan = "#99d1db";        # Sky
-    green = "#a6d189";       # Green
-    orange = "#ef9f76";      # Peach
-    pink = "#f4b8e4";        # Pink
-    purple = "#ca9ee6";      # Mauve
-    red = "#e78284";         # Red
-    yellow = "#e5c890";      # Yellow
+    background = "#303446";
+    foreground = "#c6d0f5";
+    comment = "#838ba7";
+    cyan = "#99d1db";
+    green = "#a6d189";
+    orange = "#ef9f76";
+    pink = "#f4b8e4";
+    purple = "#ca9ee6";
+    red = "#e78284";
+    yellow = "#e5c890";
   };
 
   cattpuccinMacchiato = {
-    background = "#24273a";  # Base
-    foreground = "#cad3f5";  # Text
-    comment = "#8087a2";     # Overlay1
-    cyan = "#91d7e3";        # Sky
-    green = "#a6da95";       # Green
-    orange = "#f5a97f";      # Peach
-    pink = "#f5bde6";        # Pink
-    purple = "#c6a0f6";      # Mauve
-    red = "#ed8796";         # Red
-    yellow = "#eed49f";      # Yellow
+    background = "#24273a";
+    foreground = "#cad3f5";
+    comment = "#8087a2";
+    cyan = "#91d7e3";
+    green = "#a6da95";
+    orange = "#f5a97f";
+    pink = "#f5bde6";
+    purple = "#c6a0f6";
+    red = "#ed8796";
+    yellow = "#eed49f";
   };
 
   cattpuccinMocha = {
-    background = "#1e1e2e";  # Base
-    foreground = "#cdd6f4";  # Text
-    comment = "#7f849c";     # Overlay1
-    cyan = "#89dceb";        # Sky
-    green = "#a6e3a1";       # Green
-    orange = "#f9e2af";      # Peach
-    pink = "#f5c2e7";        # Pink
-    purple = "#cba6f7";      # Mauve
-    red = "#f38ba8";         # Red
-    yellow = "#f9e2af";      # Yellow
+    background = "#1e1e2e";
+    foreground = "#cdd6f4";
+    comment = "#7f849c";
+    cyan = "#89dceb";
+    green = "#a6e3a1";
+    orange = "#f9e2af";
+    pink = "#f5c2e7";
+    purple = "#cba6f7";
+    red = "#f38ba8";
+    yellow = "#f9e2af";
   };
-}
+in
+  if flavor == "latte" then cattpuccinLatte
+  else if flavor == "frappe" then cattpuccinFrappe
+  else if flavor == "macchiato" then cattpuccinMacchiato
+  else cattpuccinMocha
+

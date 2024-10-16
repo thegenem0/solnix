@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ ... }:
 
 let
-  draculaDefault = import ./dracula.nix;
+  draculaDefault = import ./dracula.nix; { flavor = "default"; };
   cattpuccinMocha = import ./cattpuccin.nix { flavor = "mocha"; };
   cattpuccinLatte = import ./cattpuccin.nix { flavor = "latte"; };
   cattpuccinFrappe = import ./cattpuccin.nix { flavor = "frappe"; };
