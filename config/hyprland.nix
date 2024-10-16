@@ -20,13 +20,9 @@ let
 in
 with lib;
 {
-
-  home.packages = with pkgs; [
-    inputs.hyprland.package.${config.system}
-  ];
-
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings =
