@@ -1,7 +1,9 @@
 {
   description = "solnix";
 
-  inputs = let
+  inputs =
+  { ... }
+  let
     hyprVersion = "0.44.0";
   in {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
