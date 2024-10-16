@@ -44,7 +44,7 @@ fi
 echo "Cloning & Entering SolNix Repository"
 git clone https://gitlab.com/solinaire/solnix.git
 cd solnix || exit
-mkdir hosts/"$hostName"
+mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 git config --global user.name "installer"
 git config --global user.email "installer@mail.com"
@@ -58,6 +58,7 @@ fi
 
 sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
 
+# System Theme Selection
 read -rp "Enter your system theme: [ (dracula), cattpuccin, stylix ] " basetheme
 if [ -z "$basetheme" ]; then
   basetheme="dracula"
@@ -74,11 +75,12 @@ elif [ "$basetheme" == "stylix" ]; then
   basetheme="stylix"
   variant="default"
 else
-  echo "Invalid system theme. Please choose either dracula, cattpuccin or stylix."
+  echo "Invalid system theme. Please choose either dracula, cattpuccin, or stylix."
   exit
 fi
 
-sed -i "/^\s*systemTheme[[:space:]]*=[[:space:]]*{/s/\}\(.*\)/\n  name = \"$basetheme\";\n  variant = \"$variant\";\n}/" ./hosts/$hostName/variables.nix
+# Update systemTheme in variables.nix
+sed -i "/^\s*systemTheme[[:space:]]*=[[:space:]]*{/c\  systemTheme = { name = \"$basetheme\"; variant = \"$variant\"; };" ./hosts/$hostName/variables.nix
 
 echo "Your system theme will be set to $variant variant of $basetheme."
 
@@ -89,6 +91,7 @@ echo "Generating The Hardware Configuration"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
 
 echo "Setting Required Nix Settings Then Going To Install"
-NIX_CONFIG="experimental-features = nix-command flakes"
 
-sudo nixos-rebuild switch --flake ~/solnix/#${hostName}
+# Pass experimental features directly to nixos-rebuild
+sudo NIX_CONFIG="experimental-features = nix-command flakes" nixos-rebuild switch --flake ~/solnix/#${hostName}
+
