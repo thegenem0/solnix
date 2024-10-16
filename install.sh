@@ -62,9 +62,9 @@ read -rp "Enter your system theme: [ (dracula), cattpuccin, stylix ] " basetheme
 if [ -z "$basetheme" ]; then
   basetheme="dracula"
   variant="default"
-elif [ "$basetheme" != "dracula" ] && [ "$basetheme" != "cattpuccin" ]; then
-  echo "Invalid system theme. Please choose either dracula or cattpuccin."
-  exit
+elif [ "$basetheme" == "dracula" ]; then
+  basetheme="dracula"
+  variant="default"
 elif [ "$basetheme" == "cattpuccin" ]; then
   read -rp "Enter your cattpuccin theme: [ latte, frappe, macchiato, mocha ] " variant
   if [ -z "$variant" ]; then
