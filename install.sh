@@ -82,12 +82,8 @@ sed -i "/^\s*systemTheme[[:space:]]*=[[:space:]]*{/s/\}\(.*\)/\n  name = \"$base
 
 echo "Your system theme will be set to $variant variant of $basetheme."
 
-cat ./hosts/$hostName/variables.nix
-
 installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
-
-cat ./flake.nix
 
 echo "Generating The Hardware Configuration"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
@@ -95,4 +91,4 @@ sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.n
 echo "Setting Required Nix Settings Then Going To Install"
 NIX_CONFIG="experimental-features = nix-command flakes"
 
-sudo nixos-rebuild switch --flake ~/solnix/#${hostName} --show-trace
+sudo nixos-rebuild switch --flake ~/solnix/#${hostName}

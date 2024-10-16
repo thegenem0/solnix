@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (import ../hosts/${host}/variables.nix) systemTheme;
+  inherit (import ./variables.nix) systemTheme;
 in
 {
   # Home Manager Settings
