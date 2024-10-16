@@ -60,7 +60,7 @@ in
   # Styling Options
   stylix = {
     enable = true;
-    image = mkIf (systemTheme.name == "stylix") ../../config/wallpapers/9162783.jpg;
+    image = ../../config/wallpapers/9162783.jpg;
 
     override = mkIf (systemTheme.name != "stylix") {
       base00 = currentTheme.background;   # Background color
