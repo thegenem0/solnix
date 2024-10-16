@@ -82,6 +82,8 @@ sed -i "/^\s*systemTheme[[:space:]]*=[[:space:]]*{/s/\}\(.*\)/\n  name = \"$base
 
 echo "Your system theme will be set to $variant variant of $basetheme."
 
+cat ./hosts/$hostName/variables.nix
+
 installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
