@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   host,
@@ -155,11 +154,7 @@ in
       enable = true;
       enableSSHSupport = true;
     };
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-    };
+    hyprland.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -219,8 +214,8 @@ in
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
-      inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
     ];
   };
 

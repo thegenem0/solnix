@@ -6,15 +6,6 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.44.0";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins?ref=v0.44.0";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.44.0";
-      inputs.hyprland.follows = "hyprland";
-    };
   };
 
   outputs =
