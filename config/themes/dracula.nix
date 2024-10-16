@@ -21,4 +21,3 @@ let
 in
   if flavor == "default" then draculaDefault
   else draculaDefault
-
