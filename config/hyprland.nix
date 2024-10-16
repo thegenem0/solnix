@@ -191,7 +191,7 @@ with lib;
       concatStrings [
         ''
           ${extraMonitorSettings}
-          plugin = ${inputs.hy3.packages.pkgs.system.hy3}/lib/libhy3.so
+          plugin = ${inputs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so
           source = ~/.config/hypr/monitors.conf
           source = ~/.config/hypr/workspaces.conf
         ''
