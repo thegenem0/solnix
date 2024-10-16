@@ -22,7 +22,7 @@ with lib;
 {
 
   home.packages = with pkgs; [
-    inputs.hyprland.package${config.system}
+    inputs.hyprland.package.${config.system}
   ];
 
   wayland.windowManager.hyprland = {
