@@ -29,26 +29,14 @@ in
   ];
 
   # INFO: Wallpapers
-  home.file."Pictures/Wallpapers" = {
-    source = ../../config/wallpapers;
-    recursive = true;
-  };
+  home.file."Pictures/Wallpapers".source = ../../config/wallpapers;
 
   # INFO: Wlogout
-  home.file.".config/wlogout/icons" = {
-    source = ../../config/wlogout;
-    recursive = true;
-  };
-
-  # INFO: Tmux
-  home.file.".config/tmux" = {
-    source = ../../config/tmux;
-    recursive = true;
-  };
+  home.file.".config/wlogout/icons".source = ../../config/wlogout;
 
   # INFO: Face
-  home.file.".face.icon".source = ../../config/face.jpg;
-  home.file.".config/face.jpg".source = ../../config/face.jpg;
+  home.file.".logo.icon".source = ../../config/logo.jpg;
+  home.file.".config/logo.jpg".source = ../../config/logo.jpg;
 
   # INFO: Swappy
   home.file.".config/swappy/config".text = ''
@@ -169,7 +157,7 @@ in
         ];
         image = [
           {
-            path = "/home/${username}/.config/face.jpg";
+            path = "/home/${username}/.config/logo.jpg";
             size = 150;
             border_size = 4;
             border_color = "rgb(0C96F9)";
