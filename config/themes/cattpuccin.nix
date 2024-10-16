@@ -77,5 +77,6 @@ in
   if flavor == "latte" then cattpuccinLatte
   else if flavor == "frappe" then cattpuccinFrappe
   else if flavor == "macchiato" then cattpuccinMacchiato
-  else cattpuccinMocha
+  else if flavor == "mocha" then cattpuccinMocha
+  else throw "Unknown flavor: ${flavor}"
 

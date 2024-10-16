@@ -21,6 +21,7 @@ let
       if themeVariant == "latte" then cattpuccinLatte
       else if themeVariant == "frappe" then cattpuccinFrappe
       else if themeVariant == "macchiato" then cattpuccinMacchiato
+      else if themeVariant == "mocha" then cattpuccinMocha
       else throw "Unknown Catppuccin variant: ${themeVariant}"
     else if themeName == "stylix" then
       if themeVariant == "default" then {
