@@ -38,6 +38,12 @@ alias cli-nosession="aws-vault exec hace-cli --no-session --"
 alias main-nosession="aws-vault exec hace-main --no-session --"
 alias awslocal="AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=eu-west-2 aws --endpoint-url=http://${LOCALSTACK_HOST:-localhost}:4566"
 
+alias flake-rebuild="nh os switch --hostname $(hostname) /home/$(whoami)/solnix"
+alias flake-update="nh os switch --hostname $(hostname) --update /home/$(whoami)/solnix";
+alias distro-update="sh <(curl -L https://gitlab.com/solinaire/solnix/-/raw/main/install.sh)";
+alias flake-gc="nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+
+
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey -s '^f' "~/.scripts/tmux-sessionizer.sh\n"
