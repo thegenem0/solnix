@@ -8,6 +8,8 @@
 }:
 let
   inherit (import ./variables.nix) keyboardLayout amd nvidia intel systemTheme;
+  inherit (import ../themes/theme.nix { inherit config; }) getTheme;
+  currentTheme = getTheme systemTheme;
 in
 {
   imports = [
@@ -56,7 +58,8 @@ in
   # Styling Options
   stylix = {
     enable = if systemTheme.name == "stylix" then true else false;
-    image = ../../config/wallpapers/9162783.jpg;
+    image = if systemTheme.name == "stylix" then ../../config/wallpapers/9162783.jpg else null;
+    colors = if systemTheme.name != "stylix" then currentTheme else null;
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
