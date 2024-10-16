@@ -58,8 +58,9 @@ in
   # Styling Options
   stylix = {
     enable = true;
-    image = if systemTheme.name == "stylix" then ../../config/wallpapers/9162783.jpg else null;
-    override = if systemTheme.name != "stylix" then {
+    image = mkIf (systemTheme.name == "stylix") ../../config/wallpapers/9162783.jpg;
+
+    override = mkIf (systemTheme.name != "stylix") {
       base00 = currentTheme.background;   # Background color
       base01 = currentTheme.selection;    # Lighter background or selection color
       base02 = currentTheme.comment;      # Comment or secondary text color
@@ -76,7 +77,8 @@ in
       base0D = currentTheme.purple;       # Purple (links or active elements)
       base0E = currentTheme.pink;         # Pink/Magenta (specials)
       base0F = currentTheme.purple;       # Intense purple (optional, could be same as purple)
-    } else null;
+    };
+
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
