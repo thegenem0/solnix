@@ -57,7 +57,7 @@ in
 
   # Styling Options
   stylix = {
-    enable = if systemTheme.name == "stylix" then true else false;
+    enable = true;
     image = if systemTheme.name == "stylix" then ../../config/wallpapers/9162783.jpg else null;
     override = if systemTheme.name != "stylix" {
       base00 = currentTheme.background;   # Background color
