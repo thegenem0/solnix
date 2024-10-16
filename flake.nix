@@ -7,9 +7,9 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=${hyprlandVersion}";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.44.1";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl${hyprlandVersion}";
+      url = "github:outfoxxed/hy3?ref=hlv0.44.1";
       inputs.hyprland.follows = "hyprland";
     };
   };
