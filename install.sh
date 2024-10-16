@@ -95,4 +95,4 @@ sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.n
 echo "Setting Required Nix Settings Then Going To Install"
 NIX_CONFIG="experimental-features = nix-command flakes"
 
-sudo nixos-rebuild switch --flake ~/solnix/#${hostName}
+sudo nixos-rebuild switch --flake ~/solnix/#${hostName} --show-trace
