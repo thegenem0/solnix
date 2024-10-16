@@ -14,6 +14,7 @@ in
 {
   home.file.".zshrc".source = ./zshrc;
   home.file.".scripts".source = ./scripts;
+  home.file.".config/kanata".source = ./kanata;
 
   programs = {
     kitty = {

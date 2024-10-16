@@ -60,6 +60,8 @@ in
   # Styling Options
   stylix = {
     enable = true;
+    # This is required even if we override everything
+    # See https://github.com/danth/stylix/issues/200
     image = ../../config/wallpapers/9162783.jpg;
 
     override = mkIf (systemTheme.name != "stylix") {
@@ -187,6 +189,7 @@ in
     grim
     slurp
     greetd.tuigreet
+    kanata
   ];
 
   fonts = {
@@ -274,6 +277,7 @@ in
     };
     rpcbind.enable = false;
     nfs.server.enable = false;
+    kanata.enable = true;
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
