@@ -24,9 +24,6 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    plugins = [
-      inputs.hy3.packages.${pkgs.system}.hy3
-    ];
     settings =
       let
         mod = "ALT";
@@ -194,6 +191,7 @@ with lib;
       concatStrings [
         ''
           ${extraMonitorSettings}
+          plugin = ${inputs.hy3.packages.pkgs.system.hy3}/lib/libhy3.so
           source = ~/.config/hypr/monitors.conf
           source = ~/.config/hypr/workspaces.conf
         ''
