@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   draculaDefault = import ./dracula.nix { flavor = "default"; };
