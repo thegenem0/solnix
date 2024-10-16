@@ -66,7 +66,7 @@ in
 
     override = mkIf (systemTheme.name != "stylix") {
       base00 = currentTheme.background;   # Background color
-      base01 = currentTheme.selection;    # Lighter background or selection color
+      base01 = currentTheme.background;   # Lighter background or selection color
       base02 = currentTheme.comment;      # Comment or secondary text color
       base03 = currentTheme.background;   # Slightly darker background (same as background in this case)
       base04 = currentTheme.foreground;   # Light foreground for secondary elements
