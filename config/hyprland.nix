@@ -13,7 +13,7 @@ let
     keyboardLayout
     systemTheme
     ;
-    inherit (import ../themes/theme.nix) getTheme;
+    inherit (import ./themes/theme.nix) getTheme;
     currentTheme = getTheme systemTheme;
 in
 with lib;

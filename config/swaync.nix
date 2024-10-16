@@ -5,7 +5,7 @@
 }:
 let
   inherit (import ../hosts/${host}/variables.nix) systemTheme;
-  inherit (import ../themes/theme.nix) getTheme;
+  inherit (import ./themes/theme.nix) getTheme;
   currentTheme = getTheme systemTheme;
 in
 {
