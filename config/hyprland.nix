@@ -11,7 +11,10 @@ let
     terminal
     extraMonitorSettings
     keyboardLayout
+    systemTheme
     ;
+    inherit (import ../themes/theme.nix { inherit lib config; }) getTheme;
+    currentTheme = getTheme systemTheme;
 in
 with lib;
 {
@@ -56,8 +59,8 @@ with lib;
             border_size = 0;
             layout = "dwindle";
             resize_on_border = true;
-            "col.active_border" = "rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg";
-            "col.inactive_border" = "rgb(${config.stylix.base16Scheme.base01})";
+            "col.active_border" = "rgb(${currentTheme.red}) rgb(${currentTheme.cyan}) 45deg";
+            "col.inactive_border" = "rgb(${currentTheme.background})";
         };
         input = {
             kb_layout = "${keyboardLayout}";

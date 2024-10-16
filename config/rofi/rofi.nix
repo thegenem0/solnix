@@ -1,5 +1,9 @@
 { pkgs, config, ... }:
-
+let
+  inherit (import ../hosts/${host}/variables.nix) systemTheme;
+  inherit (import ../themes/theme.nix { inherit lib config; }) getTheme;
+  currentTheme = getTheme systemTheme;
+in
 {
   programs = {
     rofi = {
@@ -22,15 +26,15 @@
         in
         {
           "*" = {
-            bg = mkLiteral "#${config.stylix.base16Scheme.base00}";
-            bg-alt = mkLiteral "#${config.stylix.base16Scheme.base09}";
-            foreground = mkLiteral "#${config.stylix.base16Scheme.base01}";
-            selected = mkLiteral "#${config.stylix.base16Scheme.base08}";
-            active = mkLiteral "#${config.stylix.base16Scheme.base0B}";
-            text-selected = mkLiteral "#${config.stylix.base16Scheme.base00}";
-            text-color = mkLiteral "#${config.stylix.base16Scheme.base05}";
-            border-color = mkLiteral "#${config.stylix.base16Scheme.base0F}";
-            urgent = mkLiteral "#${config.stylix.base16Scheme.base0E}";
+            bg = mkLiteral "${currentTheme.background}";              # Background color
+            bg-alt = mkLiteral "${currentTheme.orange}";              # Alternate background
+            foreground = mkLiteral "${currentTheme.foreground}";      # Foreground color
+            selected = mkLiteral "${currentTheme.red}";               # Selected element color
+            active = mkLiteral "${currentTheme.green}";               # Active element color
+            text-selected = mkLiteral "${currentTheme.background}";   # Text on selected element
+            text-color = mkLiteral "${currentTheme.foreground}";      # General text color
+            border-color = mkLiteral "${currentTheme.purple}";        # Border color
+            urgent = mkLiteral "${currentTheme.purple}";              # Urgent color (for alerts)
           };
           "window" = {
             width = mkLiteral "50%";

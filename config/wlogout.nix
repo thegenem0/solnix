@@ -1,5 +1,9 @@
 { config, ... }:
-
+let
+  inherit (import ../hosts/${host}/variables.nix) systemTheme;
+  inherit (import ../themes/theme.nix { inherit lib config; }) getTheme;
+  currentTheme = getTheme systemTheme;
+in
 {
   programs.wlogout = {
     enable = true;
@@ -44,59 +48,56 @@
     style = ''
       * {
         font-family: "JetBrainsMono NF", FontAwesome, sans-serif;
-      	background-image: none;
-      	transition: 20ms;
+        background-image: none;
+        transition: 20ms;
       }
+
       window {
-      	background-color: rgba(12, 12, 12, 0.1);
+        background-color: rgba(12, 12, 12, 0.1);
       }
+
       button {
-      	color: #${config.stylix.base16Scheme.base05};
-        font-size:20px;
+        color: ${currentTheme.foreground};  # Use dynamic foreground color
+        font-size: 20px;
         background-repeat: no-repeat;
-      	background-position: center;
-      	background-size: 25%;
-      	border-style: solid;
-      	background-color: rgba(12, 12, 12, 0.3);
-      	border: 3px solid #${config.stylix.base16Scheme.base05};
+        background-position: center;
+        background-size: 25%;
+        border-style: solid;
+        background-color: rgba(12, 12, 12, 0.3);
+        border: 3px solid ${currentTheme.foreground};  # Use dynamic border color
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
+
       button:focus,
       button:active,
       button:hover {
-        color: #${config.stylix.base16Scheme.base0B};
+        color: ${currentTheme.green};  # Use dynamic hover color
         background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid #${config.stylix.base16Scheme.base0B};
+        border: 3px solid ${currentTheme.green};  # Use dynamic border color for hover
       }
-      #logout {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("icons/logout.png"));
+
+      #shutdown, #reboot, #logout, #suspend, #lock, #hibernate {
+        margin: 10px;
+        border-radius: 20px;
       }
-      #suspend {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("icons/suspend.png"));
-      }
+
       #shutdown {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("icons/shutdown.png"));
+        background-image: url("icons/shutdown.png");
       }
       #reboot {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("icons/reboot.png"));
+        background-image: url("icons/reboot.png");
+      }
+      #logout {
+        background-image: url("icons/logout.png");
+      }
+      #suspend {
+        background-image: url("icons/suspend.png");
       }
       #lock {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("icons/lock.png"));
+        background-image: url("icons/lock.png");
       }
       #hibernate {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("icons/hibernate.png"));
+        background-image: url("icons/hibernate.png");
       }
     '';
   };

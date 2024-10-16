@@ -4,6 +4,9 @@
   host,
   ...
 }:
+let
+  inherit (import ../hosts/${host}/variables.nix) systemTheme;
+in
 {
   # Home Manager Settings
   home.username = "${username}";
@@ -77,9 +80,9 @@
   };
 
   # Styling Options
-  stylix.targets.waybar.enable = false;
-  stylix.targets.rofi.enable = false;
-  stylix.targets.hyprland.enable = false;
+  stylix.targets.waybar.enable = if systemTheme.name == "stylix" then true else false;
+  stylix.targets.rofi.enable = if systemTheme.name == "stylix" then true else false;
+  stylix.targets.hyprland.enable = if systemTheme.name == "stylix" then true else false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";

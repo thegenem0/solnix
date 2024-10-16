@@ -1,5 +1,9 @@
 { config, ... }:
-
+let
+  inherit (import ../hosts/${host}/variables.nix) systemTheme;
+  inherit (import ../themes/theme.nix { inherit lib config; }) getTheme;
+  currentTheme = getTheme systemTheme;
+in
 {
   home.file.".config/swaync/config.json".text = ''
     {
@@ -68,7 +72,7 @@
     .control-center .notification-row:focus,
     .control-center .notification-row:hover {
       opacity: 0.9;
-      background: #${config.stylix.base16Scheme.base00}
+      background: ${currentTheme.background};  # Use theme background color
     }
     .notification-row {
       outline: none;
@@ -81,10 +85,10 @@
       margin: 0px;
     }
     .notification-content {
-      background: #${config.stylix.base16Scheme.base00};
+      background: ${currentTheme.background};  # Theme background
       padding: 10px;
       border-radius: 5px;
-      border: 2px solid #${config.stylix.base16Scheme.base0D};
+      border: 2px solid ${currentTheme.purple};  # Dynamic accent color
       margin: 0;
     }
     .notification-default-action {
@@ -93,8 +97,8 @@
       border-radius: 5px;
     }
     .close-button {
-      background: #${config.stylix.base16Scheme.base08};
-      color: #${config.stylix.base16Scheme.base00};
+      background: ${currentTheme.red};  # Dynamic red for close button
+      color: ${currentTheme.background};  # Background color for text contrast
       text-shadow: none;
       padding: 0;
       border-radius: 5px;
@@ -103,210 +107,60 @@
     }
     .close-button:hover {
       box-shadow: none;
-      background: #${config.stylix.base16Scheme.base0D};
+      background: ${currentTheme.purple};  # Hover state with accent color
       transition: all .15s ease-in-out;
-      border: none
+      border: none;
     }
     .notification-action {
-      border: 2px solid #${config.stylix.base16Scheme.base0D};
+      border: 2px solid ${currentTheme.purple};  # Dynamic accent color
       border-top: none;
       border-radius: 5px;
     }
     .notification-default-action:hover,
     .notification-action:hover {
-      color: #${config.stylix.base16Scheme.base0B};
-      background: #${config.stylix.base16Scheme.base0B}
-    }
-    .notification-default-action {
-      border-radius: 5px;
-      margin: 0px;
-    }
-    .notification-default-action:not(:only-child) {
-      border-bottom-left-radius: 7px;
-      border-bottom-right-radius: 7px
-    }
-    .notification-action:first-child {
-      border-bottom-left-radius: 10px;
-      background: #${config.stylix.base16Scheme.base00}
-    }
-    .notification-action:last-child {
-      border-bottom-right-radius: 10px;
-      background: #${config.stylix.base16Scheme.base00}
+      color: ${currentTheme.green};  # Success color on hover
+      background: ${currentTheme.green};  # Success color background on hover
     }
     .inline-reply {
-      margin-top: 8px
+      margin-top: 8px;
     }
     .inline-reply-entry {
-      background: #${config.stylix.base16Scheme.base00};
-      color: #${config.stylix.base16Scheme.base05};
-      caret-color: #${config.stylix.base16Scheme.base05};
-      border: 1px solid #${config.stylix.base16Scheme.base09};
-      border-radius: 5px
+      background: ${currentTheme.background};  # Dynamic background color
+      color: ${currentTheme.foreground};  # Dynamic foreground text color
+      caret-color: ${currentTheme.foreground};
+      border: 1px solid ${currentTheme.orange};  # Dynamic accent color
+      border-radius: 5px;
     }
     .inline-reply-button {
       margin-left: 4px;
-      background: #${config.stylix.base16Scheme.base00};
-      border: 1px solid #${config.stylix.base16Scheme.base09};
+      background: ${currentTheme.background};  # Dynamic background color
+      border: 1px solid ${currentTheme.orange};  # Dynamic accent color
       border-radius: 5px;
-      color: #${config.stylix.base16Scheme.base05}
-    }
-    .inline-reply-button:disabled {
-      background: initial;
-      color: #${config.stylix.base16Scheme.base03};
-      border: 1px solid transparent
-    }
-    .inline-reply-button:hover {
-      background: #${config.stylix.base16Scheme.base00}
-    }
-    .body-image {
-      margin-top: 6px;
-      background-color: #${config.stylix.base16Scheme.base05};
-      border-radius: 5px
-    }
-    .summary {
-      font-size: 16px;
-      font-weight: 700;
-      background: transparent;
-      color: rgba(158, 206, 106, 1);
-      text-shadow: none
-    }
-    .time {
-      font-size: 16px;
-      font-weight: 700;
-      background: transparent;
-      color: #${config.stylix.base16Scheme.base05};
-      text-shadow: none;
-      margin-right: 18px
-    }
-    .body {
-      font-size: 15px;
-      font-weight: 400;
-      background: transparent;
-      color: #${config.stylix.base16Scheme.base05};
-      text-shadow: none
-    }
-    .control-center {
-      background: #${config.stylix.base16Scheme.base00};
-      border: 2px solid #${config.stylix.base16Scheme.base0C};
-      border-radius: 5px;
-    }
-    .control-center-list {
-      background: transparent
-    }
-    .control-center-list-placeholder {
-      opacity: .5
-    }
-    .floating-notifications {
-      background: transparent
-    }
-    .blank-window {
-      background: alpha(black, 0)
+      color: ${currentTheme.foreground};  # Dynamic foreground text color
     }
     .widget-title {
-      color: #${config.stylix.base16Scheme.base0B};
-      background: #${config.stylix.base16Scheme.base00};
+      color: ${currentTheme.green};  # Dynamic accent color
+      background: ${currentTheme.background};  # Dynamic background color
       padding: 5px 10px;
       margin: 10px 10px 5px 10px;
       font-size: 1.5rem;
       border-radius: 5px;
     }
-    .widget-title>button {
-      font-size: 1rem;
-      color: #${config.stylix.base16Scheme.base05};
-      text-shadow: none;
-      background: #${config.stylix.base16Scheme.base00};
-      box-shadow: none;
-      border-radius: 5px;
-    }
-    .widget-title>button:hover {
-      background: #${config.stylix.base16Scheme.base08};
-      color: #${config.stylix.base16Scheme.base00};
-    }
     .widget-dnd {
-      background: #${config.stylix.base16Scheme.base00};
+      background: ${currentTheme.background};  # Dynamic background color
       padding: 5px 10px;
       margin: 10px 10px 5px 10px;
       border-radius: 5px;
       font-size: large;
-      color: #${config.stylix.base16Scheme.base0B};
-    }
-    .widget-dnd>switch {
-      border-radius: 5px;
-      /* border: 1px solid #${config.stylix.base16Scheme.base0B}; */
-      background: #${config.stylix.base16Scheme.base0B};
-    }
-    .widget-dnd>switch:checked {
-      background: #${config.stylix.base16Scheme.base08};
-      border: 1px solid #${config.stylix.base16Scheme.base08};
-    }
-    .widget-dnd>switch slider {
-      background: #${config.stylix.base16Scheme.base00};
-      border-radius: 5px
-    }
-    .widget-dnd>switch:checked slider {
-      background: #${config.stylix.base16Scheme.base00};
-      border-radius: 5px
-    }
-    .widget-label {
-        margin: 10px 10px 5px 10px;
-    }
-    .widget-label>label {
-      font-size: 1rem;
-      color: #${config.stylix.base16Scheme.base05};
-    }
-    .widget-mpris {
-      color: #${config.stylix.base16Scheme.base05};
-      padding: 5px 10px;
-      margin: 10px 10px 5px 10px;
-      border-radius: 5px;
-    }
-    .widget-mpris > box > button {
-      border-radius: 5px;
-    }
-    .widget-mpris-player {
-      padding: 5px 10px;
-      margin: 10px
-    }
-    .widget-mpris-title {
-      font-weight: 700;
-      font-size: 1.25rem
-    }
-    .widget-mpris-subtitle {
-      font-size: 1.1rem
-    }
-    .widget-menubar>box>.menu-button-bar>button {
-      border: none;
-      background: transparent
-    }
-    .topbar-buttons>button {
-      border: none;
-      background: transparent
+      color: ${currentTheme.green};  # Dynamic accent color
     }
     .widget-volume {
-      background: #${config.stylix.base16Scheme.base01};
+      background: ${currentTheme.comment};  # Secondary background
       padding: 5px;
       margin: 10px 10px 5px 10px;
       border-radius: 5px;
       font-size: x-large;
-      color: #${config.stylix.base16Scheme.base05};
-    }
-    .widget-volume>box>button {
-      background: #${config.stylix.base16Scheme.base0B};
-      border: none
-    }
-    .per-app-volume {
-      background-color: #${config.stylix.base16Scheme.base00};
-      padding: 4px 8px 8px;
-      margin: 0 8px 8px;
-      border-radius: 5px;
-    }
-    .widget-backlight {
-      background: #${config.stylix.base16Scheme.base01};
-      padding: 5px;
-      margin: 10px 10px 5px 10px;
-      border-radius: 5px;
-      font-size: x-large;
-      color: #${config.stylix.base16Scheme.base05}
+      color: ${currentTheme.foreground};  # Primary text color
     }
   '';
 }

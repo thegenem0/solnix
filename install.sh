@@ -58,7 +58,7 @@ fi
 
 sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
 
-read -rp "Enter your system theme: [ dracula, cattpuccin ] " basetheme
+read -rp "Enter your system theme: [ (dracula), cattpuccin, stylix ] " basetheme
 if [ -z "$basetheme" ]; then
   basetheme="dracula"
   variant="default"
@@ -70,6 +70,12 @@ elif [ "$basetheme" == "cattpuccin" ]; then
   if [ -z "$variant" ]; then
     variant="macchiato"
   fi
+elif [ "$basetheme" == "stylix" ]; then
+  basetheme="stylix"
+  variant="default"
+else
+  echo "Invalid system theme. Please choose either dracula, cattpuccin or stylix."
+  exit
 fi
 
 sed -i "/^\s*systemTheme[[:space:]]*=[[:space:]]*{/s/\}\(.*\)/\n  name = \"$basetheme\";\n  variant = \"$variant\";\n}/" ./hosts/$hostName/variables.nix
