@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  host,
+  ...
+}:
 let
   inherit (import ../hosts/${host}/variables.nix) systemTheme;
   inherit (import ../themes/theme.nix { inherit lib config; }) getTheme;
