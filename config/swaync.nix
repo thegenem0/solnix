@@ -76,7 +76,7 @@ in
     .control-center .notification-row:focus,
     .control-center .notification-row:hover {
       opacity: 0.9;
-      background: ${currentTheme.background};  # Use theme background color
+      background: ${currentTheme.bg};  # Use theme background color
     }
     .notification-row {
       outline: none;
@@ -89,10 +89,10 @@ in
       margin: 0px;
     }
     .notification-content {
-      background: ${currentTheme.background};  # Theme background
+      background: ${currentTheme.bg};  # Theme background
       padding: 10px;
       border-radius: 5px;
-      border: 2px solid ${currentTheme.purple};  # Dynamic accent color
+      border: 2px solid ${currentTheme.special};  # Dynamic accent color
       margin: 0;
     }
     .notification-default-action {
@@ -101,8 +101,8 @@ in
       border-radius: 5px;
     }
     .close-button {
-      background: ${currentTheme.red};  # Dynamic red for close button
-      color: ${currentTheme.background};  # Background color for text contrast
+      background: ${currentTheme.error};  # Dynamic red for close button
+      color: ${currentTheme.bg};  # Background color for text contrast
       text-shadow: none;
       padding: 0;
       border-radius: 5px;
@@ -111,60 +111,60 @@ in
     }
     .close-button:hover {
       box-shadow: none;
-      background: ${currentTheme.purple};  # Hover state with accent color
+      background: ${currentTheme.special};  # Hover state with accent color
       transition: all .15s ease-in-out;
       border: none;
     }
     .notification-action {
-      border: 2px solid ${currentTheme.purple};  # Dynamic accent color
+      border: 2px solid ${currentTheme.special};  # Dynamic accent color
       border-top: none;
       border-radius: 5px;
     }
     .notification-default-action:hover,
     .notification-action:hover {
-      color: ${currentTheme.green};  # Success color on hover
-      background: ${currentTheme.green};  # Success color background on hover
+      color: ${currentTheme.highlight};  # Success color on hover
+      background: ${currentTheme.highlight};  # Success color background on hover
     }
     .inline-reply {
       margin-top: 8px;
     }
     .inline-reply-entry {
-      background: ${currentTheme.background};  # Dynamic background color
-      color: ${currentTheme.foreground};  # Dynamic foreground text color
-      caret-color: ${currentTheme.foreground};
-      border: 1px solid ${currentTheme.orange};  # Dynamic accent color
+      background: ${currentTheme.bg};  # Dynamic background color
+      color: ${currentTheme.fg};  # Dynamic foreground text color
+      caret-color: ${currentTheme.fg};
+      border: 1px solid ${currentTheme.warning};  # Dynamic accent color
       border-radius: 5px;
     }
     .inline-reply-button {
       margin-left: 4px;
-      background: ${currentTheme.background};  # Dynamic background color
-      border: 1px solid ${currentTheme.orange};  # Dynamic accent color
+      background: ${currentTheme.bg};  # Dynamic background color
+      border: 1px solid ${currentTheme.warning};  # Dynamic accent color
       border-radius: 5px;
-      color: ${currentTheme.foreground};  # Dynamic foreground text color
+      color: ${currentTheme.fg};  # Dynamic foreground text color
     }
     .widget-title {
-      color: ${currentTheme.green};  # Dynamic accent color
-      background: ${currentTheme.background};  # Dynamic background color
+      color: ${currentTheme.highlight};  # Dynamic accent color
+      background: ${currentTheme.bg};  # Dynamic background color
       padding: 5px 10px;
       margin: 10px 10px 5px 10px;
       font-size: 1.5rem;
       border-radius: 5px;
     }
     .widget-dnd {
-      background: ${currentTheme.background};  # Dynamic background color
+      background: ${currentTheme.bg};  # Dynamic background color
       padding: 5px 10px;
       margin: 10px 10px 5px 10px;
       border-radius: 5px;
       font-size: large;
-      color: ${currentTheme.green};  # Dynamic accent color
+      color: ${currentTheme.highlight};  # Dynamic accent color
     }
     .widget-volume {
-      background: ${currentTheme.comment};  # Secondary background
+      background: ${currentTheme.secondaryBg};  # Secondary background
       padding: 5px;
       margin: 10px 10px 5px 10px;
       border-radius: 5px;
       font-size: x-large;
-      color: ${currentTheme.foreground};  # Primary text color
+      color: ${currentTheme.fg};  # Primary text color
     }
   '';
 }

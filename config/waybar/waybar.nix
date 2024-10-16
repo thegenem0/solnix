@@ -227,7 +227,7 @@ with lib;
         }
         window#waybar {
             background-color: rgba(50, 50, 50, 0.5);
-            border-bottom: 0px solid ${currentTheme.foreground};
+            border-bottom: 0px solid ${currentTheme.fg};               /* base05 */
             background: rgba(50, 50, 50, 0.8);
             transition-property: background-color;
             border-radius: 30px;
@@ -243,30 +243,30 @@ with lib;
             font-style: normal;
             opacity: 0.8;
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
         }
         #workspaces button {
             padding: 0px 5px;
-            border: 3px solid ${currentTheme.purple};
+            border: 3px solid ${currentTheme.special};               /* base0E */
             margin: 4px 3px;
             border-radius: 15px;
             border: 0px;
-            color: ${currentTheme.green};
-            background-color: ${currentTheme.purple};
+            color: ${currentTheme.success};                          /* base0B */
+            background-color: ${currentTheme.special};               /* base0E */
             transition: all 0.3s ease-in-out;
             opacity: 0.4;
         }
         #workspaces button.active {
-            color: ${currentTheme.green};
-            background: ${currentTheme.purple};
+            color: ${currentTheme.success};                          /* base0B */
+            background: ${currentTheme.special};                     /* base0E */
             border-radius: 15px;
             min-width: 40px;
             transition: all 0.3s ease-in-out;
             opacity: 1.0;
         }
         #workspaces button:hover {
-            color: ${currentTheme.purple};
-            background: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
+            background: ${currentTheme.special};                     /* base0E */
             border-radius: 15px;
             opacity: 0.7;
         }
@@ -278,38 +278,38 @@ with lib;
             margin: 0px;
         }
         tooltip label {
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
         }
         #clock {
             background-color: transparent;
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 1px 10px 0px 10px;
             margin: 3px 15px 3px 0px;
             opacity: 0.8;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
         }
         #pulseaudio {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
             opacity: 0.8;
         }
         #pulseaudio.muted {
-            background-color: ${currentTheme.green};
-            border: 3px solid ${currentTheme.green};
-            color: ${currentTheme.purple};
+            background-color: ${currentTheme.success};               /* base0B */
+            border: 3px solid ${currentTheme.success};               /* base0B */
+            color: ${currentTheme.special};                          /* base0E */
         }
         #network {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
@@ -317,21 +317,21 @@ with lib;
         }
         #network.ethernet {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
-            color: ${currentTheme.purple};
+            border: 3px solid ${currentTheme.success};               /* base0B */
+            color: ${currentTheme.special};                          /* base0E */
         }
         #network.wifi {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
-            color: ${currentTheme.purple};
+            border: 3px solid ${currentTheme.success};               /* base0B */
+            color: ${currentTheme.special};                          /* base0E */
         }
         #bluetooth,
         #bluetooth.on,
         #bluetooth.connected {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
@@ -344,9 +344,9 @@ with lib;
         }
         #battery {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 2px 15px 0px 10px;
             margin: 5px 15px 5px 0px;
@@ -354,20 +354,20 @@ with lib;
         }
         #battery.charging,
         #battery.plugged {
-            color: ${currentTheme.purple};
-            border: 3px solid ${currentTheme.green};
+            color: ${currentTheme.special};                          /* base0E */
+            border: 3px solid ${currentTheme.success};               /* base0B */
             background-color: transparent;
         }
         @keyframes blink {
             to {
                 background-color: transparent;
-                color: ${currentTheme.purple};
+                color: ${currentTheme.special};                      /* base0E */
             }
         }
         #battery.critical:not(.charging) {
             background-color: #f53c3c;
-            border: 3px solid ${currentTheme.green};
-            color: ${currentTheme.purple};
+            border: 3px solid ${currentTheme.success};               /* base0B */
+            color: ${currentTheme.special};                          /* base0E */
             animation-name: blink;
             animation-duration: 0.5s;
             animation-timing-function: linear;
@@ -384,19 +384,19 @@ with lib;
             margin: 0px 20px 0px 0px;
             padding: 0px;
             font-size: 20px;
-            color: ${currentTheme.green};
+            color: ${currentTheme.success};                          /* base0B */
         }
         #custom-notification {
             font-weight: bold;
-            background: ${currentTheme.purple};
-            color: ${currentTheme.background};
-            border: 3px solid ${currentTheme.green};
+            background: ${currentTheme.special};                     /* base0E */
+            color: ${currentTheme.bg};                               /* base00 */
+            border: 3px solid ${currentTheme.success};               /* base0B */
             border-radius: 15px;
             padding: 2px 15px 0px 10px;
             margin: 5px 15px 5px 0px;
         }
         #custom-waymedia {
-            color: ${currentTheme.green};
+            color: ${currentTheme.success};                          /* base0B */
         }
         #custom-system,
         #disk,
@@ -406,13 +406,13 @@ with lib;
             margin: 0px;
             padding: 0px;
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
         }
         #group-hardware {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
@@ -422,9 +422,9 @@ with lib;
         #memory,
         #disk {
             background-color: transparent;
-            border: 3px solid ${currentTheme.green};
+            border: 3px solid ${currentTheme.success};               /* base0B */
             font-size: 16px;
-            color: ${currentTheme.purple};
+            color: ${currentTheme.special};                          /* base0E */
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;

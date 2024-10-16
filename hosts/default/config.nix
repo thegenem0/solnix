@@ -65,22 +65,22 @@ in
     image = ../../config/wallpapers/9162783.jpg;
 
     override = mkIf (systemTheme.name != "stylix") {
-      base00 = currentTheme.background;   # Background color
-      base01 = currentTheme.background;   # Lighter background or selection color
-      base02 = currentTheme.comment;      # Comment or secondary text color
-      base03 = currentTheme.background;   # Slightly darker background (same as background in this case)
-      base04 = currentTheme.foreground;   # Light foreground for secondary elements
-      base05 = currentTheme.foreground;   # Main foreground text color
-      base06 = currentTheme.foreground;   # Same as base05 in this case
-      base07 = currentTheme.foreground;   # Brightest, usually same as main text
-      base08 = currentTheme.red;          # Red (errors)
-      base09 = currentTheme.orange;       # Orange (warnings)
-      base0A = currentTheme.yellow;       # Yellow (highlights, warnings)
-      base0B = currentTheme.green;        # Green (success)
-      base0C = currentTheme.cyan;         # Cyan (informational)
-      base0D = currentTheme.purple;       # Purple (links or active elements)
-      base0E = currentTheme.pink;         # Pink/Magenta (specials)
-      base0F = currentTheme.purple;       # Intense purple (optional, could be same as purple)
+      base00 = currentTheme.bg;
+      base01 = currentTheme.secondaryBg;
+      base02 = currentTheme.selectionBg;
+      base03 = currentTheme.inactiveFg;
+      base04 = currentTheme.subtleFg;
+      base05 = currentTheme.fg;
+      base06 = currentTheme.highlightFg;
+      base07 = currentTheme.brightFg;
+      base08 = currentTheme.error;
+      base09 = currentTheme.warning;
+      base0A = currentTheme.highlight;
+      base0B = currentTheme.success;
+      base0C = currentTheme.info;
+      base0D = currentTheme.accent;
+      base0E = currentTheme.special;
+      base0F = currentTheme.extra;
     };
 
     polarity = "dark";

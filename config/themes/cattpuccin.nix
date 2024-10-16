@@ -2,55 +2,76 @@
 
 let
   cattpuccinLatte = {
-    background = "#eff1f5";
-    foreground = "#4c4f69";
-    comment = "#8c8fa1";
-    cyan = "#04a5e5";
-    green = "#40a02b";
-    orange = "#fe640b";
-    pink = "#ea76cb";
-    purple = "#8839ef";
-    red = "#d20f39";
-    yellow = "#df8e1d";
+    bg = "#eff1f5";                 # base00 (base)
+    secondaryBg = "#e6e9ef";        # base01 (mantle)
+    selectionBg = "#ccd0da";        # base02 (surface0)
+    inactiveFg = "#bcc0cc";         # base03 (surface1)
+    subtleFg = "#acb0be";           # base04 (surface2)
+    fg = "#4c4f69";                 # base05 (text)
+    highlightFg = "#dc8a78";        # base06 (rosewater)
+    brightFg = "#7287fd";           # base07 (lavender)
+    error = "#d20f39";              # base08 (red)
+    warning = "#fe640b";            # base09 (peach)
+    highlight = "#df8e1d";          # base0A (yellow)
+    success = "#40a02b";            # base0B (green)
+    info = "#179299";               # base0C (teal)
+    accent = "#1e66f5";             # base0D (blue)
+    special = "#8839ef";            # base0E (mauve)
+    extra = "#dd7878";              # base0F (flamingo)
   };
-
   cattpuccinFrappe = {
-    background = "#303446";
-    foreground = "#c6d0f5";
-    comment = "#838ba7";
-    cyan = "#99d1db";
-    green = "#a6d189";
-    orange = "#ef9f76";
-    pink = "#f4b8e4";
-    purple = "#ca9ee6";
-    red = "#e78284";
-    yellow = "#e5c890";
+    bg = "#303446";                 # base00 (base)
+    secondaryBg = "#292c3c";        # base01 (mantle)
+    selectionBg = "#414559";        # base02 (surface0)
+    inactiveFg = "#51576d";         # base03 (surface1)
+    subtleFg = "#626880";           # base04 (surface2)
+    fg = "#c6d0f5";                 # base05 (text)
+    highlightFg = "#f2d5cf";        # base06 (rosewater)
+    brightFg = "#babbf1";           # base07 (lavender)
+    error = "#e78284";              # base08 (red)
+    warning = "#ef9f76";            # base09 (peach)
+    highlight = "#e5c890";          # base0A (yellow)
+    success = "#a6d189";            # base0B (green)
+    info = "#81c8be";               # base0C (teal)
+    accent = "#8caaee";             # base0D (blue)
+    special = "#ca9ee6";            # base0E (mauve)
+    extra = "#eebebe";              # base0F (flamingo)
   };
-
   cattpuccinMacchiato = {
-    background = "#24273a";
-    foreground = "#cad3f5";
-    comment = "#8087a2";
-    cyan = "#91d7e3";
-    green = "#a6da95";
-    orange = "#f5a97f";
-    pink = "#f5bde6";
-    purple = "#c6a0f6";
-    red = "#ed8796";
-    yellow = "#eed49f";
+    bg = "#24273a";                 # base00 (base)
+    secondaryBg = "#1e2030";        # base01 (mantle)
+    selectionBg = "#363a4f";        # base02 (surface0)
+    inactiveFg = "#494d64";         # base03 (surface1)
+    subtleFg = "#5b6078";           # base04 (surface2)
+    fg = "#cad3f5";                 # base05 (text)
+    highlightFg = "#f4dbd6";        # base06 (rosewater)
+    brightFg = "#b7bdf8";           # base07 (lavender)
+    error = "#ed8796";              # base08 (red)
+    warning = "#f5a97f";            # base09 (peach)
+    highlight = "#eed49f";          # base0A (yellow)
+    success = "#a6da95";            # base0B (green)
+    info = "#8bd5ca";               # base0C (teal)
+    accent = "#8aadf4";             # base0D (blue)
+    special = "#c6a0f6";            # base0E (mauve)
+    extra = "#f0c6c6";              # base0F (flamingo)
   };
-
   cattpuccinMocha = {
-    background = "#1e1e2e";
-    foreground = "#cdd6f4";
-    comment = "#7f849c";
-    cyan = "#89dceb";
-    green = "#a6e3a1";
-    orange = "#f9e2af";
-    pink = "#f5c2e7";
-    purple = "#cba6f7";
-    red = "#f38ba8";
-    yellow = "#f9e2af";
+    bg = "#1e1e2e";                 # base00 (base)
+    secondaryBg = "#181825";        # base01 (mantle)
+    selectionBg = "#313244";        # base02 (surface0)
+    inactiveFg = "#45475a";         # base03 (surface1)
+    subtleFg = "#585b70";           # base04 (surface2)
+    fg = "#cdd6f4";                 # base05 (text)
+    highlightFg = "#f5e0dc";        # base06 (rosewater)
+    brightFg = "#b4befe";           # base07 (lavender)
+    error = "#f38ba8";              # base08 (red)
+    warning = "#fab387";            # base09 (peach)
+    highlight = "#f9e2af";          # base0A (yellow)
+    success = "#a6e3a1";            # base0B (green)
+    info = "#94e2d5";               # base0C (teal)
+    accent = "#89b4fa";             # base0D (blue)
+    special = "#cba6f7";            # base0E (mauve)
+    extra = "#f2cdcd";              # base0F (flamingo)
   };
 in
   if flavor == "latte" then cattpuccinLatte

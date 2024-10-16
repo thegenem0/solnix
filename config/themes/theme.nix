@@ -24,16 +24,22 @@ let
       else throw "Unknown Catppuccin variant: ${themeVariant}"
     else if themeName == "stylix" then
       if themeVariant == "default" then {
-        background = "#${stylixTheme.base00}";
-        foreground = "#${stylixTheme.base05}";
-        comment = "#${stylixTheme.base03}";
-        cyan = "#${stylixTheme.base0C}";
-        green = "#${stylixTheme.base0B}";
-        orange = "#${stylixTheme.base09}";
-        pink = "#${stylixTheme.base0D}";
-        purple = "#${stylixTheme.base0E}";
-        red = "#${stylixTheme.base08}";
-        yellow = "#${stylixTheme.base0A}";
+        bg = "#${stylixTheme.base00}";
+        secondaryBg = "#${stylixTheme.base01}";
+        selectionBg = "#${stylixTheme.base02}";
+        inactiveFg = "#${stylixTheme.base03}";
+        subtleFg = "#${stylixTheme.base04}";
+        fg = "#${stylixTheme.base05}";
+        highlightFg = "#${stylixTheme.base06}";
+        brightFg = "#${stylixTheme.base07}";
+        error = "#${stylixTheme.base08}";
+        warning = "#${stylixTheme.base09}";
+        highlight = "#${stylixTheme.base0A}";
+        success = "#${stylixTheme.base0B}";
+        info = "#${stylixTheme.base0C}";
+        accent = "#${stylixTheme.base0D}";
+        special = "#${stylixTheme.base0E}";
+        extra = "#${stylixTheme.base0F}";
       }
       else throw "Unknown Stylix variant: ${themeVariant}"
     else throw "Unknown theme: ${themeName}";

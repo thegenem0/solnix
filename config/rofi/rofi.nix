@@ -31,15 +31,15 @@ in
         in
         {
           "*" = {
-            bg = mkLiteral "${currentTheme.background}";              # Background color
-            bg-alt = mkLiteral "${currentTheme.orange}";              # Alternate background
-            foreground = mkLiteral "${currentTheme.foreground}";      # Foreground color
-            selected = mkLiteral "${currentTheme.red}";               # Selected element color
-            active = mkLiteral "${currentTheme.green}";               # Active element color
-            text-selected = mkLiteral "${currentTheme.background}";   # Text on selected element
-            text-color = mkLiteral "${currentTheme.foreground}";      # General text color
-            border-color = mkLiteral "${currentTheme.purple}";        # Border color
-            urgent = mkLiteral "${currentTheme.purple}";              # Urgent color (for alerts)
+            bg = mkLiteral "${currentTheme.bg}";
+            bg-alt = mkLiteral "${currentTheme.warning}";
+            foreground = mkLiteral "${currentTheme.fg}";
+            selected = mkLiteral "${currentTheme.error}";
+            active = mkLiteral "${currentTheme.success}";
+            text-selected = mkLiteral "${currentTheme.bg}";
+            text-color = mkLiteral "${currentTheme.fg}";
+            border-color = mkLiteral "${currentTheme.special}";
+            urgent = mkLiteral "${currentTheme.special}";
           };
           "window" = {
             width = mkLiteral "50%";

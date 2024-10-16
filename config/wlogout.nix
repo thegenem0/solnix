@@ -61,23 +61,23 @@ in
       }
 
       button {
-        color: ${currentTheme.foreground};  # Use dynamic foreground color
+        color: ${currentTheme.fg};  # Use dynamic foreground color
         font-size: 20px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 25%;
         border-style: solid;
         background-color: rgba(12, 12, 12, 0.3);
-        border: 3px solid ${currentTheme.foreground};  # Use dynamic border color
+        border: 3px solid ${currentTheme.fg};  # Use dynamic border color
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
 
       button:focus,
       button:active,
       button:hover {
-        color: ${currentTheme.green};  # Use dynamic hover color
+        color: ${currentTheme.highlight};  # Use dynamic hover color
         background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid ${currentTheme.green};  # Use dynamic border color for hover
+        border: 3px solid ${currentTheme.highlight};  # Use dynamic border color for hover
       }
 
       #shutdown, #reboot, #logout, #suspend, #lock, #hibernate {

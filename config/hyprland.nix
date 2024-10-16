@@ -63,8 +63,8 @@ with lib;
             border_size = 0;
             layout = "dwindle";
             resize_on_border = true;
-            "col.active_border" = "rgb(${currentTheme.red}) rgb(${currentTheme.cyan}) 45deg";
-            "col.inactive_border" = "rgb(${currentTheme.background})";
+            "col.active_border" = "rgb(${currentTheme.warning}) rgb(${currentTheme.info}) 45deg";
+            "col.inactive_border" = "rgb(${currentTheme.bg})";
         };
         input = {
             kb_layout = "${keyboardLayout}";
@@ -181,6 +181,8 @@ with lib;
     extraConfig =
       let
       in
+      # Sourcing the monitors.conf and workspaces.conf files
+      # Lets us modify these via nwg-displays at runtime
       concatStrings [
         ''
           ${extraMonitorSettings}

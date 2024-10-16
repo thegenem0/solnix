@@ -29,35 +29,35 @@ in
         window_padding_width = 4;
         enable_audio_bell = false;
 
-        foreground = "${currentTheme.foreground}";
-        background = "${currentTheme.background}";
-        cursor = "${currentTheme.foreground}";
+        foreground = "${currentTheme.fg}";
+        background = "${currentTheme.bg}";
+        cursor = "${currentTheme.fg}";
 
-        active_tab_foreground = "${currentTheme.background}";
-        active_tab_background = "${currentTheme.foreground}";
-        inactive_tab_foreground = "${currentTheme.foreground}";
-        inactive_tab_background = "${currentTheme.background}";
+        active_tab_foreground = "${currentTheme.bg}";
+        active_tab_background = "${currentTheme.fg}";
+        inactive_tab_foreground = "${currentTheme.fg}";
+        inactive_tab_background = "${currentTheme.bg}";
 
-        active_border_color = "${currentTheme.foreground}";
-        inactive_border_color = "${currentTheme.background}";
-        bell_border_color = "${currentTheme.purple}";  # or any accent
+        active_border_color = "${currentTheme.fg}";
+        inactive_border_color = "${currentTheme.bg}";
+        bell_border_color = "${currentTheme.special}";
 
-        color0 = "${currentTheme.background}";    # Black
-        color8 = "${currentTheme.comment}";       # Bright Black (use comment as dimmer color)
-        color1 = "${currentTheme.red}";           # Red
-        color9 = "${currentTheme.red}";           # Bright Red
-        color2 = "${currentTheme.green}";         # Green
-        color10 = "${currentTheme.green}";        # Bright Green
-        color3 = "${currentTheme.yellow}";        # Yellow
-        color11 = "${currentTheme.yellow}";       # Bright Yellow
-        color4 = "${currentTheme.purple}";        # Purple
-        color12 = "${currentTheme.purple}";       # Bright Purple
-        color5 = "${currentTheme.pink}";          # Pink (Magenta equivalent)
-        color13 = "${currentTheme.pink}";         # Bright Pink (Bright Magenta)
-        color6 = "${currentTheme.cyan}";          # Cyan
-        color14 = "${currentTheme.cyan}";         # Bright Cyan
-        color7 = "${currentTheme.foreground}";    # White
-        color15 = "${currentTheme.foreground}";   # Bright White
+        color0 = "${currentTheme.bg}";
+        color8 = "${currentTheme.inactiveFg}";
+        color1 = "${currentTheme.error}";
+        color9 = "${currentTheme.error}";
+        color2 = "${currentTheme.success}";
+        color10 = "${currentTheme.success}";
+        color3 = "${currentTheme.highlight}";
+        color11 = "${currentTheme.highlight}";
+        color4 = "${currentTheme.accent}";
+        color12 = "${currentTheme.accent}";
+        color5 = "${currentTheme.special}";
+        color13 = "${currentTheme.special}";
+        color6 = "${currentTheme.info}";
+        color14 = "${currentTheme.info}";
+        color7 = "${currentTheme.fg}";
+        color15 = "${currentTheme.brightFg}";
       };
     };
     zsh = {
