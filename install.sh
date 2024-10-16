@@ -87,6 +87,8 @@ cat ./hosts/$hostName/variables.nix
 installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
+cat ./flake.nix
+
 echo "Generating The Hardware Configuration"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
 
