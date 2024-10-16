@@ -6,14 +6,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.44.0";
-    hyprland = {
-      src = builtins.fetchGit {
-        url = "https://github.com/hyprwm/Hyprland";
-        ref = "v0.44.0";
-        fetchSubmodules = true;  # Fetch submodules
-      };
-    };
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.44.0";
     hy3 = {
       url = "github:outfoxxed/hy3?ref=hl0.44.0";
       inputs.hyprland.follows = "hyprland";
