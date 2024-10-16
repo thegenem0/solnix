@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) keyboardLayout amd nvidia intel;
+  inherit (import ./variables.nix) keyboardLayout amd nvidia intel systemTheme;
 in
 {
   imports = [
@@ -55,7 +55,7 @@ in
 
   # Styling Options
   stylix = {
-    enable = true;
+    enable = if systemTheme.name == "stylix" then true else false;
     image = ../../config/wallpapers/9162783.jpg;
     polarity = "dark";
     opacity.terminal = 0.8;
