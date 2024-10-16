@@ -1,11 +1,11 @@
 {
   description = "solnix";
 
-  inputs =
-  { ... }:
   let
     hyprVersion = "0.44.0";
-  in {
+  in
+
+  inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
