@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   host,
@@ -163,6 +164,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    (inputs.hyprland.packages.${system}.hyprland)
     killall
     lolcat
     libvirt
