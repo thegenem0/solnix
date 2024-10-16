@@ -59,7 +59,7 @@ in
   stylix = {
     enable = true;
     image = if systemTheme.name == "stylix" then ../../config/wallpapers/9162783.jpg else null;
-    override = if systemTheme.name != "stylix" {
+    override = if systemTheme.name != "stylix" then {
       base00 = currentTheme.background;   # Background color
       base01 = currentTheme.selection;    # Lighter background or selection color
       base02 = currentTheme.comment;      # Comment or secondary text color
