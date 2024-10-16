@@ -18,10 +18,10 @@ fi
 echo "Ensure In Home Directory"
 cd || exit
 
-read -rp "Enter Your New Hostname: " hostName
+currentHostname=$(hostname)
+read -rp "Enter new hostname, or leave blank to keep current hostname: [ $currentHostname ] " hostName
 if [ -z "$hostName" ]; then
-  echo "Hostname must be provided."
-  exit
+  hostName=$currentHostname
 fi
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
