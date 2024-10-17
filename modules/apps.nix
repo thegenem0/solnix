@@ -29,21 +29,12 @@
     virt-viewer
     appimage-run
     networkmanagerapplet
-    discord
     file-roller
     swaynotificationcenter
     imv
     mpv
-    spotify
-    gimp
     hyprpicker
     yad
     pavucontrol
-    jetbrains.idea-ultimate
-    jetbrains.clion
-    jetbrains.datagrip
-    jetbrains.webstorm
-    jetbrains.pycharm-professional
-    jetbrains.jdk-no-jcef
   ];
 }

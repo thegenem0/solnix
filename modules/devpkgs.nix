@@ -19,7 +19,6 @@
     fzf
     tmux
     zoxide
-    pyenv
     antidote
     wget
     eza
@@ -32,13 +31,6 @@
     tree
     ncdu
     duf
-    lazygit
-    lazydocker
-    awscli2
-    aws-vault
-    nodejs_20
-    go
-    zig
     clang
     gcc
     cargo

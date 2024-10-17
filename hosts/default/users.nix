@@ -19,16 +19,25 @@
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
+        slack
+        discord
+        spotify
+        jetbrains.idea-ultimate
+        jetbrains.clion
+        jetbrains.datagrip
+        jetbrains.webstorm
+        jetbrains.pycharm-professional
+        jetbrains.jdk-no-jcef
+        gimp
+        lazygit
+        lazydocker
+        awscli2
+        aws-vault
+        nodejs_20
+        go
+        zig
+        pyenv
       ];
     };
-    # "newuser" = {
-    #   homeMode = "755";
-    #   isNormalUser = true;
-    #   description = "New user account";
-    #   extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    #   shell = pkgs.bash;
-    #   ignoreShellProgramCheck = true;
-    #   packages = with pkgs; [];
-    # };
   };
 }
