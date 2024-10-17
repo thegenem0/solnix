@@ -1,6 +1,7 @@
 username=$(whoami)
 wall_dir="/home/${username}/Pictures/Wallpapers"
 rofi_theme="/home/${username}/.config/rofi/wallselect.rasi"
+blurred_wallpaper="/home/${username}/.config/.blurred_wallpaper"
 
 selected=$(find -L "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec basename {} \; | sort -R | while read rfile
     do
@@ -22,7 +23,7 @@ if pgrep -x "swww-daemon" > /dev/null; then
 else
     echo "Starting swww-daemon"
     swww-daemon &
-    sleep 0.5
+    sleep 1
 fi
 
 current_wallpaper_link="/home/${username}/.config/.current_wallpaper"
@@ -31,10 +32,20 @@ if [ -L "$current_wallpaper_link" ]; then
 fi
 ln -s "$wall_dir/$selected" "$current_wallpaper_link"
 
-blurred_wallpaper="/home/${username}/.config/.blurred_wallpaper"
-magick "$temp_wallpaper" -blur 0x8 "$blurred_wallpaper"
+echo "Blurring wallpaper..."
+if magick "$temp_wallpaper" -blur 0x8 "$blurred_wallpaper"; then
+    echo "Blurred wallpaper created at $blurred_wallpaper"
+else
+    echo "Error creating blurred wallpaper."
+    exit 1
+fi
 
-swww img "$temp_wallpaper" --transition-type=wipe --transition-duration=0.7
+if swww img "$temp_wallpaper" --transition-type=wipe --transition-duration=0.7; then
+    echo "Wallpaper set successfully."
+else
+    echo "Error setting wallpaper."
+    exit 1
+fi
 
 notify-send "Wallpaper changed!" "New wallpaper set: $(basename "$selected")"
 
