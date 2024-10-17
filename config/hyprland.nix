@@ -10,7 +10,6 @@ let
   inherit (import ../hosts/${host}/variables.nix)
     browser
     terminal
-    extraMonitorSettings
     keyboardLayout
     systemTheme
     ;
@@ -190,7 +189,6 @@ with lib;
       # Lets us modify these via nwg-displays at runtime
       concatStrings [
         ''
-          ${extraMonitorSettings}
           source = ~/.config/hypr/monitors.conf
           source = ~/.config/hypr/workspaces.conf
         ''
