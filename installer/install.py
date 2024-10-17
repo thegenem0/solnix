@@ -28,12 +28,10 @@ def set_installer_git_config():
 def setup_flake(solnix_dir: str, hostname: str, username: str):
     """Set the username for the flake."""
     cpCmd = f"cp {solnix_dir}/hosts/default/*.nix {solnix_dir}/hosts/{hostName}"
-'
-
     hostnameCmd = f'sed -i "/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/" {solnix_dir}/flake.nix'
-
     usernameCmd = f'sed -i "/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/" {solnix_dir}/flake.nix'
     try:
+        subprocess.run(cpCmd, shell=True, check=True)
         subprocess.run(hostnameCmd, shell=True, check=True)
         subprocess.run(usernameCmd, shell=True, check=True)
     except subprocess.CalledProcessError as e:
