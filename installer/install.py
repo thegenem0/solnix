@@ -122,8 +122,6 @@ def main():
 
     setup_flake(solnix_dir, hostname, username)
 
-    set_installer_git_config()
-
     write_vars_file(host_path=f"{solnix_dir}/hosts/{hostname}/variables.nix", config=config)
 
     install_solnix(solnix_dir, hostname)
