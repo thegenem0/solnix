@@ -97,6 +97,7 @@ in
         set -g pane-base-index 1
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
+        set -g @dracula-plugins "git cpu-usage ram-usage"
         unbind-key C-b
         set-option -g prefix C-a
         bind-key C-a send-prefix
@@ -107,16 +108,11 @@ in
         bind '"' split-window -v -c "#{pane_current_path}"
         bind '%' split-window -h -c "#{pane_current_path}"
       '';
-      plugins = with pkgs.tmuxPlugins; [
-        tmuxplugin-sensible-unstable
-        tmuxplugin-vim-tmux-navigator-unstable
-        tmuxplugin-yank-unstable
-        {
-          plugin = pkgs.tmuxPlugins.tmuxplugin-dracula;
-          extraConfig = ''
-            set -g @dracula-plugins "git cpu-usage ram-usage"
-          '';
-        }
+      plugins = with pkgs; [
+        tmuxPlugins.sensible
+        tmuxPlugins.vim-tmux-navigator
+        tmuxPlugins.yank
+        tmuxPlugins.dracula
       ];
     };
     zoxide = {
