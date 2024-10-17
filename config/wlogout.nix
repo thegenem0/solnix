@@ -14,40 +14,40 @@ in
     enable = true;
     layout = [
       {
+        label = "lock";
+        action = "pidof hyprlock || hyprlock -q";
+        text = "Lock";
+        keybind = "l";
+      }
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
+      }
+      {
         label = "shutdown";
-        action = "sleep 1; systemctl poweroff";
+        action = "systemctl poweroff";
         text = "Shutdown";
         keybind = "s";
       }
       {
-        "label" = "reboot";
-        "action" = "sleep 1; systemctl reboot";
-        "text" = "Reboot";
-        "keybind" = "r";
+        label = "logout";
+        action = "hyprctl dispatch exit";
+        text = "Logout";
+        keybind = "e";
       }
       {
-        "label" = "logout";
-        "action" = "sleep 1; hyprctl dispatch exit";
-        "text" = "Exit";
-        "keybind" = "e";
+        label = "suspend";
+        action = "systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
       }
       {
-        "label" = "suspend";
-        "action" = "sleep 1; systemctl suspend";
-        "text" = "Suspend";
-        "keybind" = "u";
-      }
-      {
-        "label" = "lock";
-        "action" = "sleep 1; hyprlock";
-        "text" = "Lock";
-        "keybind" = "l";
-      }
-      {
-        "label" = "hibernate";
-        "action" = "sleep 1; systemctl hibernate";
-        "text" = "Hibernate";
-        "keybind" = "h";
+        label = "hibernate";
+        action = "systemctl hibernate";
+        text = "Hibernate";
+        keybind = "h";
       }
     ];
     style = ''
@@ -62,23 +62,23 @@ in
       }
 
       button {
-        color: ${currentTheme.fg};  # Use dynamic foreground color
+        color: ${currentTheme.fg};
         font-size: 20px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 25%;
         border-style: solid;
         background-color: rgba(12, 12, 12, 0.3);
-        border: 3px solid ${currentTheme.fg};  # Use dynamic border color
+        border: 3px solid ${currentTheme.fg};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
 
       button:focus,
       button:active,
       button:hover {
-        color: ${currentTheme.success};  # Use dynamic hover color
+        color: ${currentTheme.success};
         background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid ${currentTheme.success};  # Use dynamic border color for hover
+        border: 3px solid ${currentTheme.success};
       }
 
       #shutdown, #reboot, #logout, #suspend, #lock, #hibernate {
