@@ -10,7 +10,7 @@ let
   currentTheme = getTheme systemTheme;
 in
 {
-  home.file.".config/rofi/wallpaper.rasi".text = ''
+  home.file.".config/rofi/wallselect.rasi".text = ''
     * {
       background-color: ${currentTheme.bg};
       background: rgba(0,0,0,0.7);
