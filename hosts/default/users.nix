@@ -20,7 +20,7 @@
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
         slack
-        discord
+        vesktop
         spotify
         jetbrains.idea-ultimate
         jetbrains.clion
@@ -37,6 +37,7 @@
         go
         zig
         pyenv
+        postman
       ];
     };
   };
