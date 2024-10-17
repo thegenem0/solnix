@@ -16,12 +16,13 @@ def get_username():
 
 def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
     """Set up the SolNix flake directory, copy configuration files, and configure git."""
-
     try:
+        # Step 1: Create the host-specific directory
         dest_dir = os.path.join(solnix_dir, "hosts", hostname)
         os.makedirs(dest_dir, exist_ok=True)
         print(f"Created directory: {dest_dir}")
 
+        # Step 2: Copy .nix files from default to the new host directory
         default_nix_dir = os.path.join(solnix_dir, "hosts", "default")
         for file_name in os.listdir(default_nix_dir):
             if file_name.endswith(".nix"):
@@ -30,26 +31,31 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
                     shutil.copy(full_file_name, dest_dir)
                     print(f"Copied {full_file_name} to {dest_dir}")
 
+        # Step 3: Set git configuration
         subprocess.run(["git", "config", "--global", "user.name", username], check=True)
         subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
         print(f"Git user set to {username} (installer@mail.com)")
 
+        # Step 4: Add all files to git staging
         subprocess.run(["git", "add", "."], cwd=solnix_dir, check=True)
         print("Added files to git staging.")
 
+        # Step 5: Update hostname in flake.nix using sed
         hostnameCmd = [
-            "sed", "-i",
-            f"/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/",
+            "sed", "-i", f"/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/",
             os.path.join(solnix_dir, "flake.nix")
         ]
+        print(f"Running hostname sed command: {' '.join(hostnameCmd)}")
         subprocess.run(hostnameCmd, check=True)
 
+        # Step 6: Update username in flake.nix using sed
         usernameCmd = [
-            "sed", "-i",
-            f"/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/",
+            "sed", "-i", f"/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/",
             os.path.join(solnix_dir, "flake.nix")
         ]
+        print(f"Running username sed command: {' '.join(usernameCmd)}")
         subprocess.run(usernameCmd, check=True)
+
         print(f"Successfully set hostname to {hostname} and username to {username} in flake.nix.")
 
     except subprocess.CalledProcessError as e:
