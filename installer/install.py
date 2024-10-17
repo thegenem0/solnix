@@ -42,7 +42,9 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
 
         # Step 5: Update hostname in flake.nix using sed
         hostnameCmd = [
-            "sed", "-i", f"/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/",
+            "sed",
+            "-i",
+            f's/host = ".*"/host = "{hostname}"/',
             os.path.join(solnix_dir, "flake.nix")
         ]
         print(f"Running hostname sed command: {' '.join(hostnameCmd)}")
@@ -50,7 +52,9 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
 
         # Step 6: Update username in flake.nix using sed
         usernameCmd = [
-            "sed", "-i", f"/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/",
+            "sed",
+            "-i",
+            f's/username = ".*"/username = "{username}"/',
             os.path.join(solnix_dir, "flake.nix")
         ]
         print(f"Running username sed command: {' '.join(usernameCmd)}")
