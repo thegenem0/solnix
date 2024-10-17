@@ -32,9 +32,13 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
                     print(f"Copied {full_file_name} to {dest_dir}")
 
         # Step 3: Set git configuration
-        subprocess.run(["git", "config", "--global", "user.name", username], check=True)
-        subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
-        print(f"Git user set to {username} (installer@mail.com)")
+        try:
+            subprocess.run(["git", "config", "--global", "user.name", username], check=True)
+            subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
+            print(f"Git user set to {username} (installer@mail.com)")
+        except:
+            print("Error setting git user.")
+            pass
 
         # Step 4: Add all files to git staging
         subprocess.run(["git", "add", "."], cwd=solnix_dir, check=True)
