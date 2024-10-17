@@ -14,7 +14,7 @@ in
 {
   home.file.".zshrc".source = ./zshrc;
   home.file.".scripts".source = ./scripts;
-  home.file.".tmux.conf".enable = false;
+  home.file.".config/tmux".source = ./tmux;
 
   programs = {
     kitty = {
