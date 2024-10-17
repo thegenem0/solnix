@@ -51,12 +51,9 @@ def install_solnix(solnix_dir: str, hostname: str):
 
     try:
         subprocess.run(
-            [
-                "sudo",
-                "NIX_CONFIG='experimental-features = nix-command flakes' nixos-rebuild switch --flake",
-                f"{solnix_dir}/#@{hostname}"
-            ],
-            shell=True
+            f"sudo NIX_CONFIG='experimental-features = nix-command flakes' nixos-rebuild switch --flake {solnix_dir}/#{hostname}",
+            shell=True,
+            check=True
         )
     except subprocess.CalledProcessError as e:
         print(f"Error applying NixOS installation: {e}")
@@ -100,8 +97,5 @@ def main():
     install_solnix(solnix_dir, hostname)
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as e:
-        print(f"Error: {e}")
-        exit(1)
+    main()
+
