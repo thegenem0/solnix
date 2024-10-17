@@ -100,7 +100,7 @@ def main():
         terminal="kitty"
     )
 
-    set_flake_params(solnix_dir, hostname, username)
+    setup_flake(solnix_dir, hostname, username)
 
     set_installer_git_config()
 
