@@ -1,6 +1,6 @@
 username=$(whoami)
 wall_dir="/home/${username}/Pictures/Wallpapers"
-rofi_theme="/home/${username}/.config/rofi/wallpapers.rasi"
+rofi_theme="/home/${username}/.config/rofi/wallselect.rasi"
 
 selected=$(find "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec basename {} \; | sort -R | while read rfile
     do
