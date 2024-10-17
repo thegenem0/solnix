@@ -10,8 +10,8 @@ pkgs.writeShellScriptBin "wallsetter" ''
 
   selected=$( find "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec basename {} \; | sort -R | while read rfile
       do
-          echo -en "$rfile\x00icon\x1f$wall_dir/${rfile}\n"
-      done | rofi -dmenu -i -replace -config ${rofi_theme})
+          echo -en "$rfile\x00icon\x1f$wall_dir/$rfile\n"
+      done | rofi -dmenu -i -replace -config $rofi_theme)
       if [ ! "$selected" ]; then
           echo "No wallpaper selected"
           exit
