@@ -1,4 +1,5 @@
 import dataclasses
+import os
 
 @dataclasses.dataclass(frozen=True)
 class SystemTheme:
@@ -77,6 +78,7 @@ def _write_dict_to_nix(d: dict, f, indent: int = 2):
 
 def write_vars_file(host_path: str, config: NixVariables = default_nix_variables):
     nix_variables = config.to_dict()
+    os.makedirs(os.path.dirname(host_path), exist_ok=True)
 
     with open(host_path, "w") as f:
         f.write("{\n")
