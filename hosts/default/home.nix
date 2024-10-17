@@ -93,7 +93,6 @@ in
   # Scripts
   home.packages = [
     (import ../../scripts/task-waybar.nix { inherit pkgs; })
-    (import ../../scripts/squirtle.nix { inherit pkgs; })
     (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
     (import ../../scripts/wallsetter.nix {
       inherit pkgs;

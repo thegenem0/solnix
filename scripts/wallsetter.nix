@@ -1,24 +1,52 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  username,
+  ...
+}:
 
 pkgs.writeShellScriptBin "wallsetter" ''
+  wall_dir="/home/${username}/Pictures/Wallpapers"
+  rofi_theme="/home/${username}/.config/rofi/wallpapers.rasi"
 
-  TIMEOUT=720
+  selected=$( find "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec basename {} \; | sort -R | while read rfile
+      do
+          echo -en "$rfile\x00icon\x1f$wall_dir/${rfile}\n"
+      done | rofi -dmenu -i -replace -config ${rofi_theme})
+      if [ ! "$selected" ]; then
+          echo "No wallpaper selected"
+          exit
+      fi
 
-  for pid in $(pidof -o %PPID -x wallsetter); do
-  	kill $pid
-  done
+  if [ -n "$selected" ]; then
+      if pgrep -x "swww-daemon" > /dev/null; then
+          echo "swww-daemon is already running"
+      else
+          echo "Starting swww-daemon"
+          swww-daemon &
+          sleep 0.5
+      fi
 
-  if ! [ -d ~/Pictures/Wallpapers ]; then notify-send -t 5000 "~/Pictures/Wallpapers does not exist" && exit 1; fi
-  if [ $(ls -1 ~/Pictures/Wallpapers | wc -l) -lt 1 ]; then	notify-send -t 9000 "The wallpaper folder is expected to have more than 1 image. Exiting Wallsetter." && exit 1; fi
+      if [ -L "/home/${username}/.config/.current_wallpaper" ]; then
+	   rm "/home/${username}/.config/.current_wallpaper"
+      fi
 
-  while true; do
-    while [ "$WALLPAPER" == "$PREVIOUS" ]; do
-      WALLPAPER=$(find ~/Pictures/Wallpapers -name '*' | awk '!/.git/' | tail -n +2 | shuf -n 1)
-    done
+      ln -s "$selected" "/home/${username}/.config/.current_wallpaper"
 
-  	PREVIOUS=$WALLPAPER
+      blurred_wallpaper="/home/${username}/.config/.blurred_wallpaper"
+      if [ -f "$blurred_wallpaper" ]; then
+         rm "$blurred_wallpaper"
+      fi
 
-  	${pkgs.swww}/bin/swww img "$WALLPAPER" --transition-type random --transition-step 1 --transition-fps 60
-  	sleep $TIMEOUT
-  done
+      magick "$selected" -blur 0x8 "$blurred_wallpaper"
+
+      # Set the wallpaper using swww
+      swww img "$selected" --transition-type=wipe --transition-duration=0.7
+
+      # Notify the user
+      notify-send "Wallpaper changed!" "New wallpaper set: $(basename "$selected")"
+  else
+      exit 1
+  fi
+
+  exit 0
 ''

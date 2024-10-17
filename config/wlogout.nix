@@ -1,6 +1,7 @@
 {
   config,
   host,
+  username,
   ...
 }:
 let
@@ -57,7 +58,7 @@ in
       }
 
       window {
-        background-color: rgba(12, 12, 12, 0.1);
+        background: url("/home/${username}/.config/.blurred_wallpaper");
       }
 
       button {
@@ -75,9 +76,9 @@ in
       button:focus,
       button:active,
       button:hover {
-        color: ${currentTheme.highlight};  # Use dynamic hover color
+        color: ${currentTheme.success};  # Use dynamic hover color
         background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid ${currentTheme.highlight};  # Use dynamic border color for hover
+        border: 3px solid ${currentTheme.success};  # Use dynamic border color for hover
       }
 
       #shutdown, #reboot, #logout, #suspend, #lock, #hibernate {
