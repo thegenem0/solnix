@@ -51,7 +51,7 @@ def install_solnix(solnix_dir: str, hostname: str):
 
     try:
         subprocess.run(
-            f"sudo NIX_CONFIG='experimental-features = nix-command flakes' nixos-rebuild switch --flake {solnix_dir}/#{hostname}",
+            f"sudo NIX_CONFIG='experimental-features = nix-command flakes' nixos-rebuild switch --flake ~/solnix/#{hostname}",
             shell=True,
             check=True
         )
