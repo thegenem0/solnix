@@ -58,9 +58,9 @@ in
             border-color = mkLiteral "@border-color";
             background-color = mkLiteral "transparent";
             children = map mkLiteral [
-              "inputbar",
-              "message",
-              "listview",
+              "inputbar"
+              "message"
+              "listview"
             ];
           };
           "inputbar" = {
