@@ -68,6 +68,14 @@ def main():
     basetheme, variant = get_system_theme()
     gpu, extraConfig = get_gpu_config()
 
+    print(f"Installing with following settings:\n"
+        f"Username: {username}\n"
+        f"Hostname: {hostname}\n"
+        f"Keyboard Layout: {keyboard_layout}\n"
+        f"System Theme: {basetheme} {variant}\n"
+        f"GPU: {gpu}\n"
+    )
+
     config = NixVariables(
         clock24h=True,
         systemTheme=SystemTheme(basetheme, variant),
