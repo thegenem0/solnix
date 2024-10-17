@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import shutil
 import subprocess
 import datetime
 from variables import write_vars_file, NixVariables, SystemTheme, GraphicsConfig
