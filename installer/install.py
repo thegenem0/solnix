@@ -14,28 +14,28 @@ def get_username():
     except subprocess.CalledProcessError as e:
         print(f"Error getting username: {e}")
 
-def set_installer_git_config():
-    """Ensure nix doesn't build from a dirty git state."""
+def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
+    """Set up the SolNix flake directory, copy configuration files, and configure git."""
+
     try:
-        if subprocess.run(["git", "config", "--global", "user.name"], stdout=subprocess.DEVNULL).returncode != 0:
-            subprocess.run(["git", "config", "--global", "user.name", "installer"], check=True)
-        if subprocess.run(["git", "config", "--global", "user.email"], stdout=subprocess.DEVNULL).returncode != 0:
-            subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
+        dest_dir = os.path.join(solnix_dir, "hosts", hostname)
+        os.makedirs(dest_dir, exist_ok=True)
+        print(f"Created directory: {dest_dir}")
 
-        subprocess.run(["git", "add", "."], check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"Error setting Git config: {e}")
+        default_nix_dir = os.path.join(solnix_dir, "hosts", "default")
+        for file_name in os.listdir(default_nix_dir):
+            if file_name.endswith(".nix"):
+                full_file_name = os.path.join(default_nix_dir, file_name)
+                if os.path.isfile(full_file_name):
+                    shutil.copy(full_file_name, dest_dir)
+                    print(f"Copied {full_file_name} to {dest_dir}")
 
+        subprocess.run(["git", "config", "--global", "user.name", username], check=True)
+        subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
+        print(f"Git user set to {username} (installer@mail.com)")
 
-def setup_flake(solnix_dir: str, hostname: str, username: str):
-    """Set the username and hostname in the flake configuration."""
-    try:
-        src_nix_files = os.path.join(solnix_dir, "hosts/default")
-        dest_nix_files = os.path.join(solnix_dir, f"hosts/{hostname}")
-
-        if not os.path.exists(dest_nix_files):
-            os.makedirs(dest_nix_files)
-        shutil.copytree(src_nix_files, dest_nix_files, dirs_exist_ok=True)
+        subprocess.run(["git", "add", "."], cwd=solnix_dir, check=True)
+        print("Added files to git staging.")
 
         hostnameCmd = [
             "sed", "-i",
@@ -50,7 +50,6 @@ def setup_flake(solnix_dir: str, hostname: str, username: str):
             os.path.join(solnix_dir, "flake.nix")
         ]
         subprocess.run(usernameCmd, check=True)
-
         print(f"Successfully set hostname to {hostname} and username to {username} in flake.nix.")
 
     except subprocess.CalledProcessError as e:
