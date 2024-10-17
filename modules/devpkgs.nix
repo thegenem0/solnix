@@ -35,5 +35,7 @@
     gcc
     cargo
     rustc
+    python
+    python312Full
   ];
 }
