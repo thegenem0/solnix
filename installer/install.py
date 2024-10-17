@@ -16,8 +16,11 @@ def get_username():
 def set_installer_git_config():
     """Ensure nix doesn't build from a dirty git state."""
     try:
-        subprocess.run(["git", "config", "--global", "user.name", "installer"], check=True)
-        subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
+        if subprocess.run(["git", "config", "--global", "user.name"], stdout=subprocess.DEVNULL).returncode != 0:
+            subprocess.run(["git", "config", "--global", "user.name", "installer"], check=True)
+        if subprocess.run(["git", "config", "--global", "user.email"], stdout=subprocess.DEVNULL).returncode != 0:
+            subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
+
         subprocess.run(["git", "add", "."], check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error setting Git config: {e}")
