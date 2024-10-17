@@ -143,13 +143,13 @@ in
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 10;
+          grace = 0;
           hide_cursor = true;
           no_fade_in = false;
         };
         background = [
           {
-            path = "/home/${username}/Pictures/Wallpapers/9162783.jpg";
+            path = "screenshot";
             blur_passes = 3;
             blur_size = 8;
           }
