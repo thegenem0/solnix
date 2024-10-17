@@ -25,11 +25,14 @@ def set_installer_git_config():
     except subprocess.CalledProcessError as e:
         print(f"Error setting Git config: {e}")
 
-def set_flake_username(solnix_dir: str, username: str):
+def set_flake_params(solnix_dir: str, hostname: str, username: str):
     """Set the username for the flake."""
-    cmd = f'sed -i "/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/" {solnix_dir}/flake.nix'
+    hostnameCmd = f'sed -i "/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/" {solnix_dir}/flake.nix'
+
+    usernameCmd = f'sed -i "/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/" {solnix_dir}/flake.nix'
     try:
-        subprocess.run(cmd, shell=True, check=True)
+        subprocess.run(hostnameCmd, shell=True, check=True)
+        subprocess.run(usernameCmd, shell=True, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error setting username in flake.nix: {e}")
 
@@ -96,7 +99,7 @@ def main():
         terminal="kitty"
     )
 
-    set_flake_username(solnix_dir, username)
+    set_flake_params(solnix_dir, hostname, username)
 
     set_installer_git_config()
 
