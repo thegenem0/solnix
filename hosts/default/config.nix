@@ -278,7 +278,15 @@ in
     };
     rpcbind.enable = false;
     nfs.server.enable = false;
-    kanata.enable = true;
+    kanata = {
+      enable = true;
+      keyboards = {
+        default = {
+          devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+          configFile = "/home/${username}/.config/kanata/config.kbd";
+        };
+      };
+    };
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
