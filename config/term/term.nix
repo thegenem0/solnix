@@ -15,8 +15,8 @@ in
   home.file.".zshrc".source = ./zshrc;
   home.file.".scripts".source = ./scripts;
   home.file.".config/tmux" = {
+    enable = false;
     source = ./tmux;
-    backup = false;
   };
 
   programs = {
