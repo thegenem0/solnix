@@ -25,17 +25,37 @@ def set_installer_git_config():
     except subprocess.CalledProcessError as e:
         print(f"Error setting Git config: {e}")
 
+
 def setup_flake(solnix_dir: str, hostname: str, username: str):
-    """Set the username for the flake."""
-    cpCmd = f"cp {solnix_dir}/hosts/default/*.nix {solnix_dir}/hosts/{hostname}"
-    hostnameCmd = f'sed -i "/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/" {solnix_dir}/flake.nix'
-    usernameCmd = f'sed -i "/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/" {solnix_dir}/flake.nix'
+    """Set the username and hostname in the flake configuration."""
     try:
-        subprocess.run(cpCmd, shell=True, check=True)
-        subprocess.run(hostnameCmd, shell=True, check=True)
-        subprocess.run(usernameCmd, shell=True, check=True)
+        src_nix_files = os.path.join(solnix_dir, "hosts/default")
+        dest_nix_files = os.path.join(solnix_dir, f"hosts/{hostname}")
+
+        if not os.path.exists(dest_nix_files):
+            os.makedirs(dest_nix_files)
+        shutil.copytree(src_nix_files, dest_nix_files, dirs_exist_ok=True)
+
+        hostnameCmd = [
+            "sed", "-i",
+            f"/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/",
+            os.path.join(solnix_dir, "flake.nix")
+        ]
+        subprocess.run(hostnameCmd, check=True)
+
+        usernameCmd = [
+            "sed", "-i",
+            f"/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/",
+            os.path.join(solnix_dir, "flake.nix")
+        ]
+        subprocess.run(usernameCmd, check=True)
+
+        print(f"Successfully set hostname to {hostname} and username to {username} in flake.nix.")
+
     except subprocess.CalledProcessError as e:
-        print(f"Error setting username in flake.nix: {e}")
+        print(f"Error running command: {e}")
+    except OSError as e:
+        print(f"Error copying files or creating directories: {e}")
 
 def install_solnix(solnix_dir: str, hostname: str):
     config_file = f"{solnix_dir}/hosts/{hostname}/hardware.nix"
