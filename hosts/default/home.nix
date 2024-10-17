@@ -92,14 +92,14 @@ in
 
   # Scripts
   home.packages = [
-    (import ../../scripts/task-waybar.nix { inherit pkgs; })
+    (import ../../scripts/notifications-open.nix { inherit pkgs; })
     (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
     (import ../../scripts/wallsetter.nix {
       inherit pkgs;
       inherit username;
     })
     (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
-    (import ../../scripts/screenshootin.nix { inherit pkgs; })
+    (import ../../scripts/screenshot-area.nix { inherit pkgs; })
     (import ../../scripts/list-hypr-bindings.nix {
       inherit pkgs;
       inherit host;
