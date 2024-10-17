@@ -14,7 +14,10 @@ in
 {
   home.file.".zshrc".source = ./zshrc;
   home.file.".scripts".source = ./scripts;
-  home.file.".config/tmux".source = ./tmux;
+  home.file.".config/tmux" = {
+    source = ./tmux;
+    backup = false;
+  };
 
   programs = {
     kitty = {
