@@ -51,6 +51,7 @@ def get_gpu_config():
     elif gpu == "nvidia":
         extraConfig = {
             "prime": {
+                "enable": "false",
                 "intelBusID": '""',
                 "nvidiaBusID": '""'
             }

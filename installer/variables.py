@@ -54,6 +54,7 @@ default_nix_variables = NixVariables(
         enable=False,
         extraConfig={
             "prime": {
+                "enable": "false",
                 "intelBusID": '""',
                 "nvidiaBusID": '""'
             }
