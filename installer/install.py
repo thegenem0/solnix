@@ -17,12 +17,10 @@ def get_username():
 def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
     """Set up the SolNix flake directory, copy configuration files, and configure git."""
     try:
-        # Step 1: Create the host-specific directory
         dest_dir = os.path.join(solnix_dir, "hosts", hostname)
         os.makedirs(dest_dir, exist_ok=True)
         print(f"Created directory: {dest_dir}")
 
-        # Step 2: Copy .nix files from default to the new host directory
         default_nix_dir = os.path.join(solnix_dir, "hosts", "default")
         for file_name in os.listdir(default_nix_dir):
             if file_name.endswith(".nix"):
@@ -31,7 +29,6 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
                     shutil.copy(full_file_name, dest_dir)
                     print(f"Copied {full_file_name} to {dest_dir}")
 
-        # Step 3: Set git configuration
         try:
             subprocess.run(["git", "config", "--global", "user.name", username], check=True)
             subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
@@ -40,11 +37,6 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
             print("Error setting git user.")
             pass
 
-        # Step 4: Add all files to git staging
-        subprocess.run(["git", "add", "."], cwd=solnix_dir, check=True)
-        print("Added files to git staging.")
-
-        # Step 5: Update hostname in flake.nix using sed
         hostnameCmd = [
             "sed",
             "-i",
@@ -54,7 +46,6 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
         print(f"Running hostname sed command: {' '.join(hostnameCmd)}")
         subprocess.run(hostnameCmd, check=True)
 
-        # Step 6: Update username in flake.nix using sed
         usernameCmd = [
             "sed",
             "-i",
@@ -73,6 +64,8 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
 
 def install_solnix(solnix_dir: str, hostname: str):
     config_file = f"{solnix_dir}/hosts/{hostname}/hardware.nix"
+
+    subprocess.run(["git", "add", "."], cwd=solnix_dir, check=True)
     try:
         os.makedirs(f"{solnix_dir}/hosts/{hostname}", exist_ok=True)
     except FileExistsError:
