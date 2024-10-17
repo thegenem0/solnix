@@ -27,7 +27,7 @@ def set_installer_git_config():
 
 def setup_flake(solnix_dir: str, hostname: str, username: str):
     """Set the username for the flake."""
-    cpCmd = f"cp {solnix_dir}/hosts/default/*.nix {solnix_dir}/hosts/{hostName}"
+    cpCmd = f"cp {solnix_dir}/hosts/default/*.nix {solnix_dir}/hosts/{hostname}"
     hostnameCmd = f'sed -i "/^\\s*host[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{hostname}\\\"/" {solnix_dir}/flake.nix'
     usernameCmd = f'sed -i "/^\\s*username[[:space:]]*=[[:space:]]*\\\"/s/\\\"\\(.*\\)\\\"/\\\"{username}\\\"/" {solnix_dir}/flake.nix'
     try:
