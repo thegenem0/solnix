@@ -17,8 +17,8 @@ in
   imports = [
     ../../config/fastfetch
     ../../config/hyprland.nix
-    ../../config/rofi/rofi.nix
-    ../../config/rofi/config-long.nix
+    ../../config/rofi/rofi-launcher.nix
+    ../../config/rofi/rofi-wallselect.nix
     ../../config/swaync.nix
     ../../config/waybar/waybar.nix
     ../../config/git/git.nix
