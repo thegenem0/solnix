@@ -22,6 +22,7 @@ in
     ../../config/swaync.nix
     ../../config/waybar/waybar.nix
     ../../config/git/git.nix
+    ../../config/ssh/ssh.nix
     ../../config/term/term.nix
     ../../config/neovim/neovim.nix
     ../../config/wlogout.nix
