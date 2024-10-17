@@ -14,7 +14,6 @@ in
 {
   home.file.".zshrc".source = ./zshrc;
   home.file.".scripts".source = ./scripts;
-  home.file.".config/kanata".source = ./kanata;
   home.file.".config/tmux".source = ./tmux;
 
   programs = {
