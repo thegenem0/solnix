@@ -26,7 +26,6 @@ export EDITOR="nvim"
 alias gl="lazygit"
 alias gowork="cd ~/dev/work/"
 alias gome="cd ~/dev/personal"
-alias vim="nvim"
 alias nixdev="nix develop"
 
 alias ls='exa --icons --long --git -h --group-directories-first'
@@ -38,7 +37,7 @@ alias cli-nosession="aws-vault exec hace-cli --no-session --"
 alias main-nosession="aws-vault exec hace-main --no-session --"
 alias awslocal="AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=eu-west-2 aws --endpoint-url=http://${LOCALSTACK_HOST:-localhost}:4566"
 
-alias awsvpn-connect="awsvpnclient start --config ~/.vpn/hace-main.ovpn > /dev/null 2>&1 &"
+alias awsvpn-connect="sudo awsvpnclient start --config ~/.vpn/hace-main.ovpn > /dev/null 2>&1 &"
 alias awsvpn-disconnect="pkill \"aws-vpn-client\""
 
 alias flake-rebuild="nh os switch --hostname $(hostname) /home/$(whoami)/solnix"

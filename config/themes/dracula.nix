@@ -11,8 +11,8 @@ let
     brightFg = "#f7f7fb";           # base07
     error = "#ea51b2";              # base08 (red equivalent)
     warning = "#b45bcf";            # base09 (purple equivalent)
-    highlight = "#ebff87";          # base0A (yellow equivalent)
-    success = "#00f769";            # base0B (green equivalent)
+    highlight = "#00f769";          # base0A (yellow equivalent)
+    success = "#ebff87";            # base0B (green equivalent)
     info = "#a1efe4";               # base0C (cyan equivalent)
     accent = "#62d6e8";             # base0D (blue equivalent)
     special = "#b45bcf";            # base0E (purple equivalent)

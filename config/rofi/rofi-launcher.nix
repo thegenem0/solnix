@@ -31,17 +31,17 @@ in
         {
           "*" = {
             bg = mkLiteral "${currentTheme.bg}";
-            bg-alt = mkLiteral "${currentTheme.warning}";
+            bg-alt = mkLiteral "${currentTheme.fg}";
             foreground = mkLiteral "${currentTheme.fg}";
-            selected = mkLiteral "${currentTheme.error}";
+            selected = mkLiteral "${currentTheme.info}";
             active = mkLiteral "${currentTheme.success}";
             text-selected = mkLiteral "${currentTheme.bg}";
-            text-color = mkLiteral "${currentTheme.fg}";
-            border-color = mkLiteral "${currentTheme.special}";
-            urgent = mkLiteral "${currentTheme.special}";
+            text-color = mkLiteral "${currentTheme.info}";
+            border-color = mkLiteral "${currentTheme.fg}";
+            urgent = mkLiteral "${currentTheme.warning}";
           };
           "window" = {
-            width = mkLiteral "50%";
+            width = mkLiteral "25%";
             transparency = "real";
             orientation = mkLiteral "vertical";
             cursor = mkLiteral "default";
@@ -78,7 +78,7 @@ in
           };
           "prompt" = {
             enabled = true;
-            background-color = mkLiteral "inherit";
+            background-color = mkLiteral "transparent";
             text-color = mkLiteral "inherit";
           };
           "textbox-prompt-colon" = {

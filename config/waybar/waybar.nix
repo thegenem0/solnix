@@ -22,7 +22,7 @@ with lib;
       {
         layer = "top";
         position = "top";
-        margin-top = 14;
+        margin-top = 5;
         margin-left = 10;
         margin-right = 10;
         modules-center = [ "custom/waymedia" ];
@@ -39,8 +39,8 @@ with lib;
           "custom/empty"
           "tray"
           "clock"
-          "custom/exit"
           "custom/notification"
+          "custom/exit"
         ];
 
         "custom/empty" = {
@@ -163,12 +163,12 @@ with lib;
         };
 
         "cpu" = {
-          format = "/  {usage}% ";
+          format = " {usage}% ";
           on-click = "kitty -e btop";
         };
 
         "memory" = {
-          format = "/  {}% ";
+          format = " {}% ";
           on-click = "kitty -e btop";
         };
 
@@ -180,7 +180,7 @@ with lib;
         };
 
         "hyprland/language" = {
-          format = "/  {short}";
+          format = " {short}";
         };
 
 
@@ -204,7 +204,7 @@ with lib;
 
         "battery" = {
           states = {
-            warning = 30;
+            bg = 30;
             critical = 15;
           };
           format = "{icon} {capacity}%";
@@ -237,9 +237,7 @@ with lib;
           min-height: 0px;
         }
         window#waybar {
-            background-color: rgba(50, 50, 50, 0.5);
-            border-bottom: 0px solid ${currentTheme.fg};               /* base05 */
-            background: rgba(50, 50, 50, 0.8);
+            background: transparent;
             transition-property: background-color;
             border-radius: 30px;
             transition-duration: .5s;
@@ -254,110 +252,109 @@ with lib;
             font-style: normal;
             opacity: 0.8;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.bg};
         }
         #workspaces button {
-            padding: 0px 5px;
-            border: 3px solid ${currentTheme.special};               /* base0E */
+            padding: 0px 10px;
+            border: 0px solid;
             margin: 4px 3px;
             border-radius: 15px;
             border: 0px;
-            color: ${currentTheme.success};                          /* base0B */
-            background-color: ${currentTheme.special};               /* base0E */
+            color: ${currentTheme.info};
+            background-color: ${currentTheme.bg};
             transition: all 0.3s ease-in-out;
-            opacity: 0.4;
+            opacity: 1.0;
         }
         #workspaces button.active {
-            color: ${currentTheme.success};                          /* base0B */
-            background: ${currentTheme.special};                     /* base0E */
+            color: ${currentTheme.info};
+            background: ${currentTheme.bg};
             border-radius: 15px;
             min-width: 40px;
             transition: all 0.3s ease-in-out;
             opacity: 1.0;
         }
         #workspaces button:hover {
-            color: ${currentTheme.special};                          /* base0E */
-            background: ${currentTheme.special};                     /* base0E */
+            color: ${currentTheme.highlight};
+            background: ${currentTheme.bg};
             border-radius: 15px;
             opacity: 0.7;
         }
         tooltip {
             border-radius: 10px;
-            background-color: transparent;
+            background-color: ${currentTheme.bg};
             opacity: 0.8;
             padding: 20px;
             margin: 0px;
         }
         tooltip label {
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
         }
         #clock {
-            background-color: transparent;
+            background-color: ${currentTheme.bg};
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
-            padding: 1px 10px 0px 10px;
-            margin: 3px 15px 3px 0px;
+            padding: 2px 10px 0px 10px;
             opacity: 0.8;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            border: 0px solid;
         }
         #pulseaudio {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            background-color:  ${currentTheme.bg};
+            border: 0px solid;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
             opacity: 0.8;
         }
         #pulseaudio.muted {
-            background-color: ${currentTheme.success};               /* base0B */
-            border: 3px solid ${currentTheme.success};               /* base0B */
-            color: ${currentTheme.special};                          /* base0E */
+            background-color: ${currentTheme.info};
+            border: 0px solid;
+            color: ${currentTheme.info};
         }
         #network {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            background-color: ${currentTheme.bg};
+            border: 0px solid;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
             opacity: 0.8;
         }
         #network.ethernet {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
-            color: ${currentTheme.special};                          /* base0E */
+            background-color:  ${currentTheme.bg};
+            border: 0px solid;
+            color: ${currentTheme.info};
         }
         #network.wifi {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
-            color: ${currentTheme.special};                          /* base0E */
+            background-color: ${currentTheme.bg};
+            border: 0px solid;
+            color: ${currentTheme.info};
         }
         #bluetooth,
         #bluetooth.on,
         #bluetooth.connected {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            background-color: ${currentTheme.bg};
+            border: 0px solid;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
             opacity: 0.8;
         }
         #bluetooth.off {
-            background-color: transparent;
+            background-color: ${currentTheme.bg};
             padding: 0px;
             margin: 0px;
         }
         #battery {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            background-color: ${currentTheme.bg};
+            border: 0px solid;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
             padding: 2px 15px 0px 10px;
             margin: 5px 15px 5px 0px;
@@ -365,20 +362,20 @@ with lib;
         }
         #battery.charging,
         #battery.plugged {
-            color: ${currentTheme.special};                          /* base0E */
-            border: 3px solid ${currentTheme.success};               /* base0B */
-            background-color: transparent;
+            color: ${currentTheme.info};
+            border: 0px solid;
+            background-color: ${currentTheme.bg};
         }
         @keyframes blink {
             to {
                 background-color: transparent;
-                color: ${currentTheme.special};                      /* base0E */
+                color: ${currentTheme.info};
             }
         }
         #battery.critical:not(.charging) {
-            background-color: #f53c3c;
-            border: 3px solid ${currentTheme.success};               /* base0B */
-            color: ${currentTheme.special};                          /* base0E */
+            background-color: ${currentTheme.error};
+            border: 0px solid;
+            color: ${currentTheme.info};
             animation-name: blink;
             animation-duration: 0.5s;
             animation-timing-function: linear;
@@ -386,6 +383,7 @@ with lib;
             animation-direction: alternate;
         }
         #tray {
+            background-color: transparent;
             padding: 0px 15px 0px 0px;
         }
         #tray>.passive {
@@ -394,20 +392,25 @@ with lib;
         #custom-exit {
             margin: 0px 20px 0px 0px;
             padding: 0px;
-            font-size: 20px;
-            color: ${currentTheme.success};                          /* base0B */
+            font-size: 24px;
+            color: ${currentTheme.info};
         }
         #custom-notification {
             font-weight: bold;
-            background: ${currentTheme.special};                     /* base0E */
-            color: ${currentTheme.bg};                               /* base00 */
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            background: ${currentTheme.bg};
+            color: ${currentTheme.info};
+            border: 0px solid;
             border-radius: 15px;
             padding: 2px 15px 0px 10px;
             margin: 5px 15px 5px 0px;
         }
         #custom-waymedia {
-            color: ${currentTheme.success};                          /* base0B */
+            background: ${currentTheme.bg};
+            color: ${currentTheme.info};
+            font-size: 16px;
+            border: 0px solid;
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
         }
         #custom-system,
         #disk,
@@ -417,13 +420,13 @@ with lib;
             margin: 0px;
             padding: 0px;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
         }
         #group-hardware {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+            background-color: ${currentTheme.bg};
+            border: 0px solid;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
@@ -431,11 +434,12 @@ with lib;
         }
         #cpu,
         #memory,
-        #disk {
-            background-color: transparent;
-            border: 3px solid ${currentTheme.success};               /* base0B */
+        #disk,
+        #language {
+            background-color: ${currentTheme.bg};
+            border: 0px solid;
             font-size: 16px;
-            color: ${currentTheme.special};                          /* base0E */
+            color: ${currentTheme.info};
             border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;

@@ -10,6 +10,17 @@ let
   inherit (import ../../hosts/${host}/variables.nix) systemTheme;
   inherit (import ../themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
+  zshPlugins = [
+    "reegnz/aws-vault-zsh-plugin"
+    "lukechilds/zsh-nvm"
+    "aloxaf/fzf-tab"
+    "zsh-users/zsh-syntax-highlighting"
+    "MichaelAquilina/zsh-auto-notify"
+    "unixorn/autoupdate-antigen.zshplugin"
+    "reegnz/jq-zsh-plugin"
+    "aubreypwd/zsh-plugin-reload"
+    "qoomon/zsh-lazyload"
+  ];
 in
 {
   home.file.".zshrc".source = ./zshrc;
@@ -62,21 +73,14 @@ in
     zsh = {
       enable = true;
       package = pkgs.zsh;
-      antidote = {
-        enable = true;
-        package = pkgs.antidote;
-        plugins = [
-          "reegnz/aws-vault-zsh-plugin"
-          "lukechilds/zsh-nvm"
-          "zsh-users/zsh-syntax-highlighting"
-          "Aloxaf/fzf-tab"
-          "MichaelAquilina/zsh-auto-notify"
-          "unixorn/autoupdate-antigen.zshplugin"
-          "reegnz/jq-zsh-plugin"
-          "aubreypwd/zsh-plugin-reload"
-          "qoomon/zsh-lazyload"
-        ];
-      };
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      initExtra = ''
+        # Initialize Antidote
+        source "${pkgs.antidote}/share/antidote/antidote.zsh"
+        antidote load ${builtins.concatStringsSep " " zshPlugins}
+      '';
     };
     atuin = {
       enable = true;
@@ -112,6 +116,7 @@ in
         tmuxPlugins.sensible
         tmuxPlugins.vim-tmux-navigator
         tmuxPlugins.yank
+        tmuxPlugins.tmux-fzf
         tmuxPlugins.dracula
       ];
     };

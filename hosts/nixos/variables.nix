@@ -1,8 +1,8 @@
 {
   clock24h = true;
   systemTheme = {
-    name = "dracula";
-    variant = "default";
+    name = "cattpuccin";
+    variant = "macchiato";
   };
   amd = {
     enable = false;

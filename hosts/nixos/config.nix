@@ -337,6 +337,18 @@ in
     '';
   };
 
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        users = [ "${username}" ];
+        commands = [
+          { command = "/usr/bin/awsvpnclient"; options = [ "NOPASSWD" ]; }
+        ];
+      }
+    ];
+  };
+
   # Optimization settings and garbage collection automation
   nix = {
     settings = {

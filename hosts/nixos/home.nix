@@ -36,8 +36,8 @@ in
   home.file.".config/wlogout/icons".source = ../../config/wlogout;
 
   # INFO: Face
-  home.file.".logo.icon".source = ../../config/logo.jpg;
-  home.file.".config/logo.jpg".source = ../../config/logo.jpg;
+  home.file.".logo.icon".source = ../../config/logo.png;
+  home.file.".config/logo.jpg".source = ../../config/logo.png;
 
   # INFO: Swappy
   home.file.".config/swappy/config".text = ''
@@ -105,6 +105,8 @@ in
       inherit pkgs;
       inherit host;
     })
+    (import ../../scripts/awsvpn-toggle.nix { inherit pkgs; })
+    (import ../../scripts/awsvpn-status.nix { inherit pkgs; })
   ];
 
   services = {

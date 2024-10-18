@@ -143,7 +143,7 @@ with lib;
           "${mod}, L, movefocus, r"
           "${mod}, K, movefocus, u"
           "${mod}, J, movefocus, d"
-          "${mod}, PRINT, exec,  screenshot-area"
+          "${mod}, PRINT, exec, screenshot-area"
           "${mod} SHIFT, B, exec, list-hypr-bindings"
           "${mod} SHIFT, L, exec, wlogout"
           "${mod} SHIFT, W, exec, wallsetter"
