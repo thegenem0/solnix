@@ -12,6 +12,7 @@ let
     terminal
     keyboardLayout
     systemTheme
+    nvidia
     ;
     inherit (import ./themes/theme.nix { inherit config; }) getTheme;
     currentTheme = getTheme systemTheme;
@@ -41,6 +42,7 @@ with lib;
           "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
           "SDL_VIDEODRIVER, x11"
           "MOZ_ENABLE_WAYLAND, 1"
+          "ELECTRON_OZONE_PLATFORM_HINT,auto"
         ];
         exec-once = [
           "dbus-update-activation-environment --systemd --all"
@@ -50,9 +52,10 @@ with lib;
           "killall -q swaync;sleep .5 && swaync"
           "nm-applet --indicator"
           "lxqt-policykit"
-          "sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg"
-          "monitor=,preferred,auto,1"
         ];
+        cursor = mkIf nvidia.enable {
+          no_hardware_cursors = true;
+        };
         general = {
             gaps_in = 5;
             gaps_out = 20;

@@ -8,6 +8,8 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
+
+
   environment.systemPackages = with pkgs; [
     vim
     neovim
@@ -33,8 +35,9 @@
     duf
     clang
     gcc
-    cargo
-    rustc
+    rust-bin.stable.latest.default
     python312Full
+    gnumake
+    awsvpnclient
   ];
 }

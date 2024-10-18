@@ -23,7 +23,6 @@
     nwg-look
     nwg-displays
     firefox
-    brave
     cmatrix
     ffmpeg
     virt-viewer
