@@ -102,6 +102,15 @@ with lib;
           on-click = "sleep 0.1 && pavucontrol";
         };
 
+        "bluetooth" = {
+          format = " {status}";
+          format-disabled = "";
+          format-off = "";
+          interval = 30;
+          on-click = "sleep 0.1 && blueman-manager";
+          format-no-controller = "";
+        };
+
         "custom/exit" = {
           tooltip = false;
           format = "";
@@ -124,7 +133,7 @@ with lib;
           return-type = "json";
           exec-if = "which swaync-client";
           exec = "swaync-client -swb";
-          on-click = "sleep 0.1 && task-waybar";
+          on-click = "sleep 0.1 && notifications-open";
           escape = true;
         };
 
@@ -140,6 +149,7 @@ with lib;
           format-wifi = "{icon} {signalStrength}%";
           format-disconnected = "󰤮";
           tooltip = false;
+          on-click = "sleep 0.1 && networkmanagerapplet";
         };
 
         "tray" = {
@@ -189,6 +199,7 @@ with lib;
               "hyprland/language"
               "custom/empty"
           ];
+          on-click = "sleep 0.1 && btop";
         };
 
         "battery" = {
