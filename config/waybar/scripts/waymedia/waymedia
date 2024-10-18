@@ -2,7 +2,6 @@
 
 import os
 import subprocess
-import re
 
 divider = " - "
 format = "{artist}{divider}{title}"
@@ -15,12 +14,16 @@ metadata = get_command_result("playerctl metadata")
 
 players = subprocess.run("playerctl --list-all", shell=True, capture_output=True, text=True).stdout.split("\n")
 
+# Only proceed if the player is Spotify
 for player in players:
+    if player.strip() != "spotify":
+        continue  # Skip non-Spotify players
+
     status = get_command_result(f"playerctl status -p {player}")
 
     if status != "Stopped" and status != "":
-        artist = get_command_result("playerctl metadata --format '{{artist}}'")
-        title = get_command_result("playerctl metadata --format '{{title}}'")
+        artist = get_command_result(f"playerctl metadata -p {player} --format '{{{{artist}}}}'")
+        title = get_command_result(f"playerctl metadata -p {player} --format '{{{{title}}}}'")
 
         if len(artist) == 0:
             divider = ""
