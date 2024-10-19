@@ -63,7 +63,7 @@ in
     # This is required even if we override everything
     # See https://github.com/danth/stylix/issues/200
     image = if systemTheme.name == "stylix" then
-              "../../config/wallpapers/${variant}" else
+              "../../config/wallpapers/${systemTheme.variant}" else
               ../../config/wallpapers/9162783.jpg;
 
     override = mkIf (systemTheme.name != "stylix") {
