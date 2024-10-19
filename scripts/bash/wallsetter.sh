@@ -1,4 +1,4 @@
-log_file="/tmp/wallsetter.log"
+log_file=".tmp/wallsetter.log"
 exec > "$log_file" 2>&1
 
 username=$(whoami)
@@ -16,7 +16,7 @@ if [ -z "$selected" ]; then
     exit 1
 fi
 
-temp_dir="~/.tmp/wallsetter"
+temp_dir=".tmp/wallsetter"
 mkdir -p "$temp_dir"
 temp_wallpaper="$temp_dir/$selected"
 cp "$wall_dir/$selected" "$temp_wallpaper"
@@ -27,18 +27,18 @@ if [ -L "$current_wallpaper_link" ]; then
 fi
 ln -s "$wall_dir/$selected" "$current_wallpaper_link"
 
+if swww img "$temp_wallpaper" --transition-type=wipe --transition-duration=0.7; then
+    echo "Wallpaper set successfully."
+else
+    echo "Error setting wallpaper."
+    exit 1
+fi
+
 echo "Blurring wallpaper..."
 if magick "$temp_wallpaper" -blur 0x8 "$blurred_wallpaper"; then
     echo "Blurred wallpaper created at $blurred_wallpaper"
 else
     echo "Error creating blurred wallpaper."
-    exit 1
-fi
-
-if swww img "$temp_wallpaper" --transition-type=wipe --transition-duration=0.7; then
-    echo "Wallpaper set successfully."
-else
-    echo "Error setting wallpaper."
     exit 1
 fi
 
