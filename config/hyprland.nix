@@ -75,8 +75,8 @@ with lib;
             border_size = 0;
             layout = "dwindle";
             resize_on_border = true;
-            "col.active_border" = "rgb(${currentTheme.warning}) rgb(${currentTheme.info}) 45deg";
-            "col.inactive_border" = "rgb(${currentTheme.bg})";
+            "col.active_border" = lib.mkDefault "rgb(${currentTheme.warning}) rgb(${currentTheme.info}) 45deg";
+            "col.inactive_border" = lib.mkDefault "rgb(${currentTheme.bg})";
         };
         input = {
             kb_layout = "${keyboardLayout}";
@@ -127,7 +127,7 @@ with lib;
           drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          "col.shadow" = lib.mkDefault "rgb(${currentTheme.accent})";
         };
         animations = {
           enabled = true;
