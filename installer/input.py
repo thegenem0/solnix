@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def get_user_input(prompt, default_value=""):
     user_input = input(f"{prompt} [{default_value}]: ").strip()
@@ -30,14 +31,19 @@ def get_keyboard_layout():
     print(f"Keyboard layout set to: {keyboard_layout}")
     return keyboard_layout
 
-def get_system_theme():
+def get_system_theme(solnix_dir: str):
     themes = ["dracula", "cattpuccin", "stylix"]
     basetheme = show_menu(themes, "Select your system theme:")
+    wallpapers = os.listdir(f"{solnix_dir}/config/wallpapers")
 
     variant = "default"
     if basetheme == "cattpuccin":
         variants = ["latte", "frappe", "macchiato", "mocha"]
         variant = show_menu(variants, "Select your cattpuccin variant:")
+
+    if basetheme == "stylix":
+        selected_wallpaper = show_menu(wallpapers, "Select your stylix wallpaper:")
+        vairant = selected_wallpaper
 
     print(f"System theme set to {basetheme} with variant {variant}")
     return basetheme, variant

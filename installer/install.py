@@ -96,7 +96,7 @@ def main():
     username = get_username()
     hostname = get_hostname()
     keyboard_layout = get_keyboard_layout()
-    basetheme, variant = get_system_theme()
+    basetheme, variant = get_system_theme(solnix_dir)
     gpu, extraConfig = get_gpu_config()
 
     print(f"Installing with following settings:\n"
