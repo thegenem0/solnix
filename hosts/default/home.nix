@@ -36,8 +36,8 @@ in
   home.file.".config/wlogout/icons".source = ../../config/wlogout;
 
   # INFO: Face
-  home.file.".logo.icon".source = ../../config/logo.jpg;
-  home.file.".config/logo.jpg".source = ../../config/logo.jpg;
+  home.file.".logo.icon".source = ../../config/misc/logo.png;
+  home.file.".config/logo.jpg".source = ../../config/misc/logo.png;
 
   # INFO: Swappy
   home.file.".config/swappy/config".text = ''
@@ -105,6 +105,9 @@ in
       inherit pkgs;
       inherit host;
     })
+    (import ../../scripts/awsvpn-toggle.nix { inherit pkgs; })
+    (import ../../scripts/awsvpn-status.nix { inherit pkgs; })
+    (import ../../scripts/init-devflake.nix { inherit pkgs; inherit username; })
   ];
 
   services = {
@@ -150,7 +153,7 @@ in
         };
         background = [
           {
-            path = "screenshot";
+            path = "/home/${username}/.config/.blurred_wallpaper";
             blur_passes = 3;
             blur_size = 8;
           }
