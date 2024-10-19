@@ -68,10 +68,6 @@ in
     };
   };
 
-  # Styling Options
-  stylix.targets.waybar.enable = if systemTheme.name == "stylix" then true else false;
-  stylix.targets.rofi.enable = if systemTheme.name == "stylix" then true else false;
-  stylix.targets.hyprland.enable = if systemTheme.name == "stylix" then true else false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
