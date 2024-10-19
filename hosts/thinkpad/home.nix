@@ -68,10 +68,12 @@ in
     };
   };
 
-  # Styling Options
-  stylix.targets.waybar.enable = if systemTheme.name == "stylix" then true else false;
-  stylix.targets.rofi.enable = if systemTheme.name == "stylix" then true else false;
-  stylix.targets.hyprland.enable = if systemTheme.name == "stylix" then true else false;
+
+
+  stylix.targets.waybar.enable = false;
+  stylix.targets.rofi.enable = false;
+  stylix.targets.hyprland.enable = false;
+
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -163,7 +165,7 @@ in
             path = "/home/${username}/.config/logo.jpg";
             size = 150;
             border_size = 4;
-            border_color = "rgb(0C96F9)";
+            border_color = "rgb(0, 0, 255, 0.5)";
             rounding = -1; # Negative means circle
             position = "0, 200";
             halign = "center";

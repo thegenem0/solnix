@@ -1,8 +1,8 @@
 {
   clock24h = true;
   systemTheme = {
-    name = "cattpuccin";
-    variant = "macchiato";
+    name = "stylix";
+    variant = "Anime-Girl3.png";
   };
   amd = {
     enable = false;
