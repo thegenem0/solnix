@@ -36,14 +36,13 @@ def get_system_theme(solnix_dir: str):
     basetheme = show_menu(themes, "Select your system theme:")
     wallpapers = os.listdir(f"{solnix_dir}/config/wallpapers")
 
-    variant = "default"
     if basetheme == "cattpuccin":
         variants = ["latte", "frappe", "macchiato", "mocha"]
         variant = show_menu(variants, "Select your cattpuccin variant:")
-
-    if basetheme == "stylix":
-        selected_wallpaper = show_menu(wallpapers, "Select your stylix wallpaper:")
-        vairant = selected_wallpaper
+    elif basetheme == "stylix":
+        variant = show_menu(wallpapers, "Select your stylix wallpaper:")
+    else:
+        variant = "default"
 
     print(f"System theme set to {basetheme} with variant {variant}")
     return basetheme, variant
