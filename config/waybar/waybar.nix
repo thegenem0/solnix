@@ -206,7 +206,6 @@ with lib;
           "custom/empty"
           "tray"
           "clock"
-          "custom/empty"
           "custom/notification"
           "custom/exit"
         ];
@@ -246,7 +245,6 @@ with lib;
           "custom/empty"
           "tray"
           "clock"
-          "custom/empty"
           "custom/notification"
           "custom/exit"
         ];
@@ -272,56 +270,88 @@ with lib;
     ];
     style = concatStrings [
       ''
+        /* Global Styles */
         * {
-          font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 16px;
-          border-radius: 0px;
-          border: none;
-          min-height: 0px;
+            font-family: JetBrainsMono Nerd Font Mono;
+            font-size: 16px;
+            border-radius: 0px;
+            border: none;
+            min-height: 0px;
         }
+
         window#waybar {
             background: transparent;
             transition-property: background-color;
             border-radius: 30px;
-            transition-duration: .5s;
+            transition-duration: 0.5s;
         }
+
+        /* Common Widget Styles */
+        #pulseaudio,
+        #network,
+        #bluetooth,
+        #battery,
+        #group-hardware,
+        #cpu,
+        #memory,
+        #disk,
+        #language,
+        #custom-waymedia,
+        #clock,
+        #custom-notification {
+            background-color: ${currentTheme.bg};
+            border: none;
+            font-size: 16px;
+            color: ${currentTheme.info};
+            border-radius: 15px;
+            padding: 2px 10px 0px 10px;
+            margin: 5px 15px 5px 0px;
+            opacity: 0.8;
+        }
+
+        /* Specific Adjustments */
+        #pulseaudio.muted {
+            background-color: ${currentTheme.info};
+            color: ${currentTheme.info};
+        }
+
+        #battery {
+            padding: 2px 15px 0px 10px;
+        }
+
+        /* Workspace Styles */
         #workspaces {
             background: transparent;
             margin: 2px 1px 3px 1px;
             padding: 0px 1px;
             border-radius: 15px;
-            border: 0px;
             font-weight: bold;
             font-style: normal;
             opacity: 0.8;
             font-size: 16px;
             color: ${currentTheme.bg};
         }
+
         #workspaces button {
             padding: 0px 10px;
-            border: 0px solid;
             margin: 4px 3px;
             border-radius: 15px;
-            border: 0px;
             color: ${currentTheme.info};
             background-color: ${currentTheme.bg};
             transition: all 0.3s ease-in-out;
             opacity: 1.0;
         }
+
         #workspaces button.active {
-            color: ${currentTheme.info};
-            background: ${currentTheme.bg};
-            border-radius: 15px;
             min-width: 40px;
-            transition: all 0.3s ease-in-out;
-            opacity: 1.0;
         }
+
         #workspaces button:hover {
             color: ${currentTheme.highlight};
-            background: ${currentTheme.bg};
-            border-radius: 15px;
             opacity: 0.7;
         }
+
+        /* Tooltip Styles */
         tooltip {
             border-radius: 10px;
             background-color: ${currentTheme.bg};
@@ -329,161 +359,52 @@ with lib;
             padding: 20px;
             margin: 0px;
         }
+
         tooltip label {
             color: ${currentTheme.info};
         }
-        #clock {
-            background-color: ${currentTheme.bg};
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
-            padding: 2px 10px 0px 10px;
-            opacity: 0.8;
-            border: 0px solid;
-        }
-        #pulseaudio {
-            background-color:  ${currentTheme.bg};
-            border: 0px solid;
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
-            padding: 2px 10px 0px 10px;
-            margin: 5px 15px 5px 0px;
-            opacity: 0.8;
-        }
-        #pulseaudio.muted {
-            background-color: ${currentTheme.info};
-            border: 0px solid;
-            color: ${currentTheme.info};
-        }
-        #network {
-            background-color: ${currentTheme.bg};
-            border: 0px solid;
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
-            padding: 2px 10px 0px 10px;
-            margin: 5px 15px 5px 0px;
-            opacity: 0.8;
-        }
-        #network.ethernet {
-            background-color:  ${currentTheme.bg};
-            border: 0px solid;
-            color: ${currentTheme.info};
-        }
-        #network.wifi {
-            background-color: ${currentTheme.bg};
-            border: 0px solid;
-            color: ${currentTheme.info};
-        }
-        #bluetooth,
-        #bluetooth.on,
-        #bluetooth.connected {
-            background-color: ${currentTheme.bg};
-            border: 0px solid;
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
-            padding: 2px 10px 0px 10px;
-            margin: 5px 15px 5px 0px;
-            opacity: 0.8;
-        }
-        #bluetooth.off {
-            background-color: ${currentTheme.bg};
-            padding: 0px;
-            margin: 0px;
-        }
-        #battery {
-            background-color: ${currentTheme.bg};
-            border: 0px solid;
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
-            padding: 2px 15px 0px 10px;
-            margin: 5px 15px 5px 0px;
-            opacity: 0.8;
-        }
-        #battery.charging,
-        #battery.plugged {
-            color: ${currentTheme.info};
-            border: 0px solid;
-            background-color: ${currentTheme.bg};
-        }
+
+        /* Battery Critical Animation */
         @keyframes blink {
             to {
                 background-color: transparent;
                 color: ${currentTheme.info};
             }
         }
+
+        #battery.charging,
+        #battery.plugged {
+            background-color: ${currentTheme.bg};
+            color: ${currentTheme.info};
+        }
+
         #battery.critical:not(.charging) {
             background-color: ${currentTheme.error};
-            border: 0px solid;
             color: ${currentTheme.info};
-            animation-name: blink;
-            animation-duration: 0.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
+            animation: blink 0.5s linear infinite alternate;
         }
+
+        /* Tray Styles */
         #tray {
             background-color: transparent;
             padding: 0px 15px 0px 0px;
         }
-        #tray>.passive {
+
+        #tray > .passive {
             -gtk-icon-effect: dim;
         }
+
+        /* Custom Exit Widget */
         #custom-exit {
             margin: 0px 20px 0px 0px;
             padding: 0px;
-            font-size: 24px;
-            color: ${currentTheme.info};
-        }
-        #custom-notification {
-            font-weight: bold;
-            background: ${currentTheme.bg};
-            color: ${currentTheme.info};
-            border: 0px solid;
-            border-radius: 15px;
-            padding: 2px 15px 0px 10px;
-            margin: 5px 15px 5px 0px;
-        }
-        #custom-waymedia {
-            background: ${currentTheme.bg};
-            color: ${currentTheme.info};
-            font-size: 16px;
-            border: 0px solid;
-            border-radius: 15px;
-            padding: 2px 10px 0px 10px;
-        }
-        #custom-system,
-        #disk,
-        #memory,
-        #cpu,
-        #language {
-            margin: 0px;
-            padding: 0px;
             font-size: 16px;
             color: ${currentTheme.info};
         }
-        #group-hardware {
+
+        /* Bluetooth Off State */
+        #bluetooth.off {
             background-color: ${currentTheme.bg};
-            border: 0px solid;
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
-            padding: 2px 10px 0px 10px;
-            margin: 5px 15px 5px 0px;
-            opacity: 0.8;
-        }
-        #cpu,
-        #memory,
-        #disk,
-        #language {
-            background-color: ${currentTheme.bg};
-            border: 0px solid;
-            font-size: 16px;
-            color: ${currentTheme.info};
-            border-radius: 15px;
             padding: 2px 10px 0px 10px;
             margin: 5px 15px 5px 0px;
             opacity: 0.8;
