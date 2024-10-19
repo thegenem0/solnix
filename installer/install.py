@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import datetime
 from variables import write_vars_file, NixVariables, SystemTheme, GraphicsConfig
-from input import get_hostname, get_keyboard_layout, get_system_theme, get_gpu_config
+from input import get_hostname, get_keyboard_layout, get_system_theme, get_gpu_config, get_primary_monitor
 
 
 def get_username():
