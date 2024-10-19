@@ -107,6 +107,7 @@ in
     })
     (import ../../scripts/awsvpn-toggle.nix { inherit pkgs; })
     (import ../../scripts/awsvpn-status.nix { inherit pkgs; })
+    (import ../../scripts/init-devflake.nix { inherit pkgs; inherit username; })
   ];
 
   services = {
