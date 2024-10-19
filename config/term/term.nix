@@ -8,22 +8,14 @@ let
   inherit (import ../../hosts/${host}/variables.nix) systemTheme;
   inherit (import ../themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
-  zshPlugins = [
-    "reegnz/aws-vault-zsh-plugin"
-    "lukechilds/zsh-nvm"
-    "aloxaf/fzf-tab"
-    "zsh-users/zsh-syntax-highlighting"
-    "MichaelAquilina/zsh-auto-notify"
-    "unixorn/autoupdate-antigen.zshplugin"
-    "reegnz/jq-zsh-plugin"
-    "aubreypwd/zsh-plugin-reload"
-    "qoomon/zsh-lazyload"
-  ];
 in
 {
-  home.file.".zshrc".source = ./zshrc;
   home.file.".scripts".source = ./scripts;
   home.file.".config/templates".source = ../misc/templates;
+
+  home.packages = with pkgs; [
+    antidote
+  ];
 
   programs = {
     kitty = {
@@ -75,10 +67,62 @@ in
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      antidote = {
+        enable = true;
+        plugins = [
+          "reegnz/aws-vault-zsh-plugin"
+          "lukechilds/zsh-nvm"
+          "aloxaf/fzf-tab"
+          "zsh-users/zsh-syntax-highlighting"
+          "MichaelAquilina/zsh-auto-notify"
+          "reegnz/jq-zsh-plugin"
+          "aubreypwd/zsh-plugin-reload"
+          "qoomon/zsh-lazyload"
+        ];
+      };
       initExtra = ''
-        # Initialize Antidote
-        source "${pkgs.antidote}/share/antidote/antidote.zsh"
-        antidote load ${builtins.concatStringsSep " " zshPlugins}
+        autoload -Uz compinit
+        autoload -Uz edit-command-line
+        zle -N edit-command-line
+
+        compinit
+
+        HISTSIZE=5000               #How many lines of history to keep in memory
+        HISTFILE=~/.zsh_history     #Where to save history to disk
+        SAVEHIST=5000               #Number of history entries to save to disk
+        HISTDUP=erase               #Erase duplicates in the history file
+        setopt    appendhistory     #Append history to the history file (no overwriting)
+        setopt    sharehistory      #Share history across terminals
+        setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
+
+        export EDITOR="nvim"
+
+        alias gl="lazygit"
+        alias gowork="cd ~/dev/work/"
+        alias gome="cd ~/dev/personal"
+        alias nixdev="nix develop"
+
+        alias ls='exa --icons --long --git -h --group-directories-first'
+        alias l='exa -lah --icons --group-directories-first'
+        alias cd='z'
+
+        alias tf="terraform"
+        alias cli-nosession="aws-vault exec hace-cli --no-session --"
+        alias main-nosession="aws-vault exec hace-main --no-session --"
+
+        alias awsvpn-connect="sudo awsvpnclient start --config ~/.vpn/hace-main.ovpn > /dev/null 2>&1 &"
+        alias awsvpn-disconnect="pkill \"aws-vpn-client\""
+
+        alias flake-rebuild="nh os switch --hostname $(hostname) /home/$(whoami)/solnix"
+        alias flake-update="nh os switch --hostname $(hostname) --update /home/$(whoami)/solnix";
+        alias distro-update="sh <(curl -L https://gitlab.com/solinaire/solnix/-/raw/main/install.sh)";
+        alias flake-gc="nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+
+
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+        bindkey -s '^f' "~/.scripts/tmux-sessionizer.sh\n"
+        bindkey '^w' edit-command-line
       '';
     };
     atuin = {

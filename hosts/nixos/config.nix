@@ -283,7 +283,7 @@ in
       keyboards = {
         default = {
           devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
-          configFile = ../../config/term/kanata/config.kbd;
+          configFile = ../../config/misc/kanata/config.kbd;
         };
       };
     };
