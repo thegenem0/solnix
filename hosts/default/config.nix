@@ -66,7 +66,7 @@ in
               "${../../config/wallpapers}/${systemTheme.variant}" else
               ../../config/wallpapers/9162783.jpg;
 
-    override = mkIf (systemTheme.name != "stylix") {
+    override = {
       base00 = currentTheme.bg;
       base01 = currentTheme.secondaryBg;
       base02 = currentTheme.selectionBg;
