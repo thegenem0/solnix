@@ -28,9 +28,9 @@ let
     exec = "~/.config/waybar/scripts/waymedia/waymedia";
     interval = 1;
     limit = 60;
-    on-click = "playerctl play-pause";
-    on-scroll-up = "playerctl next";
-    on-scroll-down = "playerctl previous";
+    on-click = "playerctl --player=spotify play-pause";
+    on-scroll-up = "playerctl --player=spotify next";
+    on-scroll-down = "playerctl --player=spotify previous";
     play-icon = " ";
     pause-icon = " ";
     divider = " - ";
