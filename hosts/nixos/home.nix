@@ -153,7 +153,7 @@ in
         };
         background = [
           {
-            path = "screenshot";
+            path = "/home/${username}/.config/.blurred_wallpaper";
             blur_passes = 3;
             blur_size = 8;
           }
