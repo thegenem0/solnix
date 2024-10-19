@@ -23,26 +23,24 @@ let
       else if themeVariant == "macchiato" then cattpuccinMacchiato
       else if themeVariant == "mocha" then cattpuccinMocha
       else throw "Unknown Catppuccin variant: ${themeVariant}"
-    else if themeName == "stylix" then
-      if themeVariant == "default" then {
-        bg = "#${stylixTheme.base00}";
-        secondaryBg = "#${stylixTheme.base01}";
-        selectionBg = "#${stylixTheme.base02}";
-        inactiveFg = "#${stylixTheme.base03}";
-        subtleFg = "#${stylixTheme.base04}";
-        fg = "#${stylixTheme.base05}";
-        highlightFg = "#${stylixTheme.base06}";
-        brightFg = "#${stylixTheme.base07}";
-        error = "#${stylixTheme.base08}";
-        warning = "#${stylixTheme.base09}";
-        highlight = "#${stylixTheme.base0A}";
-        success = "#${stylixTheme.base0B}";
-        info = "#${stylixTheme.base0C}";
-        accent = "#${stylixTheme.base0D}";
-        special = "#${stylixTheme.base0E}";
-        extra = "#${stylixTheme.base0F}";
-      }
-      else throw "Unknown Stylix variant: ${themeVariant}"
+    else if themeName == "stylix" then {
+      bg = "#${stylixTheme.base00}";
+      secondaryBg = "#${stylixTheme.base01}";
+      selectionBg = "#${stylixTheme.base02}";
+      inactiveFg = "#${stylixTheme.base03}";
+      subtleFg = "#${stylixTheme.base04}";
+      fg = "#${stylixTheme.base05}";
+      highlightFg = "#${stylixTheme.base06}";
+      brightFg = "#${stylixTheme.base07}";
+      error = "#${stylixTheme.base08}";
+      warning = "#${stylixTheme.base09}";
+      highlight = "#${stylixTheme.base0A}";
+      success = "#${stylixTheme.base0B}";
+      info = "#${stylixTheme.base0C}";
+      accent = "#${stylixTheme.base0D}";
+      special = "#${stylixTheme.base0E}";
+      extra = "#${stylixTheme.base0F}";
+    }
     else throw "Unknown theme: ${themeName}";
 in
   {
