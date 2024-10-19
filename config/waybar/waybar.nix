@@ -77,6 +77,7 @@ with lib;
           format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
+          on-click = "sleep 0.1 && hyprshade toggle night-light";
         };
 
         "pulseaudio" = {
