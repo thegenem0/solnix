@@ -23,8 +23,6 @@ with lib;
     hyprshade
   ];
 
-  home.file.".config/regreet".source = ./regreet;
-
   home.file.".config/hypr/shaders" = {
     source = ./misc/shaders;
     recursive = true;
