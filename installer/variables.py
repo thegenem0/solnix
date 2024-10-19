@@ -31,6 +31,7 @@ class NixVariables:
     nvidia: GraphicsConfig
     intel: GraphicsConfig
     keyboardLayout: str
+    primaryMonitor: str
     browser: str
     terminal: str
 
@@ -42,6 +43,7 @@ class NixVariables:
             "nvidia": self.nvidia.to_dict(),
             "intel": self.intel.to_dict(),
             "keyboardLayout": f'"{self.keyboardLayout}"',
+            "primaryMonitor": f'"{self.primaryMonitor}"',
             "browser": f'"{self.browser}"',
             "terminal": f'"{self.terminal}"'
         }
@@ -62,6 +64,7 @@ default_nix_variables = NixVariables(
     ),
     intel=GraphicsConfig(enable=True, extraConfig={}),
     keyboardLayout="us",
+    primaryMonitor="DP-1",
     browser="firefox",
     terminal="kitty"
 )

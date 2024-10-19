@@ -31,6 +31,11 @@ def get_keyboard_layout():
     print(f"Keyboard layout set to: {keyboard_layout}")
     return keyboard_layout
 
+def get_primary_monitor():
+    primary_monitor = get_user_input("Enter your primary monitor", "DP-1")
+    print(f"Primary monitor set to: {primary_monitor}")
+    return primary_monitor
+
 def get_system_theme(solnix_dir: str):
     themes = ["dracula", "cattpuccin", "stylix"]
     basetheme = show_menu(themes, "Select your system theme:")

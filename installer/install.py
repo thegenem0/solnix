@@ -96,6 +96,7 @@ def main():
     username = get_username()
     hostname = get_hostname()
     keyboard_layout = get_keyboard_layout()
+    primary_monitor = get_primary_monitor()
     basetheme, variant = get_system_theme(solnix_dir)
     gpu, extraConfig = get_gpu_config()
 
@@ -123,6 +124,7 @@ def main():
             extraConfig= extraConfig if gpu == "intel" else {}
         ),
         keyboardLayout=keyboard_layout,
+        primaryMonitor=primary_monitor,
         browser="firefox",
         terminal="kitty"
     )

@@ -19,6 +19,7 @@
     enable = false;
   };
   keyboardLayout = "us";
+  primaryMonitor = "DP-1";
   browser = "firefox";
   terminal = "kitty";
 }
