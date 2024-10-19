@@ -7,7 +7,7 @@
           separator = " ==> ";
         };
       logo = {
-        source = ../logo.png;
+        source = ../misc/logo.png;
         type = "kitty-direct";
         height = 15;
         width = 30;

@@ -19,6 +19,15 @@ let
 in
 with lib;
 {
+  home.packages = with pkgs; [
+    hyprshade
+  ];
+
+  home.file.".config/hypr/shaders" = {
+    source = ./misc/shaders;
+    recursive = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

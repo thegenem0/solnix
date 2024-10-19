@@ -36,8 +36,8 @@ in
   home.file.".config/wlogout/icons".source = ../../config/wlogout;
 
   # INFO: Face
-  home.file.".logo.icon".source = ../../config/logo.png;
-  home.file.".config/logo.jpg".source = ../../config/logo.png;
+  home.file.".logo.icon".source = ../../config/misc/logo.png;
+  home.file.".config/logo.jpg".source = ../../config/misc/logo.png;
 
   # INFO: Swappy
   home.file.".config/swappy/config".text = ''
