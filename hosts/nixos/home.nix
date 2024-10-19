@@ -163,7 +163,7 @@ in
             path = "/home/${username}/.config/logo.jpg";
             size = 150;
             border_size = 4;
-            border_color = "rgb(0C96F9)";
+            border_color = "rgb(0, 0, 255, 0.5)";
             rounding = -1; # Negative means circle
             position = "0, 200";
             halign = "center";

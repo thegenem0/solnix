@@ -21,12 +21,15 @@ with lib;
 {
   home.packages = with pkgs; [
     hyprshade
+    pyprland
   ];
 
   home.file.".config/hypr/shaders" = {
     source = ./misc/shaders;
     recursive = true;
   };
+
+  home.file.".config/hypr/pyprland.toml".source = ./misc/hypr/pyprland.toml;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -59,6 +62,7 @@ with lib;
           "killall -q swww;sleep .5 && swww init"
           "killall -q waybar;sleep .5 && waybar"
           "killall -q swaync;sleep .5 && swaync"
+          "killall -q pypr;sleep .5 && pypr"
           "nm-applet --indicator"
           "lxqt-policykit"
         ];
@@ -143,7 +147,8 @@ with lib;
           preserve_split = true;
         };
         bind = [
-          "${mod}, Return, exec, ${terminal}"
+          "${mod}, RETURN, exec, ${terminal}"
+          "${mod} SHIFT, RETURN, exec, pypr toggle term"
           "${mod} SHIFT, Q, killactive"
           "${mod}, F, fullscreen"
           "${mod}, T, togglefloating"

@@ -17,7 +17,7 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "thinkpad";
+      host = "nixos";
       username = "solinaire";
     in
     {
