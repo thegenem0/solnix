@@ -2,10 +2,10 @@
 
 let
   draculaDefault = import ./dracula.nix { flavor = "default"; };
-  cattpuccinMocha = import ./cattpuccin.nix { flavor = "mocha"; };
-  cattpuccinLatte = import ./cattpuccin.nix { flavor = "latte"; };
-  cattpuccinFrappe = import ./cattpuccin.nix { flavor = "frappe"; };
-  cattpuccinMacchiato = import ./cattpuccin.nix { flavor = "macchiato"; };
+  catppuccinMocha = import ./catppuccin.nix { flavor = "mocha"; };
+  catppuccinLatte = import ./catppuccin.nix { flavor = "latte"; };
+  catppuccinFrappe = import ./catppuccin.nix { flavor = "frappe"; };
+  catppuccinMacchiato = import ./catppuccin.nix { flavor = "macchiato"; };
   stylixTheme = config.stylix.base16Scheme;
 
   # Function to return theme colors based on systemTheme input
@@ -17,11 +17,11 @@ let
     if themeName == "dracula" then
       if themeVariant == "default" then draculaDefault
       else throw "Unknown Dracula variant: ${themeVariant}"
-    else if themeName == "cattpuccin" then
-      if themeVariant == "latte" then cattpuccinLatte
-      else if themeVariant == "frappe" then cattpuccinFrappe
-      else if themeVariant == "macchiato" then cattpuccinMacchiato
-      else if themeVariant == "mocha" then cattpuccinMocha
+    else if themeName == "catppuccin" then
+      if themeVariant == "latte" then catppuccinLatte
+      else if themeVariant == "frappe" then catppuccinFrappe
+      else if themeVariant == "macchiato" then catppuccinMacchiato
+      else if themeVariant == "mocha" then catppuccinMocha
       else throw "Unknown Catppuccin variant: ${themeVariant}"
     else if themeName == "stylix" then {
       bg = "#${stylixTheme.base00}";

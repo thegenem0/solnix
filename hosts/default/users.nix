@@ -21,7 +21,6 @@
       packages = with pkgs; [
         slack
         vesktop
-        spotify
         jetbrains.idea-ultimate
         jetbrains.clion
         jetbrains.datagrip

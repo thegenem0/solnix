@@ -37,13 +37,13 @@ def get_primary_monitor():
     return primary_monitor
 
 def get_system_theme(solnix_dir: str):
-    themes = ["dracula", "cattpuccin", "stylix"]
+    themes = ["dracula", "catppuccin", "stylix"]
     basetheme = show_menu(themes, "Select your system theme:")
     wallpapers = os.listdir(f"{solnix_dir}/config/wallpapers")
 
-    if basetheme == "cattpuccin":
+    if basetheme == "catppuccin":
         variants = ["latte", "frappe", "macchiato", "mocha"]
-        variant = show_menu(variants, "Select your cattpuccin variant:")
+        variant = show_menu(variants, "Select your catppuccin variant:")
     elif basetheme == "stylix":
         variant = show_menu(wallpapers, "Select your stylix wallpaper:")
     else:

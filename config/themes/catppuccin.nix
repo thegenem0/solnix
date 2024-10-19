@@ -1,7 +1,7 @@
 { flavor }:
 
 let
-  cattpuccinLatte = {
+  catppuccinLatte = {
     bg = "#eff1f5";                 # base00 (base)
     secondaryBg = "#e6e9ef";        # base01 (mantle)
     selectionBg = "#ccd0da";        # base02 (surface0)
@@ -19,7 +19,7 @@ let
     special = "#8839ef";            # base0E (mauve)
     extra = "#dd7878";              # base0F (flamingo)
   };
-  cattpuccinFrappe = {
+  catppuccinFrappe = {
     bg = "#303446";                 # base00 (base)
     secondaryBg = "#292c3c";        # base01 (mantle)
     selectionBg = "#414559";        # base02 (surface0)
@@ -37,7 +37,7 @@ let
     special = "#ca9ee6";            # base0E (mauve)
     extra = "#eebebe";              # base0F (flamingo)
   };
-  cattpuccinMacchiato = {
+  catppuccinMacchiato = {
     bg = "#24273a";                 # base00 (base)
     secondaryBg = "#1e2030";        # base01 (mantle)
     selectionBg = "#363a4f";        # base02 (surface0)
@@ -55,7 +55,7 @@ let
     special = "#c6a0f6";            # base0E (mauve)
     extra = "#f0c6c6";              # base0F (flamingo)
   };
-  cattpuccinMocha = {
+  catppuccinMocha = {
     bg = "#1e1e2e";                 # base00 (base)
     secondaryBg = "#181825";        # base01 (mantle)
     selectionBg = "#313244";        # base02 (surface0)
@@ -74,9 +74,9 @@ let
     extra = "#f2cdcd";              # base0F (flamingo)
   };
 in
-  if flavor == "latte" then cattpuccinLatte
-  else if flavor == "frappe" then cattpuccinFrappe
-  else if flavor == "macchiato" then cattpuccinMacchiato
-  else if flavor == "mocha" then cattpuccinMocha
+  if flavor == "latte" then catppuccinLatte
+  else if flavor == "frappe" then catppuccinFrappe
+  else if flavor == "macchiato" then catppuccinMacchiato
+  else if flavor == "mocha" then catppuccinMocha
   else throw "Unknown flavor: ${flavor}"
 
