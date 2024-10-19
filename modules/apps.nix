@@ -35,5 +35,6 @@
     hyprpicker
     yad
     pavucontrol
+    imagemagick
   ];
 }

@@ -1,3 +1,6 @@
+log_file="/tmp/wallsetter.log"
+exec > "$log_file" 2>&1
+
 username=$(whoami)
 wall_dir="/home/${username}/Pictures/Wallpapers"
 rofi_theme="/home/${username}/.config/rofi/wallselect.rasi"
@@ -13,18 +16,10 @@ if [ -z "$selected" ]; then
     exit 1
 fi
 
-temp_dir="/tmp/wallsetter"
+temp_dir="~/.tmp/wallsetter"
 mkdir -p "$temp_dir"
 temp_wallpaper="$temp_dir/$selected"
 cp "$wall_dir/$selected" "$temp_wallpaper"
-
-if pgrep -x "swww-daemon" > /dev/null; then
-    echo "swww-daemon is already running"
-else
-    echo "Starting swww-daemon"
-    swww-daemon &
-    sleep 1
-fi
 
 current_wallpaper_link="/home/${username}/.config/.current_wallpaper"
 if [ -L "$current_wallpaper_link" ]; then
