@@ -52,8 +52,14 @@ with lib;
           "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
           "SDL_VIDEODRIVER, x11"
           "MOZ_ENABLE_WAYLAND, 1"
-          "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        ] ++ lib.optionals (nvidia.enable) [
+          "LIBVA_DRIVER_NAME, nvidia"
+          "GBM_BACKEND, nvidia-drm"
+          "__GLX_VENDOR_LIBRARY_NAME, nvidia"
+          "ELECTRON_OZONE_PLATFORM_HINT, auto"
+          "NVD_BACKEND, direct"
         ];
+
         exec-once = [
           "dbus-update-activation-environment --systemd --all"
           "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
