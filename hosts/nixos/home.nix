@@ -4,9 +4,7 @@
   host,
   ...
 }:
-let
-  inherit (import ./variables.nix) systemTheme;
-in
+
 {
   # Home Manager Settings
   home.username = "${username}";

@@ -7,7 +7,6 @@
 }:
 let
   inherit (import ../hosts/${host}/variables.nix)
-    browser
     terminal
     keyboardLayout
     systemTheme
@@ -199,8 +198,6 @@ with lib;
         ];
       };
     extraConfig =
-      let
-      in
       # Sourcing the monitors.conf and workspaces.conf files
       # Lets us modify these via nwg-displays at runtime
       concatStrings [

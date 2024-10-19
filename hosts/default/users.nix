@@ -3,6 +3,7 @@
   username,
   ...
 }:
+
 {
   users.users = {
     "${username}" = {

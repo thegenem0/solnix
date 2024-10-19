@@ -6,7 +6,6 @@
   ...
 }:
 let
-  betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
   inherit (import ../../hosts/${host}/variables.nix) systemTheme primaryMonitor;
   inherit (import ../themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
