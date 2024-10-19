@@ -62,7 +62,9 @@ in
     enable = true;
     # This is required even if we override everything
     # See https://github.com/danth/stylix/issues/200
-    image = ../../config/wallpapers/9162783.jpg;
+    image = if systemTheme.name == "stylix" then
+              "${config.home.homeDirectory}/Pictures/Wallpapers/${variant}" else
+              "${config.home.homeDirectory}/Pictures/Wallpapers/9162783.jpg";
 
     override = mkIf (systemTheme.name != "stylix") {
       base00 = currentTheme.bg;
