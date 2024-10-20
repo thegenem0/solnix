@@ -1,6 +1,7 @@
 {
   pkgs,
   host,
+  lib,
   config,
   ...
 }:
@@ -144,7 +145,6 @@ in
         set -g pane-base-index 1
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
-        set -g @dracula-plugins "git cpu-usage ram-usage"
         unbind-key C-b
         set-option -g prefix C-a
         bind-key C-a send-prefix
@@ -154,13 +154,23 @@ in
         bind-key -T copy-mode-vi 'y' send-keys -X copy-selection
         bind '"' split-window -v -c "#{pane_current_path}"
         bind '%' split-window -h -c "#{pane_current_path}"
+      '' + lib.optionalString (systemTheme.name == "catppuccin") ''
+        set -g @catppuccin-palette "${systemTheme.variant}"
+      '' + lib.optionalString (systemTheme.name == "dracula") ''
+        set -g @dracula-plugins "git cpu-usage ram-usage"
+      '' + lib.optionalString (systemTheme.name == "stylix") ''
       '';
+
       plugins = with pkgs; [
         tmuxPlugins.sensible
         tmuxPlugins.vim-tmux-navigator
         tmuxPlugins.yank
         tmuxPlugins.tmux-fzf
-        tmuxPlugins.dracula
+        (if systemTheme.name == "catppuccin"
+          then tmuxPlugins.catppuccin
+        else if systemTheme.name == "dracula"
+            then tmuxPlugins.dracula
+        else tmuxPlugins.nord)
       ];
     };
     zoxide = {
