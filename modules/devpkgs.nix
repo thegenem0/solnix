@@ -8,8 +8,6 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
-
-
   environment.systemPackages = with pkgs; [
     vim
     neovim
@@ -39,5 +37,6 @@
     python312Full
     gnumake
     awsvpnclient
+    direnv
   ];
 }

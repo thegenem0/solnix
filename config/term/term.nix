@@ -101,7 +101,8 @@ in
         alias gl="lazygit"
         alias gowork="cd ~/dev/work/"
         alias gome="cd ~/dev/personal"
-        alias nixdev="nix develop"
+        alias init-devflake="nix flake init --template github:cachix/devenv"
+        alias nixdev="nix develop --impure"
 
         alias ls='exa --icons --long --git -h --group-directories-first'
         alias l='exa -lah --icons --group-directories-first'
@@ -125,6 +126,11 @@ in
         bindkey -s '^f' "~/.scripts/tmux-sessionizer.sh\n"
         bindkey '^w' edit-command-line
       '';
+    };
+    direnv = {
+      enable = true;
+      package = pkgs.direnv;
+      enableZshIntegration = true;
     };
     atuin = {
       enable = true;
