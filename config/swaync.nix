@@ -12,8 +12,10 @@ in
   services.swaync = {
     enable = true;
     settings = {
-      positionX = "right";
+      positionX = "center";
       positionY = "top";
+      control-center-positionX = "right";
+      control-center-positionY = "top";
       control-center-margin-top = 10;
       control-center-margin-bottom = 10;
       control-center-margin-right = 10;
@@ -76,6 +78,7 @@ in
         .control-center .notification-row:hover {
           opacity: 0.9;
           background: ${currentTheme.bg};  # Use theme background color
+          border: ${currentTheme.accent} solid 2px;
         }
         .notification-row {
           outline: none;
