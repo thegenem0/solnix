@@ -15,5 +15,9 @@ pkgs.writeShellScriptBin "init-devflake" ''
 
   sed -i "s/description = \"default\";/description = \"$current_dir_name\";/" "$destination_file"
 
+  chmod 644 "$destination_file"
+
   echo "Initialized flake.nix with description \"$current_dir_name\""
+  echo "Run \"nix develop\" to enter the dev shell"
+  echo "MAKE SURE TO HAVE THE \"flake.nix\" FILE STAGED IF IN A GIT REPO"
 ''

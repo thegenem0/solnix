@@ -156,6 +156,8 @@ in
         bind '%' split-window -h -c "#{pane_current_path}"
       '' + lib.optionalString (systemTheme.name == "catppuccin") ''
         set -g @catppuccin-palette "${systemTheme.variant}"
+        set -g @catppuccin_status_left_separator " "
+        set -g @catppuccin_status_right_separator " "
       '' + lib.optionalString (systemTheme.name == "dracula") ''
         set -g @dracula-plugins "git cpu-usage ram-usage"
       '' + lib.optionalString (systemTheme.name == "stylix") ''
@@ -176,6 +178,11 @@ in
     zoxide = {
       enable = true;
       package = pkgs.zoxide;
+      enableZshIntegration = true;
+    };
+    yazi = {
+      enable = true;
+      package = pkgs.yazi;
       enableZshIntegration = true;
     };
     pyenv = {
@@ -200,6 +207,12 @@ in
           success_symbol = "[ ](bold green)";
           error_symbol = "[ ](bold red)";
         };
+        directory = {
+          read_only = "ro";
+          read_only_style = "bold red";
+          style = "bold blue";
+          format = "[](bold blue) [$path]($style) [$read_only]($read_only_style)";
+        };
         git_commit = {
           tag_symbol = "[ ](bold green)";
         };
@@ -215,54 +228,48 @@ in
           impure_msg = "[impure](bold red)";
           pure_msg = "[pure](bold green)";
           unknown_msg = "[unknown shell](bold yellow)";
-          format = "via [$symbol nix](bold blue)";
+          format = "[$symbol nix](bold blue) ";
         };
         aws = {
-          symbol = " ";
-          format = "(on [$symbol$profile]($style)) ";
+          symbol = "";
+          format = "[$symbol $profile]($style) ";
           style = "bold yellow";
           profile_aliases = {
             "Enterprise_Naming_Scheme-voidstars" = "void**";
           };
         };
         gcloud = {
-          symbol = "󱇶 ";
-          format = "(on [$symbol$account]($style)) ";
+          symbol = "󱇶";
+          format = "[$symbol $account]($style) ";
           style = "bold blue";
         };
         c = {
-          symbol = " ";
-          format = "(via [$symbol($version(-$name) )]($style))";
+          symbol = "";
+          format = "[$symbol ($version(-$name))]($style) ";
           detect_files = [
             "*.c"
             "*.h"
           ];
         };
         cmake = {
-          symbol = "🔧 ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "";
+          format = "[$symbol ($version)]($style) ";
           detect_files = [
             "CMakeLists.txt"
             "*.cmake"
           ];
         };
         dotnet = {
-          symbol = "󰪮 ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "󰪮";
+          format = "[$symbol ($version)]($style) ";
           detect_files = [
             "*.csproj"
             "*.sln"
           ];
         };
-        directory = {
-          read_only = " ro";
-          read_only_style = "bold red";
-          style = "bold blue";
-          format = "[  ](bold blue) [$path]($style)[$read_only]($read_only_style) ";
-        };
         docker_context = {
-          symbol = " ";
-          format = "(via [$symbol$context]($style))";
+          symbol = "";
+          format = "[$symbol $context]($style) ";
           style = "blue bold";
           only_with_files = true;
           detect_files = [
@@ -272,49 +279,50 @@ in
           ];
         };
         git_branch = {
-          symbol = " ";
+          symbol = "";
         };
         golang = {
-          symbol = " ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "";
+          format = "[$symbol ($version)]($style) ";
           detect_files = ["*.go"];
         };
         java = {
-          symbol = " ";
-          format = "(via [$symbol]($style))";
+          symbol = "";
+          format = "[$symbol]($style) ";
           detect_files = [
             "*.java"
             "pom.xml"
           ];
         };
         kotlin = {
-          symbol = " ";
-          format = "via [$symbol]($style)";
+          symbol = "";
+          format = "[$symbol]($style) ";
           detect_files = [
             "*.kt"
             "*.kts"
           ];
         };
         scala = {
-          symbol = " ";
-          format = "(via [$symbol]($style))";
+          symbol = "";
+          format = "[$symbol]($style) ";
           detect_files = ["*.scala"];
         };
         gradle = {
-          symbol = " ";
-          format = "(via [$symbol]($style))";
+          symbol = "";
+          format = "[$symbol]($style) ";
           detect_files = [
             "build.gradle"
             "settings.gradle"
           ];
         };
         lua = {
-          symbol = " ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "";
+          format = "[$symbol ($version)]($style) ";
           detect_files = ["*.lua"];
         };
         nodejs = {
-          format = "(via [ Node.js ($version )](bold green))";
+          symbol = "";
+          format = "[$symbol ($version)](bold green) ";
           detect_files = [
             "package.json"
             ".node-version"
@@ -322,7 +330,7 @@ in
           detect_folders = ["node_modules"];
         };
         memory_usage = {
-          symbol = "  ";
+          symbol = " ";
         };
         os = {
           symbols = {
@@ -333,8 +341,8 @@ in
           symbol = "pkg ";
         };
         python = {
-          symbol = " ";
-          format = "via [$symbol($version )]($style)";
+          symbol = "";
+          format = "[$symbol ($version)]($style) ";
           detect_files = [
             "*.py"
             "requirements.txt"
@@ -342,25 +350,25 @@ in
           ];
         };
         conda = {
-          symbol = " ";
-          format = "[$symbol$environment](dimmed green) ";
+          symbol = "";
+          format = "[$symbol $environment](dimmed green) ";
         };
         rust = {
-          symbol = " ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "";
+          format = "[$symbol ($version)]($style)) ";
           detect_files = ["Cargo.toml"];
         };
         sudo = {
           symbol = "sudo ";
         };
         terraform = {
-          symbol = "󱁢 ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "󱁢";
+          format = "[$symbol ($version)]($style)) ";
           detect_files = ["*.tf"];
         };
         zig = {
-          symbol = " ";
-          format = "(via [$symbol($version )]($style))";
+          symbol = "";
+          format = "[$symbol ($version)]($style)) ";
           detect_files = ["*.zig"];
         };
       };

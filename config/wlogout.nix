@@ -39,7 +39,7 @@ in
       }
       {
         label = "suspend";
-        action = "systemctl suspend";
+        action = "pidof hyprlock || hyprlock -q & disown && systemctl suspend";
         text = "Suspend";
         keybind = "u";
       }

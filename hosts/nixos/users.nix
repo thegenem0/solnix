@@ -8,7 +8,7 @@
     "${username}" = {
       homeMode = "755";
       isNormalUser = true;
-      description = "System User ${username}";
+      description = "${username}";
       extraGroups = [
         "networkmanager"
         "wheel"

@@ -109,8 +109,8 @@ with lib;
         windowrulev2 = [
           "stayfocused, title:^()$,class:^(steam)$"
           "minsize 1 1, title:^()$,class:^(steam)$"
-          "opacity 0.9 0.7, class:^(Brave)$"
-          "opacity 0.9 0.7, class:^(thunar)$"
+          # "opacity 0.9 0.7, class:^(Brave)$"
+          # "opacity 0.9 0.7, class:^(thunar)$"
         ];
         gestures = {
           workspace_swipe = true;
