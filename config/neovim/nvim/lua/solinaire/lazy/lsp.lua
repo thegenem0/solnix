@@ -103,9 +103,7 @@ return {
                         capabilities = capabilities,
                         settings = {
                             zls = {
-                                path = "/usr/bin/zig",
                                 Zls = {
-                                    path = "/home/thegenem0/.local/share/nvim/mason/bin/zls",
                                     enableAutofix = true,
                                     enable_snippets = true,
                                     enable_ast_check_diagnostics = true,

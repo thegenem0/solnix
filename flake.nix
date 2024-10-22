@@ -10,6 +10,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";

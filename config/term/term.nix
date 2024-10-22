@@ -12,7 +12,6 @@ let
 in
 {
   home.file.".scripts".source = ./scripts;
-  home.file.".config/templates".source = ../misc/templates;
 
   home.packages = with pkgs; [
     antidote

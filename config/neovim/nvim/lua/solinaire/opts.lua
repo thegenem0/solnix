@@ -23,7 +23,7 @@ vim.o.autoindent = true -- copy indent from current line when starting new one
 -- Save undo history
 vim.o.undofile = true
 
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
@@ -39,7 +39,6 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
 -- backspace
@@ -50,12 +49,3 @@ vim.o.splitright = true       -- split vertical window to the right
 vim.o.splitbelow = true       -- split horizontal window to the bottom
 --
 vim.opt.iskeyword:append("-") -- consider string-string as whole word
-
-vim.g.sonokai_style = 'andromeda'
-vim.g.sonokai_better_performance = 1
-
-vim.filetype.add({
-    extension = {
-        ['http'] = 'http',
-    },
-})

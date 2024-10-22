@@ -18,9 +18,9 @@ command! W write
 command! Q quit
 command! Wq write | quit
 command! WQ write | quit
+noremap q <Nop>
+noremap Q q
 ]])
-
-utils.keymap("n", "q", "<Nop>")
 
 utils.keymap("n", "<leader>ch", ":nohl<CR>", { desc = "Clear Search Highlights" })
 
@@ -29,8 +29,6 @@ utils.keymap("n", "x", '"_x', { desc = "Delete Char without Copy" })
 -- window management
 utils.keymap("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
 utils.keymap("n", "<leader>sh", "<C-w>s", { desc = "Split Horizontal" })
-utils.keymap("n", "<leader>se", "<C-w>=", { desc = "Make Equal" })
-utils.keymap("n", "<leader>sx", "<cmd>close<cr>", { desc = "Close Current" })
 
 -- buffer navigation
 utils.keymap("n", "<leader>p", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev Buffer" })
