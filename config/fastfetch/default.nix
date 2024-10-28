@@ -9,8 +9,8 @@
       logo = {
         source = ../misc/logo.png;
         type = "kitty-direct";
-        height = 15;
-        width = 30;
+        height = 16;
+        width = 32;
       };
       modules = [
         {

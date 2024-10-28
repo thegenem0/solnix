@@ -35,7 +35,6 @@
         nodejs_20
         go
         zig
-        pyenv
         postman
       ];
     };
