@@ -108,6 +108,7 @@
     })
     (import ../../scripts/awsvpn-toggle.nix { inherit pkgs; })
     (import ../../scripts/awsvpn-status.nix { inherit pkgs; })
+    (import ../../scripts/gen-pr.nix { inherit pkgs; })
   ];
 
   services = {
