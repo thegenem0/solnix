@@ -3,13 +3,12 @@
   username,
   ...
 }:
-
 {
   users.users = {
     "${username}" = {
       homeMode = "755";
       isNormalUser = true;
-      description = "System User ${username}";
+      description = "${username}";
       extraGroups = [
         "networkmanager"
         "wheel"
@@ -36,8 +35,8 @@
         nodejs_20
         go
         zig
-        pyenv
         postman
+        libreoffice
       ];
     };
   };

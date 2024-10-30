@@ -36,6 +36,7 @@
         go
         zig
         postman
+        libreoffice
       ];
     };
   };
