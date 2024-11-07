@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   host,
   lib,
@@ -13,8 +14,9 @@ in
 {
   home.file.".scripts".source = ./scripts;
 
-  home.packages = with pkgs; [
-    antidote
+  home.packages = [
+    pkgs.antidote
+    inputs.solnix-vim.packages.${pkgs.stdenv.system}.default
   ];
 
   programs = {
@@ -106,7 +108,6 @@ in
         alias ls='exa --icons --long --git -h --group-directories-first'
         alias l='exa -lah --icons --group-directories-first'
         alias cd='z'
-        alias nvim="nix run gitlab:solinaire/nixvim"
 
         alias tf="terraform"
         alias cli-nosession="aws-vault exec hace-cli --no-session --"

@@ -10,6 +10,9 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # solnix-vim.url = "gitlab:solinaire/nixvim";
+    # using local path for development
+    solnix-vim.url = "path:/home/solinaire/dev/personal/nixvim";
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -64,15 +67,17 @@
             home-manager.nixosModules.home-manager
             inputs.spicetify-nix.nixosModules.default
             {
-              home-manager.extraSpecialArgs = {
-                inherit username;
-                inherit inputs;
-                inherit host;
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit username;
+                  inherit inputs;
+                  inherit host;
+                };
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "backup";
+                users.${username} = import ./hosts/${host}/home.nix;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.users.${username} = import ./hosts/${host}/home.nix;
             }
           ];
         };

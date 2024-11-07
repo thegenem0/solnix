@@ -7,9 +7,11 @@
 
 {
   # Home Manager Settings
-  home.username = "${username}";
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "23.11";
+  home = {
+    username = "${username}";
+    homeDirectory = "/home/${username}";
+    stateVersion = "23.11";
+  };
 
   # Import Program Configurations
   imports = [
@@ -69,9 +71,11 @@
 
 
 
-  stylix.targets.waybar.enable = false;
-  stylix.targets.rofi.enable = false;
-  stylix.targets.hyprland.enable = false;
+  stylix.targets = {
+    waybar.enable = false;
+    rofi.enable = false;
+    hyprland.enable = false;
+  };
 
   gtk = {
     iconTheme = {
