@@ -22,7 +22,7 @@
     ../../config/git/git.nix
     ../../config/ssh/ssh.nix
     ../../config/term/term.nix
-    ../../config/neovim/neovim.nix
+    # ../../config/neovim/neovim.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
     ../../config/spicetify.nix

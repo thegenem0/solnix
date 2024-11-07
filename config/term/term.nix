@@ -106,6 +106,7 @@ in
         alias ls='exa --icons --long --git -h --group-directories-first'
         alias l='exa -lah --icons --group-directories-first'
         alias cd='z'
+        alias nvim="nix run gitlab:solinaire/nixvim"
 
         alias tf="terraform"
         alias cli-nosession="aws-vault exec hace-cli --no-session --"
@@ -360,7 +361,7 @@ in
         };
         rust = {
           symbol = "";
-          format = "[$symbol ($version)]($style)) ";
+          format = "[$symbol ($version)]($style) ";
           detect_files = ["Cargo.toml"];
         };
         sudo = {

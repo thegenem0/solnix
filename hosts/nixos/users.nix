@@ -4,6 +4,10 @@
   ...
 }:
 {
+  nix.extraOptions = ''
+    trusted-users = root ${username}
+  '';
+
   users.users = {
     "${username}" = {
       homeMode = "755";
@@ -26,7 +30,7 @@
         jetbrains.datagrip
         jetbrains.webstorm
         jetbrains.pycharm-professional
-        jetbrains.jdk-no-jcef
+        jetbrains.rust-rover
         gimp
         lazygit
         lazydocker
@@ -37,6 +41,10 @@
         zig
         postman
         libreoffice
+        guvcview
+        zathura
+        devenv
+        direnv
       ];
     };
   };

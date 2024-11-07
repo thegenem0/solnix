@@ -1,0 +1,53 @@
+"""---GLOBALS---
+let mapleader=" "
+let g:NERDTreeShowHidden=1
+"""----------------
+
+"""---PLUGINS---
+set NERDTree
+set surround
+set ReplaceWithRegister
+set commentary
+set number relativenumber
+"""----------------
+
+set showmode
+set so=5
+set incsearch
+set nu
+set clipboard^=unnamedplus,unnamed
+
+"""---KEYMAPS---
+"nmap <A-j> <Action>(GotoNextError)"
+"nmap <A-k> <Action>(GotoPreviousError)"
+
+
+
+"Navigate between panes
+nmap <leader>n :tabnext<CR>
+nmap <leader>p :tabprev<CR>
+nmap sh :split <CR>
+nmap sv :vsplit <CR>
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+"Actions"
+nmap <leader>rn <Action>(RenameElement)
+nmap <leader>gt <Action>(GotoTypeDeclaration)
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>su <Action>(ShowUsages)
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>ff <Action>(SearchEverywhere)
+nmap <leader>rr <Action>(RunAnything)
+nmap <leader>fn <Action>(RenameFile)
+
+nmap <C-j> <Action>(EditorChooseLookupItemFocusDown)
+nmap <C-k> <Action>(EditorChooseLookupItemFocusUp)
+
+"Misc"
+nmap <leader>tt :action ActivateTerminalToolWindow<CR>
+nmap <leader>e :NERDTreeToggle<CR>
+map U <C-R>
