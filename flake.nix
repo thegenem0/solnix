@@ -10,7 +10,7 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # solnix-vim.url = "gitlab:solinaire/nixvim";
+    # solnix-vim.url = "gitlab:solinaire/solnix-vim";
     # using local path for development
     solnix-vim.url = "path:/home/solinaire/dev/personal/nixvim";
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
