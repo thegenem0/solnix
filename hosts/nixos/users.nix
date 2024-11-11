@@ -45,6 +45,7 @@
         zathura
         devenv
         direnv
+        glab
       ];
     };
   };

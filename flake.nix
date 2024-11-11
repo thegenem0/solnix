@@ -12,7 +12,10 @@
     };
     # solnix-vim.url = "gitlab:solinaire/solnix-vim";
     # using local path for development
-    solnix-vim.url = "path:/home/solinaire/dev/personal/nixvim";
+    solnix-vim = {
+      url = "path:/home/solinaire/dev/personal/solnix-vim";
+      # flake = false;
+    };
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -20,18 +23,16 @@
     };
   };
 
-  outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "nixos";
       username = "solinaire";
-    in
-    {
+    in {
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-	    inherit system;
+            inherit system;
             inherit inputs;
             inherit username;
             inherit host;
@@ -42,23 +43,28 @@
                 inputs.rust-overlay.overlays.default
                 # Thanks AWS, I love to have to do this...
                 (final: prev: {
-                  openvpn_2_5 = prev.openvpn_2_5 or (prev.openvpn.overrideAttrs (oldAttrs: {
-                    version = "2.5.1";
-                    src = prev.fetchurl {
-                      url = "https://swupdate.openvpn.org/community/releases/openvpn-2.5.1.tar.gz";
-                      sha256 = "sha256-6VgrjpRXmUvY1QASvoLCOy9GXaUUYMmyNgqB2g9OBuY=";
-                    };
-                    patches = [
-                      (prev.fetchpatch {
+                  openvpn_2_5 = prev.openvpn_2_5 or (prev.openvpn.overrideAttrs
+                    (oldAttrs: {
+                      version = "2.5.1";
+                      src = prev.fetchurl {
                         url =
-                          "https://raw.githubusercontent.com/samm-git/aws-vpn-client/master/openvpn-v2.5.1-aws.patch";
-                        hash = "sha256-9ijhANqqWXVPa00RBCRACtMIsjiBqYVa91V62L4mNas=";
-                      })
-                    ];
-                  }));
-                  awsvpnclient = inputs.awsvpnclient.packages.${system}.awsvpnclient.override {
-                    openvpn = final.openvpn_2_5;
-                  };
+                          "https://swupdate.openvpn.org/community/releases/openvpn-2.5.1.tar.gz";
+                        sha256 =
+                          "sha256-6VgrjpRXmUvY1QASvoLCOy9GXaUUYMmyNgqB2g9OBuY=";
+                      };
+                      patches = [
+                        (prev.fetchpatch {
+                          url =
+                            "https://raw.githubusercontent.com/samm-git/aws-vpn-client/master/openvpn-v2.5.1-aws.patch";
+                          hash =
+                            "sha256-9ijhANqqWXVPa00RBCRACtMIsjiBqYVa91V62L4mNas=";
+                        })
+                      ];
+                    }));
+                  awsvpnclient =
+                    inputs.awsvpnclient.packages.${system}.awsvpnclient.override {
+                      openvpn = final.openvpn_2_5;
+                    };
                 })
               ];
             }
