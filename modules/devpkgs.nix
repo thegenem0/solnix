@@ -27,6 +27,7 @@
     unzip
     unrar
     ripgrep
+    fd
     bat
     tree
     ncdu

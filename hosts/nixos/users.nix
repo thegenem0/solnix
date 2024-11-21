@@ -1,9 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}:
-{
+{ pkgs, username, ... }: {
   nix.extraOptions = ''
     trusted-users = root ${username}
   '';
@@ -13,13 +8,7 @@
       homeMode = "755";
       isNormalUser = true;
       description = "${username}";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "libvirtd"
-        "scanner"
-        "lp"
-      ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "scanner" "lp" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
@@ -46,6 +35,9 @@
         devenv
         direnv
         glab
+        cloc
+        obsidian
+        obs-studio
       ];
     };
   };

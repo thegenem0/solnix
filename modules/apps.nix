@@ -36,6 +36,5 @@
     yad
     pavucontrol
     imagemagick
-    obs-studio
   ];
 }
