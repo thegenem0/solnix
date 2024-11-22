@@ -39,6 +39,7 @@
         obsidian
         obs-studio
         emote
+        terraform
       ];
     };
   };
