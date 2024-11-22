@@ -38,6 +38,7 @@
         cloc
         obsidian
         obs-studio
+        emote
       ];
     };
   };

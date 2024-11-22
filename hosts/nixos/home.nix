@@ -1,9 +1,4 @@
-{
-  pkgs,
-  username,
-  host,
-  ...
-}:
+{ pkgs, username, host, ... }:
 
 {
   # Home Manager Settings
@@ -24,7 +19,6 @@
     ../../config/git/git.nix
     ../../config/ssh/ssh.nix
     ../../config/term/term.nix
-    # ../../config/neovim/neovim.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
     ../../config/spicetify.nix
@@ -69,8 +63,6 @@
     };
   };
 
-
-
   stylix.targets = {
     waybar.enable = false;
     rofi.enable = false;
@@ -82,19 +74,14 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
   qt = {
     enable = true;
     style.name = "adwaita-dark";
     platformTheme.name = "gtk3";
   };
-
 
   # Scripts
   home.packages = [
@@ -122,7 +109,7 @@
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          };
+        };
         listener = [
           {
             timeout = 900;
@@ -142,9 +129,7 @@
     gh.enable = true;
     btop = {
       enable = true;
-      settings = {
-        vim_keys = true;
-      };
+      settings = { vim_keys = true; };
     };
     home-manager.enable = true;
     hyprlock = {
@@ -156,40 +141,34 @@
           hide_cursor = true;
           no_fade_in = false;
         };
-        background = [
-          {
-            path = "/home/${username}/.config/.blurred_wallpaper";
-            blur_passes = 3;
-            blur_size = 8;
-          }
-        ];
-        image = [
-          {
-            path = "/home/${username}/.config/logo.jpg";
-            size = 150;
-            border_size = 4;
-            border_color = "rgb(0, 0, 255, 0.5)";
-            rounding = -1; # Negative means circle
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-        input-field = [
-          {
-            size = "200, 50";
-            position = "0, -80";
-            monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(CFE6F4)";
-            inner_color = "rgb(657DC2)";
-            outer_color = "rgb(0D0E15)";
-            outline_thickness = 5;
-            placeholder_text = "Password...";
-            shadow_passes = 2;
-          }
-        ];
+        background = [{
+          path = "/home/${username}/.config/.blurred_wallpaper";
+          blur_passes = 3;
+          blur_size = 8;
+        }];
+        image = [{
+          path = "/home/${username}/.config/logo.jpg";
+          size = 150;
+          border_size = 4;
+          border_color = "rgb(0, 0, 255, 0.5)";
+          rounding = -1; # Negative means circle
+          position = "0, 200";
+          halign = "center";
+          valign = "center";
+        }];
+        input-field = [{
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(CFE6F4)";
+          inner_color = "rgb(657DC2)";
+          outer_color = "rgb(0D0E15)";
+          outline_thickness = 5;
+          placeholder_text = "Password...";
+          shadow_passes = 2;
+        }];
       };
     };
   };
