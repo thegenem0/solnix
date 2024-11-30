@@ -1,15 +1,12 @@
-{
-  pkgs,
-  username,
-  host,
-  ...
-}:
+{ pkgs, username, host, lib, ... }:
 
 {
   # Home Manager Settings
-  home.username = "${username}";
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "23.11";
+  home = {
+    username = "${username}";
+    homeDirectory = "/home/${username}";
+    stateVersion = "23.11";
+  };
 
   # Import Program Configurations
   imports = [
@@ -22,34 +19,31 @@
     ../../config/git/git.nix
     ../../config/ssh/ssh.nix
     ../../config/term/term.nix
-    ../../config/neovim/neovim.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
+    ../../config/spicetify.nix
   ];
 
-  # INFO: Wallpapers
-  home.file."Pictures/Wallpapers".source = ../../config/wallpapers;
+  home.file = {
+    "Pictures/Wallpapers".source = ../../config/wallpapers;
+    ".config/wlogout/icons".source = ../../config/wlogout;
 
-  # INFO: Wlogout
-  home.file.".config/wlogout/icons".source = ../../config/wlogout;
+    ".logo.icon".source = ../../config/misc/logo.png;
+    ".config/logo.jpg".source = ../../config/misc/logo.png;
 
-  # INFO: Face
-  home.file.".logo.icon".source = ../../config/misc/logo.png;
-  home.file.".config/logo.jpg".source = ../../config/misc/logo.png;
-
-  # INFO: Swappy
-  home.file.".config/swappy/config".text = ''
-    [Default]
-    save_dir=/home/${username}/Pictures/Screenshots
-    save_filename_format=swappy-%Y%m%d-%H%M%S.png
-    show_panel=false
-    line_size=5
-    text_size=20
-    text_font=Ubuntu
-    paint_mode=brush
-    early_exit=true
-    fill_shape=false
-  '';
+    ".config/swappy/config".text = ''
+      [Default]
+      save_dir=/home/${username}/Pictures/Screenshots
+      save_filename_format=swappy-%Y%m%d-%H%M%S.png
+      show_panel=false
+      line_size=5
+      text_size=20
+      text_font=Ubuntu
+      paint_mode=brush
+      early_exit=true
+      fill_shape=false
+    '';
+  };
 
   # Create XDG Dirs
   xdg = {
@@ -66,30 +60,25 @@
     };
   };
 
-
-
-  stylix.targets.waybar.enable = false;
-  stylix.targets.rofi.enable = false;
-  stylix.targets.hyprland.enable = false;
+  stylix.targets = {
+    waybar.enable = false;
+    rofi.enable = false;
+    hyprland.enable = false;
+  };
 
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
   qt = {
     enable = true;
     style.name = "adwaita-dark";
     platformTheme.name = "gtk3";
   };
-
 
   # Scripts
   home.packages = [
@@ -107,7 +96,7 @@
     })
     (import ../../scripts/awsvpn-toggle.nix { inherit pkgs; })
     (import ../../scripts/awsvpn-status.nix { inherit pkgs; })
-    (import ../../scripts/init-devflake.nix { inherit pkgs; inherit username; })
+    (import ../../scripts/gen-pr.nix { inherit pkgs; })
   ];
 
   services = {
@@ -117,7 +106,7 @@
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          };
+        };
         listener = [
           {
             timeout = 900;
@@ -137,12 +126,10 @@
     gh.enable = true;
     btop = {
       enable = true;
-      settings = {
-        vim_keys = true;
-      };
+      settings = { vim_keys = true; };
     };
     home-manager.enable = true;
-    hyprlock = {
+    hyprlock = lib.mkDefault {
       enable = true;
       settings = {
         general = {
@@ -151,40 +138,34 @@
           hide_cursor = true;
           no_fade_in = false;
         };
-        background = [
-          {
-            path = "/home/${username}/.config/.blurred_wallpaper";
-            blur_passes = 3;
-            blur_size = 8;
-          }
-        ];
-        image = [
-          {
-            path = "/home/${username}/.config/logo.jpg";
-            size = 150;
-            border_size = 4;
-            border_color = "rgb(0, 0, 255, 0.5)";
-            rounding = -1; # Negative means circle
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-        input-field = [
-          {
-            size = "200, 50";
-            position = "0, -80";
-            monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(CFE6F4)";
-            inner_color = "rgb(657DC2)";
-            outer_color = "rgb(0D0E15)";
-            outline_thickness = 5;
-            placeholder_text = "Password...";
-            shadow_passes = 2;
-          }
-        ];
+        background = [{
+          path = "/home/${username}/.config/.blurred_wallpaper";
+          blur_passes = 3;
+          blur_size = 8;
+        }];
+        image = [{
+          path = "/home/${username}/.config/logo.jpg";
+          size = 150;
+          border_size = 4;
+          border_color = "rgb(0, 0, 255, 0.5)";
+          rounding = -1; # Negative means circle
+          position = "0, 200";
+          halign = "center";
+          valign = "center";
+        }];
+        input-field = [{
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(CFE6F4)";
+          inner_color = "rgb(657DC2)";
+          outer_color = "rgb(0D0E15)";
+          outline_thickness = 5;
+          placeholder_text = "Password...";
+          shadow_passes = 2;
+        }];
       };
     };
   };

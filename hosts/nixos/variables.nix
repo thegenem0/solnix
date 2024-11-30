@@ -4,9 +4,7 @@
     name = "catppuccin";
     variant = "mocha";
   };
-  amd = {
-    enable = false;
-  };
+  amd = { enable = false; };
   nvidia = {
     enable = true;
     prime = {
@@ -15,9 +13,7 @@
       nvidiaBusID = "";
     };
   };
-  intel = {
-    enable = false;
-  };
+  intel = { enable = false; };
   keyboardLayout = "us";
   primaryMonitor = "DP-1";
   browser = "firefox";

@@ -1,21 +1,14 @@
-{
-  pkgs,
-  username,
-  ...
-}:
-{
+{ pkgs, username, ... }: {
+  nix.extraOptions = ''
+    trusted-users = root ${username}
+  '';
+
   users.users = {
     "${username}" = {
       homeMode = "755";
       isNormalUser = true;
       description = "${username}";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "libvirtd"
-        "scanner"
-        "lp"
-      ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "scanner" "lp" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
@@ -26,7 +19,7 @@
         jetbrains.datagrip
         jetbrains.webstorm
         jetbrains.pycharm-professional
-        jetbrains.jdk-no-jcef
+        jetbrains.rust-rover
         gimp
         lazygit
         lazydocker
@@ -37,6 +30,16 @@
         zig
         postman
         libreoffice
+        guvcview
+        zathura
+        devenv
+        direnv
+        glab
+        cloc
+        obsidian
+        obs-studio
+        emote
+        terraform
       ];
     };
   };

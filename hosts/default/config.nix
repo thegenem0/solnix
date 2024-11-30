@@ -1,19 +1,10 @@
-{
-  config,
-  pkgs,
-  host,
-  username,
-  options,
-  lib,
-  ...
-}:
+{ config, pkgs, host, username, options, lib, ... }:
 with lib;
 let
   inherit (import ./variables.nix) keyboardLayout amd nvidia intel systemTheme;
   inherit (import ../../config/themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
-in
-{
+in {
   imports = [
     ./hardware.nix
     ./users.nix
@@ -33,13 +24,11 @@ in
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    extraModprobeConfig = lib.mkIf (nvidia.enable) ''
-          options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
+    extraModprobeConfig = lib.mkIf nvidia.enable ''
+      options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
     '';
     # Needed For Some Steam Games
-    kernel.sysctl = {
-      "vm.max_map_count" = 2147483642;
-    };
+    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
     # Bootloader.
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -54,8 +43,8 @@ in
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";
       recognitionType = "magic";
       offset = 0;
-      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-      magicOrExtension = ''\x7fELF....AI\x02'';
+      mask = "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff";
+      magicOrExtension = "\\x7fELF....AI\\x02";
     };
     plymouth.enable = true;
   };
@@ -88,12 +77,14 @@ in
 
     polarity = "dark";
     opacity.terminal = 0.8;
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+    };
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
@@ -114,38 +105,39 @@ in
   };
 
   # Extra Module Options
-  drivers.amdgpu.enable = amd.enable;
-  drivers.nvidia.enable = nvidia.enable;
-  drivers.nvidia-prime = {
-    enable = nvidia.prime.enable;
-    intelBusID = nvidia.prime.intelBusID;
-    nvidiaBusID = nvidia.prime.nvidiaBusID;
+  drivers = {
+    amdgpu.enable = amd.enable;
+    nvidia.enable = nvidia.enable;
+    nvidia-prime = nvidia.prime;
+    intel.enable = intel.enable;
   };
-  drivers.intel.enable = intel.enable;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
   # Enable networking
-  networking.networkmanager.enable = true;
-  networking.hostName = host;
-  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  networking = {
+    networkmanager.enable = true;
+    hostName = host;
+    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
   };
 
   programs = {
@@ -162,9 +154,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  users = {
-    mutableUsers = true;
-  };
+  users = { mutableUsers = true; };
 
   environment.systemPackages = with pkgs; [
     killall
@@ -192,14 +182,13 @@ in
     swww
     grim
     slurp
-    greetd.tuigreet
     kanata
   ];
 
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       font-awesome
       # Commenting Symbola out to fix install this will need to be fixed or an alternative found.
       # symbola
@@ -211,10 +200,7 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
@@ -225,23 +211,15 @@ in
   # Services to start
   services = {
     xserver = {
-      enable = false;
+      enable = true;
       xkb = {
         layout = "${keyboardLayout}";
         variant = "";
       };
-    };
-    greetd = {
-      enable = true;
-      vt = 3;
-      settings = {
-        default_session = {
-          # Wayland Desktop Manager is installed only for "{username}"
-          user = username;
-          # .wayland-session is a script generated by home-manager, which links to the current wayland compositor(sway/hyprland or others).
-          # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
-          # command = "$HOME/.wayland-session"; # start a wayland session directly without a login manager
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland --user-menu --theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'";
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = true;
         };
       };
     };
@@ -297,15 +275,17 @@ in
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.sane-airscan ];
-    disabledDefaultBackends = [ "escl" ];
+  hardware = {
+    sane = {
+      enable = true;
+      extraBackends = [ pkgs.sane-airscan ];
+      disabledDefaultBackends = [ "escl" ];
+    };
+    logitech.wireless = {
+      enable = false;
+      enableGraphical = false;
+    };
   };
-
-  # Extra Logitech Support
-  hardware.logitech.wireless.enable = false;
-  hardware.logitech.wireless.enableGraphical = false;
 
   # Bluetooth Support
   hardware.bluetooth.enable = true;
@@ -316,54 +296,51 @@ in
   hardware.pulseaudio.enable = false;
 
   # Security / Polkit
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (
-        subject.isInGroup("users")
-          && (
-            action.id == "org.freedesktop.login1.reboot" ||
-            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-            action.id == "org.freedesktop.login1.power-off" ||
-            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-          )
-        )
-      {
-        return polkit.Result.YES;
-      }
-    })
-  '';
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
-
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
+  security = {
+    rtkit.enable = true;
+    polkit = {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+              )
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
+    };
+    pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+    };
+    sudo = {
+      enable = true;
+      extraRules = [{
         users = [ "${username}" ];
-        commands = [
-          { command = "/usr/bin/awsvpnclient"; options = [ "NOPASSWD" ]; }
-        ];
-      }
-    ];
+        commands = [{
+          command = "/usr/bin/awsvpnclient";
+          options = [ "NOPASSWD" ];
+        }];
+      }];
+    };
   };
 
   # Optimization settings and garbage collection automation
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      substituters = [
-        "https://hyprland.cachix.org"
-        "https://devenv.cachix.org"
-      ];
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters =
+        [ "https://hyprland.cachix.org" "https://devenv.cachix.org" ];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -377,9 +354,7 @@ in
   };
 
   # OpenGL
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics = { enable = true; };
 
   console.keyMap = "${keyboardLayout}";
 

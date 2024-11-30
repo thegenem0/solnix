@@ -5,14 +5,16 @@ let
   inherit (import ./themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
 in with lib; {
-  home.packages = with pkgs; [ hyprshade pyprland ];
+  home = {
+    packages = with pkgs; [ hyprshade pyprland ];
 
-  home.file.".config/hypr/shaders" = {
-    source = ./misc/shaders;
-    recursive = true;
+    file.".config/hypr/shaders" = {
+      source = ./misc/shaders;
+      recursive = true;
+    };
+
+    file.".config/hypr/pyprland.toml".source = ./misc/hypr/pyprland.toml;
   };
-
-  home.file.".config/hypr/pyprland.toml".source = ./misc/hypr/pyprland.toml;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -34,7 +36,7 @@ in with lib; {
         "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
         "SDL_VIDEODRIVER, x11"
         "MOZ_ENABLE_WAYLAND, 1"
-      ] ++ lib.optionals (nvidia.enable) [
+      ] ++ lib.optionals nvidia.enable [
         "LIBVA_DRIVER_NAME, nvidia"
         "GBM_BACKEND, nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME, nvidia"
@@ -87,8 +89,6 @@ in with lib; {
       windowrulev2 = [
         "stayfocused, title:^()$,class:^(steam)$"
         "minsize 1 1, title:^()$,class:^(steam)$"
-        # "opacity 0.9 0.7, class:^(Brave)$"
-        # "opacity 0.9 0.7, class:^(thunar)$"
       ];
       gestures = {
         workspace_swipe = true;
@@ -106,10 +106,6 @@ in with lib; {
           size = 7;
           passes = 3;
         };
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
       };
       animations = {
         enabled = true;
