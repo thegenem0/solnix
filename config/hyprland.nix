@@ -54,7 +54,7 @@ in with lib; {
         "nm-applet --indicator"
         "lxqt-policykit"
       ];
-      cursor = mkIf nvidia.enable { no_hardware_cursors = true; };
+      cursor = { no_hardware_cursors = mkIf nvidia.enable true; };
       general = {
         gaps_in = 5;
         gaps_out = 20;
