@@ -38,5 +38,7 @@
     python312Full
     gnumake
     awsvpnclient
+    devenv
+    direnv
   ];
 }

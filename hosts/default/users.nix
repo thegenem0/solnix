@@ -32,8 +32,6 @@
         libreoffice
         guvcview
         zathura
-        devenv
-        direnv
         glab
         cloc
         obsidian

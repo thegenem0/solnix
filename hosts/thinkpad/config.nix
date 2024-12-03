@@ -78,9 +78,9 @@ in {
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
+      package = pkgs.phinger-cursors;
+      name = "phinger-cursors-light";
+      size = 32;
     };
     fonts = {
       monospace = {
@@ -158,6 +158,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     killall
+    openssl
     lolcat
     libvirt
     lxqt.lxqt-policykit

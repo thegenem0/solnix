@@ -158,6 +158,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     killall
+    openssl
     lolcat
     libvirt
     lxqt.lxqt-policykit
