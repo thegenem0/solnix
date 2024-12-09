@@ -165,35 +165,35 @@ in {
 
   users = { mutableUsers = true; };
 
-  environment.systemPackages = with pkgs; [
-    killall
-    openssl
-    lolcat
-    libvirt
-    lxqt.lxqt-policykit
-    lm_sensors
-    libnotify
-    v4l-utils
-    ydotool
-    wl-clipboard
-    pciutils
-    socat
-    lshw
-    pkg-config
-    meson
-    ninja
-    brightnessctl
-    swappy
-    inxi
-    playerctl
-    nh
-    nixfmt-rfc-style
-    libvirt
-    swww
-    grim
-    slurp
-    kanata
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      killall
+      openssl
+      lolcat
+      libvirt
+      lxqt.lxqt-policykit
+      lm_sensors
+      libnotify
+      v4l-utils
+      ydotool
+      wl-clipboard
+      pciutils
+      socat
+      lshw
+      pkg-config
+      meson
+      ninja
+      brightnessctl
+      swappy
+      inxi
+      playerctl
+      nh
+      nixfmt-rfc-style
+      libvirt
+      grim
+      slurp
+      kanata
+    ] ++ [ inputs.swww.packages.${pkgs.system}.swww ];
 
   fonts = {
     packages = with pkgs; [

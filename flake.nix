@@ -13,6 +13,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     stylix.url = "github:danth/stylix";
+    swww.url = "github:LGFae/swww";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
