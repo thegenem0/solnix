@@ -40,5 +40,6 @@
     awsvpnclient
     devenv
     direnv
+    groff
   ];
 }

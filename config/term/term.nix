@@ -4,7 +4,10 @@ let
   inherit (import ../themes/theme.nix { inherit config; }) getTheme;
   currentTheme = getTheme systemTheme;
 in {
-  home.file.".scripts".source = ./scripts;
+  home.file = {
+    ".scripts".source = ./scripts;
+    ".ideavimrc".source = ../misc/ideavimrc;
+  };
 
   home.packages =
     [ pkgs.antidote inputs.solnix-vim.packages.${pkgs.stdenv.system}.default ];
@@ -107,6 +110,7 @@ in {
         alias awsvpn-disconnect="pkill \"aws-vpn-client\""
 
         alias flake-rebuild="nh os switch --hostname $(hostname) /home/$(whoami)/solnix"
+        alias home-rebuild="nh home switch --hostname $(hostname) /home/$(whoami)/solnix"
         alias flake-update="nh os switch --hostname $(hostname) --update /home/$(whoami)/solnix";
         alias distro-update="sh <(curl -L https://gitlab.com/solinaire/solnix/-/raw/main/install.sh)";
         alias flake-gc="nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";

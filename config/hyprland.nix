@@ -1,4 +1,4 @@
-{ pkgs, lib, host, config, ... }:
+{ pkgs, lib, inputs, host, config, ... }:
 let
   inherit (import ../hosts/${host}/variables.nix)
     terminal keyboardLayout systemTheme nvidia;
@@ -18,8 +18,15 @@ in with lib; {
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
+
+    plugins = [ 
+        inputs.hy3.packages.${pkgs.system}.hy3
+      ];
+
     settings = let mod = "SUPER";
     in {
       "$mod" = "${mod}";
@@ -95,6 +102,8 @@ in with lib; {
         workspace_swipe_fingers = 3;
       };
       misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
         initial_workspace_tracking = 0;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
@@ -104,7 +113,7 @@ in with lib; {
         blur = {
           enabled = true;
           size = 7;
-          passes = 3;
+          passes = 4;
         };
       };
       animations = {
@@ -118,10 +127,26 @@ in with lib; {
           "workspaces, 1, 6, default"
         ];
       };
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
+
+      plugin = {
+        hy3 = {
+          tabs = {
+            height = 2;
+            padding = 6;
+            render_text = false;
+          };
+          autotile = {
+            enable = true;
+            trigger_width = 800;
+            trigger_height = 500;
+          };
+        };
       };
+
+      # dwindle = {
+      #   pseudotile = true;
+      #   preserve_split = true;
+      # };
       bind = [
         "${mod}, RETURN, exec, ${terminal}"
         "${mod} SHIFT, RETURN, exec, pypr toggle term"

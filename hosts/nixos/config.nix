@@ -1,4 +1,4 @@
-{ config, pkgs, host, username, options, lib, ... }:
+{ config, pkgs, inputs, host, username, options, lib, ... }:
 with lib;
 let
   inherit (import ./variables.nix) keyboardLayout amd nvidia intel systemTheme;
@@ -30,8 +30,11 @@ in {
     # Needed For Some Steam Games
     kernel.sysctl = { "vm.max_map_count" = 2147483642; };
     # Bootloader.
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
     # Make /tmp a tmpfs
     tmp = {
       useTmpfs = false;
@@ -149,7 +152,13 @@ in {
       enable = true;
       enableSSHSupport = true;
     };
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      package =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -191,22 +200,15 @@ in {
       noto-fonts-emoji
       noto-fonts-cjk-sans
       font-awesome
-      # Commenting Symbola out to fix install this will need to be fixed or an alternative found.
-      # symbola
       material-icons
     ];
   };
 
-  # Extra Portal Configuration
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal
-    ];
+    configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
   };
 
   # Services to start
@@ -246,16 +248,12 @@ in {
       openFirewall = true;
     };
     ipp-usb.enable = true;
-    syncthing = {
-      enable = false;
-      user = "${username}";
-      dataDir = "/home/${username}";
-      configDir = "/home/${username}/.config/syncthing";
-    };
     pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
       pulse.enable = true;
     };
     rpcbind.enable = false;
@@ -270,13 +268,23 @@ in {
       };
     };
   };
-  systemd.services.flatpak-repo = {
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
+  systemd = {
+    services = {
+      blueman.enable = true;
+      flatpak-repo = {
+        path = [ pkgs.flatpak ];
+        script = ''
+          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        '';
+      };
+    };
   };
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    pulseaudio.enable = false;
     sane = {
       enable = true;
       extraBackends = [ pkgs.sane-airscan ];
@@ -287,14 +295,6 @@ in {
       enableGraphical = false;
     };
   };
-
-  # Bluetooth Support
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
 
   # Security / Polkit
   security = {

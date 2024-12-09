@@ -6,7 +6,7 @@ wall_dir="/home/${username}/Pictures/Wallpapers"
 rofi_theme="/home/${username}/.config/rofi/wallselect.rasi"
 blurred_wallpaper="/home/${username}/.config/.blurred_wallpaper"
 
-selected=$(find -L "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec basename {} \; | sort -R | while read rfile
+selected=$(find -L "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec basename {} \; | sort -R | while read -r rfile
     do
         echo -en "$rfile\x00icon\x1f$wall_dir/$rfile\n"
     done | rofi -dmenu -i -replace -config "$rofi_theme")

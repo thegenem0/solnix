@@ -3,8 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.45.0";
+    hy3 = {
+      url = "github:outfoxxed/hy3?ref=hl0.45.0";
+      inputs.hyprland.follows = "hyprland";
+    };
     stylix.url = "github:danth/stylix";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -26,7 +33,7 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "thinkpad";
+      host = "nixos";
       username = "solinaire";
     in {
       nixosConfigurations = {
