@@ -213,6 +213,7 @@ in {
 
   # Services to start
   services = {
+    blueman.enable = true;
     xserver = {
       enable = true;
       xkb = {
@@ -270,7 +271,6 @@ in {
   };
   systemd = {
     services = {
-      blueman.enable = true;
       flatpak-repo = {
         path = [ pkgs.flatpak ];
         script = ''

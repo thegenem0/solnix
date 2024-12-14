@@ -129,7 +129,7 @@
       settings = { vim_keys = true; };
     };
     home-manager.enable = true;
-    hyprlock = lib.mkDefault {
+    hyprlock = lib.mkForce {
       enable = true;
       settings = {
         general = {

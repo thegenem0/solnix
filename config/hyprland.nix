@@ -54,7 +54,7 @@ in with lib; {
       exec-once = [
         "dbus-update-activation-environment --systemd --all"
         "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "killall -q swww;sleep .5 && swww init"
+        "killall -q swww-daemon;sleep .5 && swww-daemon"
         "killall -q waybar;sleep .5 && waybar"
         "killall -q swaync;sleep .5 && swaync"
         "killall -q pypr;sleep .5 && pypr"
