@@ -25,9 +25,6 @@
         lazydocker
         awscli2
         aws-vault
-        nodejs_20
-        go
-        zig
         postman
         libreoffice
         guvcview

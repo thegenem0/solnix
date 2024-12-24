@@ -18,14 +18,14 @@ in with lib; {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # package =
+    #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
 
-    plugins = [ 
-        inputs.hy3.packages.${pkgs.system}.hy3
-      ];
+    # plugins = [ 
+    #     inputs.hy3.packages.${pkgs.system}.hy3
+    #   ];
 
     settings = let mod = "SUPER";
     in {
