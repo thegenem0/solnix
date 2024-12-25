@@ -193,6 +193,8 @@ in {
       grim
       slurp
       kanata
+      libimobiledevice
+      ifuse
     ] ++ [ inputs.swww.packages.${pkgs.system}.swww ];
 
   fonts = {
@@ -214,6 +216,7 @@ in {
   # Services to start
   services = {
     blueman.enable = true;
+    usbmuxd.enable = true;
     xserver = {
       enable = true;
       xkb = {
