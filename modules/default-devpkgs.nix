@@ -1,11 +1,15 @@
+# This includes all development related packages that I want on all systems.
+
 { pkgs, ... }:
 
 {
-  virtualisation.libvirtd.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -41,5 +45,6 @@
     devenv
     direnv
     groff
+    podman-compose
   ];
 }

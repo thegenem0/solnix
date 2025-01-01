@@ -18,12 +18,12 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    solnix-vim.url = "gitlab:solinaire/solnix-vim";
+    # solnix-vim.url = "githun:thegenem0/solnix-vim";
     # using local path for development
-    # solnix-vim = {
-    #   url = "path:/home/solinaire/dev/personal/solnix-vim";
-    #   # flake = false;
-    # };
+    solnix-vim = {
+      url = "path:/home/solinaire/dev/personal/solnix-vim";
+      # flake = false;
+    };
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -34,7 +34,7 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "thinkpad";
+      host = "nixos";
       username = "solinaire";
     in {
       nixosConfigurations = {
@@ -89,7 +89,7 @@
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                backupFileExtension = "backup";
+                backupFileExtension = "bak";
                 users.${username} = import ./hosts/${host}/home.nix;
               };
             }

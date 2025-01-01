@@ -3,16 +3,22 @@
 import os
 import shutil
 import subprocess
-import datetime
 from variables import write_vars_file, NixVariables, SystemTheme, GraphicsConfig
-from input import get_hostname, get_keyboard_layout, get_system_theme, get_gpu_config, get_primary_monitor
+from input import (
+    get_hostname,
+    get_keyboard_layout,
+    get_system_theme,
+    get_gpu_config,
+    get_primary_monitor,
+)
 
 
 def get_username():
     try:
         return subprocess.getoutput("whoami")
     except subprocess.CalledProcessError as e:
-        print(f"Error getting username: {e}")
+        raise Exception(f"Error getting username: {e}")
+
 
 def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
     """Set up the SolNix flake directory, copy configuration files, and configure git."""
@@ -30,18 +36,23 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
                     print(f"Copied {full_file_name} to {dest_dir}")
 
         try:
-            subprocess.run(["git", "config", "--global", "user.name", username], check=True)
-            subprocess.run(["git", "config", "--global", "user.email", "installer@mail.com"], check=True)
+            subprocess.run(
+                ["git", "config", "--global", "user.name", username], check=True
+            )
+            subprocess.run(
+                ["git", "config", "--global", "user.email", "installer@mail.com"],
+                check=True,
+            )
             print(f"Git user set to {username} (installer@mail.com)")
-        except:
-            print("Error setting git user.")
+        except Exception as e:
+            print(f"Error setting git user: {e}")
             pass
 
         hostnameCmd = [
             "sed",
             "-i",
             f's/host = ".*"/host = "{hostname}"/',
-            os.path.join(solnix_dir, "flake.nix")
+            os.path.join(solnix_dir, "flake.nix"),
         ]
         print(f"Running hostname sed command: {' '.join(hostnameCmd)}")
         subprocess.run(hostnameCmd, check=True)
@@ -50,17 +61,20 @@ def setup_flake(solnix_dir: str, hostname: str, username: str = "installer"):
             "sed",
             "-i",
             f's/username = ".*"/username = "{username}"/',
-            os.path.join(solnix_dir, "flake.nix")
+            os.path.join(solnix_dir, "flake.nix"),
         ]
         print(f"Running username sed command: {' '.join(usernameCmd)}")
         subprocess.run(usernameCmd, check=True)
 
-        print(f"Successfully set hostname to {hostname} and username to {username} in flake.nix.")
+        print(
+            f"Successfully set hostname to {hostname} and username to {username} in flake.nix."
+        )
 
     except subprocess.CalledProcessError as e:
         print(f"Error running command: {e}")
     except OSError as e:
         print(f"Error copying files or creating directories: {e}")
+
 
 def install_solnix(solnix_dir: str, hostname: str):
     config_file = f"{solnix_dir}/hosts/{hostname}/hardware.nix"
@@ -71,9 +85,11 @@ def install_solnix(solnix_dir: str, hostname: str):
     except FileExistsError:
         print(f"Host directory already exists at {config_file}.")
 
-    with open(config_file, 'w') as file:
+    with open(config_file, "w") as file:
         try:
-            subprocess.run(["sudo", "nixos-generate-config", "--show-hardware-config"], stdout=file)
+            subprocess.run(
+                ["sudo", "nixos-generate-config", "--show-hardware-config"], stdout=file
+            )
         except subprocess.CalledProcessError as e:
             print(f"Error generating hardware config: {e}")
 
@@ -84,10 +100,11 @@ def install_solnix(solnix_dir: str, hostname: str):
         subprocess.run(
             f"sudo NIX_CONFIG='experimental-features = nix-command flakes' nixos-rebuild switch --flake {solnix_dir}/#{hostname}",
             shell=True,
-            check=True
+            check=True,
         )
     except subprocess.CalledProcessError as e:
         print(f"Error applying NixOS installation: {e}")
+
 
 def main():
     solnix_dir = os.path.expanduser("~/solnix")
@@ -100,7 +117,8 @@ def main():
     basetheme, variant = get_system_theme(solnix_dir)
     gpu, extraConfig = get_gpu_config()
 
-    print(f"Installing with following settings:\n"
+    print(
+        f"Installing with following settings:\n"
         f"Username: {username}\n"
         f"Hostname: {hostname}\n"
         f"Keyboard Layout: {keyboard_layout}\n"
@@ -112,29 +130,31 @@ def main():
         clock24h=True,
         systemTheme=SystemTheme(basetheme, variant),
         amd=GraphicsConfig(
-            enable= True if gpu == "amd" else False,
-            extraConfig= extraConfig if gpu == "amd" else {}
+            enable=True if gpu == "amd" else False,
+            extraConfig=extraConfig if gpu == "amd" else {},
         ),
         nvidia=GraphicsConfig(
-            enable= True if gpu == "nvidia" else False,
-            extraConfig= extraConfig if gpu == "nvidia" else {}
+            enable=True if gpu == "nvidia" else False,
+            extraConfig=extraConfig if gpu == "nvidia" else {},
         ),
         intel=GraphicsConfig(
-            enable= True if gpu == "intel" else False,
-            extraConfig= extraConfig if gpu == "intel" else {}
+            enable=True if gpu == "intel" else False,
+            extraConfig=extraConfig if gpu == "intel" else {},
         ),
         keyboardLayout=keyboard_layout,
         primaryMonitor=primary_monitor,
         browser="firefox",
-        terminal="kitty"
+        terminal="kitty",
     )
 
     setup_flake(solnix_dir, hostname, username)
 
-    write_vars_file(host_path=f"{solnix_dir}/hosts/{hostname}/variables.nix", config=config)
+    write_vars_file(
+        host_path=f"{solnix_dir}/hosts/{hostname}/variables.nix", config=config
+    )
 
     install_solnix(solnix_dir, hostname)
 
+
 if __name__ == "__main__":
     main()
-

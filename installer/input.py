@@ -1,9 +1,11 @@
 import subprocess
 import os
 
+
 def get_user_input(prompt, default_value=""):
     user_input = input(f"{prompt} [{default_value}]: ").strip()
     return user_input if user_input else default_value
+
 
 def show_menu(options, prompt="Choose an option:"):
     print("\n" + prompt)
@@ -20,21 +22,27 @@ def show_menu(options, prompt="Choose an option:"):
         except ValueError:
             print("Invalid input, please enter a number.")
 
+
 def get_hostname():
     current_hostname = subprocess.getoutput("hostname")
-    new_hostname = get_user_input(f"Enter new hostname, or leave blank to keep current hostname", current_hostname)
+    new_hostname = get_user_input(
+        "Enter new hostname, or leave blank to keep current hostname", current_hostname
+    )
     print(f"Hostname set to: {new_hostname}")
     return new_hostname
+
 
 def get_keyboard_layout():
     keyboard_layout = get_user_input("Enter your keyboard layout", "us")
     print(f"Keyboard layout set to: {keyboard_layout}")
     return keyboard_layout
 
+
 def get_primary_monitor():
     primary_monitor = get_user_input("Enter your primary monitor", "DP-1")
     print(f"Primary monitor set to: {primary_monitor}")
     return primary_monitor
+
 
 def get_system_theme(solnix_dir: str):
     themes = ["dracula", "catppuccin", "stylix"]
@@ -60,13 +68,11 @@ def get_gpu_config():
         extraConfig = {}
     elif gpu == "nvidia":
         extraConfig = {
-            "prime": {
-                "enable": "false",
-                "intelBusID": '""',
-                "nvidiaBusID": '""'
-            }
+            "prime": {"enable": "false", "intelBusID": '""', "nvidiaBusID": '""'}
         }
     elif gpu == "intel":
+        extraConfig = {}
+    else:
         extraConfig = {}
 
     return gpu, extraConfig

@@ -1,3 +1,4 @@
+# This includes default apps that I want on all systems.
 { pkgs, ... }:
 
 {
@@ -12,10 +13,7 @@
     };
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
+      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
     };
   };
 

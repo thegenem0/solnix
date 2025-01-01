@@ -14,8 +14,8 @@ in {
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
-    ../../modules/devpkgs.nix
-    ../../modules/apps.nix
+    ../../modules/default-apps.nix
+    ../../modules/default-devpkgs.nix
   ];
 
   boot = {

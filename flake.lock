@@ -962,17 +962,14 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1732230353,
-        "narHash": "sha256-jo8aEFcuBViDTH8T/GIBUbIZikpxfk6BZEO3bO4W6oc=",
-        "owner": "solinaire",
-        "repo": "solnix-vim",
-        "rev": "4f2c45489fe2033da89654e8e58bc6162cfcfe48",
-        "type": "gitlab"
+        "lastModified": 1733703790,
+        "narHash": "sha256-Dr/AyTqWHKBGVdMZpkyzIEWw+42V13C9Xy6lQXUwG8k=",
+        "path": "/home/solinaire/dev/personal/solnix-vim",
+        "type": "path"
       },
       "original": {
-        "owner": "solinaire",
-        "repo": "solnix-vim",
-        "type": "gitlab"
+        "path": "/home/solinaire/dev/personal/solnix-vim",
+        "type": "path"
       }
     },
     "spicetify-nix": {

@@ -1,5 +1,5 @@
 import dataclasses
-import os
+
 
 @dataclasses.dataclass(frozen=True)
 class SystemTheme:
@@ -7,10 +7,8 @@ class SystemTheme:
     variant: str
 
     def to_dict(self):
-        return {
-            "name": f'"{self.name}"',
-            "variant": f'"{self.variant}"'
-        }
+        return {"name": f'"{self.name}"', "variant": f'"{self.variant}"'}
+
 
 @dataclasses.dataclass(frozen=True)
 class GraphicsConfig:
@@ -18,10 +16,8 @@ class GraphicsConfig:
     extraConfig: dict
 
     def to_dict(self):
-        return {
-            "enable": str(self.enable).lower(),
-            **self.extraConfig
-        }
+        return {"enable": str(self.enable).lower(), **self.extraConfig}
+
 
 @dataclasses.dataclass(frozen=True)
 class NixVariables:
@@ -45,8 +41,9 @@ class NixVariables:
             "keyboardLayout": f'"{self.keyboardLayout}"',
             "primaryMonitor": f'"{self.primaryMonitor}"',
             "browser": f'"{self.browser}"',
-            "terminal": f'"{self.terminal}"'
+            "terminal": f'"{self.terminal}"',
         }
+
 
 default_nix_variables = NixVariables(
     clock24h=True,
@@ -55,19 +52,16 @@ default_nix_variables = NixVariables(
     nvidia=GraphicsConfig(
         enable=False,
         extraConfig={
-            "prime": {
-                "enable": "false",
-                "intelBusID": '""',
-                "nvidiaBusID": '""'
-            }
-        }
+            "prime": {"enable": "false", "intelBusID": '""', "nvidiaBusID": '""'}
+        },
     ),
     intel=GraphicsConfig(enable=True, extraConfig={}),
     keyboardLayout="us",
     primaryMonitor="DP-1",
     browser="firefox",
-    terminal="kitty"
+    terminal="kitty",
 )
+
 
 def _write_dict_to_nix(d: dict, f, indent: int = 2):
     """Recursively writes a NixConfig object to a file in Nix format."""
@@ -79,6 +73,7 @@ def _write_dict_to_nix(d: dict, f, indent: int = 2):
             f.write(" " * indent + "};\n")
         else:
             f.write(f"{value};\n")
+
 
 def write_vars_file(host_path: str, config: NixVariables = default_nix_variables):
     nix_variables = config.to_dict()
