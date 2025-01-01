@@ -35,6 +35,8 @@
         obs-studio
         emote
         terraform
+        gnome-disk-utility
+        mqtt-explorer
       ];
     };
   };

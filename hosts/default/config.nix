@@ -14,8 +14,8 @@ in {
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
-    ../../modules/devpkgs.nix
-    ../../modules/apps.nix
+    ../../modules/default-apps.nix
+    ../../modules/default-devpkgs.nix
   ];
 
   boot = {
@@ -154,10 +154,10 @@ in {
     };
     hyprland = {
       enable = true;
-      # package =
-      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage =
-      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      package =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
   };
 
