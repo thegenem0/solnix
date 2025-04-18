@@ -962,8 +962,8 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1733703790,
-        "narHash": "sha256-Dr/AyTqWHKBGVdMZpkyzIEWw+42V13C9Xy6lQXUwG8k=",
+        "lastModified": 1737162434,
+        "narHash": "sha256-Fp9KVTGb+gfawqtWC3Z+Cg37i2YL0l6XiC9swZQF6dA=",
         "path": "/home/solinaire/dev/personal/solnix-vim",
         "type": "path"
       },

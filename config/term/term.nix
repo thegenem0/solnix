@@ -73,6 +73,7 @@ in {
           "reegnz/jq-zsh-plugin"
           "aubreypwd/zsh-plugin-reload"
           "qoomon/zsh-lazyload"
+          "mbhynes/fzf-gcloud"
         ];
       };
       initExtra = ''
@@ -264,6 +265,11 @@ in {
           only_with_files = true;
           detect_files =
             [ "docker-compose.yml" "docker-compose.yaml" "Dockerfile" ];
+        };
+        elixir = {
+          symbol = "";
+          format = "[$symbol ($version)]($style) ";
+          detect_files = [ "*.ex" "*.exs" ];
         };
         git_branch = { symbol = ""; };
         golang = {

@@ -1,16 +1,6 @@
 # This includes all development related packages that I want on all systems.
 
-{ pkgs, ... }:
-
-{
-  virtualisation = {
-    libvirtd.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
+{ pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
     vim
@@ -26,6 +16,7 @@
     antidote
     wget
     eza
+    jq
     git
     htop
     unzip
@@ -45,6 +36,7 @@
     devenv
     direnv
     groff
-    podman-compose
+    zip
+    bind
   ];
 }

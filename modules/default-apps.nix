@@ -21,6 +21,8 @@
     nwg-look
     nwg-displays
     firefox
+    google-chrome
+    vivaldi
     cmatrix
     ffmpeg
     virt-viewer
@@ -34,5 +36,6 @@
     yad
     pavucontrol
     imagemagick
+    sqlitebrowser
   ];
 }

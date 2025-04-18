@@ -2,7 +2,6 @@
   nix.extraOptions = ''
     trusted-users = root ${username}
   '';
-
   users.users = {
     "${username}" = {
       homeMode = "755";
@@ -37,6 +36,8 @@
         terraform
         gnome-disk-utility
         mqtt-explorer
+        chromium
+        google-cloud-sdk
       ];
     };
   };
