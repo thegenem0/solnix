@@ -46,5 +46,6 @@
     groff
     zip
     bind
+    podman-compose
   ];
 }
