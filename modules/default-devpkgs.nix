@@ -1,6 +1,14 @@
 # This includes all development related packages that I want on all systems.
 
 { pkgs, ... }: {
+  virtualisation = {
+    libvirtd.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     vim

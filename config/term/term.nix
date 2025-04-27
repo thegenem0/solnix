@@ -76,7 +76,7 @@ in {
           "mbhynes/fzf-gcloud"
         ];
       };
-      initExtra = ''
+      initContent = ''
         autoload -Uz compinit
         autoload -Uz edit-command-line
         zle -N edit-command-line
