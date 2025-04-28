@@ -68,9 +68,9 @@ in with lib; {
         border_size = 0;
         layout = "dwindle";
         resize_on_border = true;
-        "col.active_border" =
-          "rgb(${currentTheme.warning}) rgb(${currentTheme.info}) 45deg";
-        "col.inactive_border" = "rgb(${currentTheme.bg})";
+        # "col.active_border" =
+        #   "rgb(${currentTheme.warning}) rgb(${currentTheme.info}) 45deg";
+        # "col.inactive_border" = "rgb(${currentTheme.bg})";
       };
       input = {
         kb_layout = "${keyboardLayout}";
@@ -85,13 +85,13 @@ in with lib; {
         };
       };
       windowrule = [
-        "noborder,^(wofi)$"
-        "center,^(wofi)$"
-        "center,^(steam)$"
-        "float, nm-connection-editor|blueman-manager"
-        "float, swayimg|vlc|Viewnior|pavucontrol"
-        "float, nwg-look|qt5ct|mpv"
-        "float, zoom"
+        "noborder, class:wofi"
+        "center, class:wofi"
+        "center, class:steam"
+        "float, class:nm-connection-editor, class:blueman-manager"
+        "float, class:swayimg, class:vlc, class:Viewnior, class:pavucontrol"
+        "float, class;nwg-look, class:qt5ct, class:mpv"
+        "float, class:zoom"
       ];
       windowrulev2 = [
         "stayfocused, title:^()$,class:^(steam)$"

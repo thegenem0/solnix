@@ -94,6 +94,7 @@ in {
         export EDITOR="nvim"
 
         alias gl="lazygit"
+        alias dl="lazydocker"
         alias gowork="cd ~/dev/work/"
         alias gome="cd ~/dev/personal"
         alias init-devflake="nix flake init --template github:cachix/devenv"

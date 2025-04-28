@@ -37,5 +37,6 @@
     pavucontrol
     imagemagick
     sqlitebrowser
+    dbeaver-bin
   ];
 }
