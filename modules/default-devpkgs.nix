@@ -48,5 +48,7 @@
     zip
     bind
     podman-compose
+    qmk
+    buf
   ];
 }
