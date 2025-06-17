@@ -28,7 +28,7 @@ in {
       options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
     '';
     # Needed For Some Steam Games
-    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
+    kernel.sysctl = { "vm.max_map_count" = 2147483643; };
     # Bootloader.
     loader = {
       systemd-boot.enable = true;
@@ -111,7 +111,7 @@ in {
   drivers = {
     amdgpu.enable = amd.enable;
     nvidia.enable = nvidia.enable;
-    nvidia-prime = nvidia.prime;
+    # nvidia-prime = nvidia.prime;
     intel.enable = intel.enable;
   };
   vm.guest-services.enable = false;
@@ -213,6 +213,7 @@ in {
 
   # Services to start
   services = {
+    pulseaudio.enable = false;
     blueman.enable = true;
     xserver = {
       enable = true;
@@ -284,7 +285,6 @@ in {
       enable = true;
       powerOnBoot = true;
     };
-    pulseaudio.enable = false;
     sane = {
       enable = true;
       extraBackends = [ pkgs.sane-airscan ];

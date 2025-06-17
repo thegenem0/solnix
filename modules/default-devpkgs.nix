@@ -1,13 +1,20 @@
 # This includes all development related packages that I want on all systems.
 
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  snitch = pkgs.callPackage ../custom/snitch.nix {
+    inherit (pkgs) lib buildGoModule fetchFromGitHub;
+  };
+in {
   virtualisation = {
     libvirtd.enable = true;
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-      dockerSocket.enable = true;
+      enableOnBoot = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
     };
   };
 
@@ -47,8 +54,9 @@
     groff
     zip
     bind
-    podman-compose
+    docker-compose
     qmk
     buf
+    snitch
   ];
 }

@@ -1,9 +1,7 @@
-{ pkgs, lib, inputs, host, config, ... }:
+{ pkgs, lib, host, ... }:
 let
   inherit (import ../hosts/${host}/variables.nix)
-    terminal keyboardLayout systemTheme nvidia;
-  inherit (import ./themes/theme.nix { inherit config; }) getTheme;
-  currentTheme = getTheme systemTheme;
+    terminal keyboardLayout nvidia;
 in with lib; {
   home = {
     packages = with pkgs; [ hyprshade pyprland ];

@@ -22,6 +22,7 @@
     ../../config/wlogout.nix
     ../../config/fastfetch
     ../../config/spicetify.nix
+    ../../config/snitch.nix
   ];
 
   home.file = {

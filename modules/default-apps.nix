@@ -37,6 +37,8 @@
     pavucontrol
     imagemagick
     sqlitebrowser
-    dbeaver-bin
+    gdbgui
+    dbvisualizer
+    temurin-jre-bin
   ];
 }

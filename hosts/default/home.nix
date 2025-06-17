@@ -22,6 +22,7 @@
     ../../config/wlogout.nix
     ../../config/fastfetch
     ../../config/spicetify.nix
+    ../../config/snitch.nix
   ];
 
   home.file = {
@@ -76,8 +77,8 @@
   };
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
-    platformTheme.name = "gtk3";
+    style.name = lib.mkForce "adwaita-dark";
+    platformTheme.name = lib.mkForce "gtk3";
   };
 
   # Scripts
