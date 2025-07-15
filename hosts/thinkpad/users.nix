@@ -2,13 +2,20 @@
   nix.extraOptions = ''
     trusted-users = root ${username}
   '';
-
   users.users = {
     "${username}" = {
       homeMode = "755";
       isNormalUser = true;
       description = "${username}";
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "scanner" "lp" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "libvirtd"
+        "scanner"
+        "lp"
+        "podman"
+        "docker"
+      ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
@@ -37,6 +44,8 @@
         terraform
         gnome-disk-utility
         mqtt-explorer
+        chromium
+        google-cloud-sdk
       ];
     };
   };

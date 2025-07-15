@@ -4,18 +4,19 @@
     name = "catppuccin";
     variant = "mocha";
   };
-  amd = { enable = false; };
+  amd = { enable = true; };
   nvidia = {
     enable = false;
     prime = {
-        enable = false;
-        intelBusID = "";
-        nvidiaBusID = "";
-      };
+      enable = false;
+      intelBusID = "";
+      nvidiaBusID = "";
+    };
   };
-  intel = { enable = true; };
+  intel = { enable = false; };
   keyboardLayout = "us";
-  primaryMonitor = "eDP-1";
+  primaryMonitor = "DP-1";
   browser = "firefox";
   terminal = "kitty";
+  containerizationPlatform = "docker";
 }

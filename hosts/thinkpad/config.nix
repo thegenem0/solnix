@@ -28,7 +28,7 @@ in {
       options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
     '';
     # Needed For Some Steam Games
-    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
+    kernel.sysctl = { "vm.max_map_count" = 2147483643; };
     # Bootloader.
     loader = {
       systemd-boot.enable = true;
@@ -143,7 +143,18 @@ in {
     };
   };
 
+  fileSystems."/mnt/vault" = {
+    device = "server:/Vault/thegenem0";
+    fsType = "nfs";
+  };
+
+  boot.supportedFilesystems = [ "nfs" ];
+
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -156,8 +167,7 @@ in {
       enable = true;
       package =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
   };
 
@@ -213,6 +223,7 @@ in {
 
   # Services to start
   services = {
+    pulseaudio.enable = false;
     blueman.enable = true;
     xserver = {
       enable = true;
@@ -257,17 +268,6 @@ in {
       };
       pulse.enable = true;
     };
-    rpcbind.enable = false;
-    nfs.server.enable = false;
-    kanata = {
-      enable = true;
-      keyboards = {
-        default = {
-          devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
-          configFile = ../../config/misc/kanata/config.kbd;
-        };
-      };
-    };
   };
   systemd = {
     services = {
@@ -284,7 +284,6 @@ in {
       enable = true;
       powerOnBoot = true;
     };
-    pulseaudio.enable = false;
     sane = {
       enable = true;
       extraBackends = [ pkgs.sane-airscan ];
@@ -333,6 +332,37 @@ in {
         }];
       }];
     };
+
+    pki.certificates = [''
+      thegenem0.com CA
+      =========
+      -----BEGIN CERTIFICATE-----
+      MIIEdzCCA1+gAwIBAgIBADANBgkqhkiG9w0BAQsFADCBrjELMAkGA1UEBhMCR0Ix
+      GzAZBgNVBAgMEkdyZWF0ZXIgTWFuY2hlc3RlcjETMBEGA1UEBwwKTWFuY2hlc3Rl
+      cjEWMBQGA1UECgwNdGhlZ2VuZW0wLmNvbTEhMB8GCSqGSIb3DQEJARYSaW5mb0B0
+      aGVnZW5lbTAuY29tMTIwMAYDVQQDDCl0aGVnZW5lbTAgSW50ZXJuYWwgQ2VydGlm
+      aWNhdGUgQXV0b2hvcml0eTAeFw0yNTA3MTQwMDQ2NTZaFw0zNTA3MTIwMDQ2NTZa
+      MIGuMQswCQYDVQQGEwJHQjEbMBkGA1UECAwSR3JlYXRlciBNYW5jaGVzdGVyMRMw
+      EQYDVQQHDApNYW5jaGVzdGVyMRYwFAYDVQQKDA10aGVnZW5lbTAuY29tMSEwHwYJ
+      KoZIhvcNAQkBFhJpbmZvQHRoZWdlbmVtMC5jb20xMjAwBgNVBAMMKXRoZWdlbmVt
+      MCBJbnRlcm5hbCBDZXJ0aWZpY2F0ZSBBdXRvaG9yaXR5MIIBIjANBgkqhkiG9w0B
+      AQEFAAOCAQ8AMIIBCgKCAQEAl56WDsBmkNPMc2v9I8p56O94Wpohv4wtQ6ezPp3o
+      37jIpzJ/l48BcfisLpW63VeJzO3WrFji2N2QNGOSNjIPqb1evcHd9xL6oko17gU0
+      fNShq+7z8bMUAY8g1pe60f1nilTg0tiUMDIzgqlYh5Mue1YNJt0rAiQhwtLFwME9
+      PjWm1F7QBVHTF702cpw1wBvkuZ8J+IaYjZiJ8sAjfpIxhNp+iiFodyBS4PiPmCRz
+      FgKBir0shwwp4ziEUUI920cT3nIk1M9QMPgZnW4FHo5r0RHHF+JW3IMq089jSmTG
+      Kik5oQVWpE5h+NgJdlAs3fJYXV0Fb9RP1WM9W7etZdcg8QIDAQABo4GdMIGaMDcG
+      CWCGSAGG+EIBDQQqFihPUE5zZW5zZSBHZW5lcmF0ZWQgQ2VydGlmaWNhdGUgQXV0
+      aG9yaXR5MB0GA1UdDgQWBBSpgqYvI/tNh1j7gEdo2FlaYoF2TzAfBgNVHSMEGDAW
+      gBSpgqYvI/tNh1j7gEdo2FlaYoF2TzAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB
+      /wQEAwIBhjANBgkqhkiG9w0BAQsFAAOCAQEAkN7EIT3OIVp3CgEDHHtbRmQhlc2e
+      4KnGN2L6hfJQL/wz8mPl4RkfPo5v1DGuk/w5L+v/qiAipNVtlcE2ZbpQe+Pip6G6
+      l4xJSh7MQrw5OvETWImVx1eDSf3RdtMb+3Ry+5LoNlGeRDsxSwZHm/NViO9D4vZd
+      BUhG+OlEExf1lCrEsY1kTFe4v1VF9VlhQGEKH2C4GMn++vBQTbwei8PZuh9v0YfC
+      AJ94VqtMEAlb/DHV8YmQgzVNI5AwOsPNu57uaygbfG+SAy/oqsHykDRA337N3sua
+      bs4dvtIw/9SX5mDgOHMUhYyOaQ1EmyJov0e3yvJMasOy/xH8Fq4HaMUHHA==
+      -----END CERTIFICATE-----
+    ''];
   };
 
   # Optimization settings and garbage collection automation
