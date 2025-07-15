@@ -258,8 +258,6 @@ in {
       };
       pulse.enable = true;
     };
-    rpcbind.enable = false;
-    nfs.server.enable = false;
     kanata = {
       enable = true;
       keyboards = {

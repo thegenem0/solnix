@@ -58,5 +58,7 @@ in {
     qmk
     buf
     snitch
+    dmidecode
+    kubectl
   ];
 }

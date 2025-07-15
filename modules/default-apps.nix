@@ -36,9 +36,7 @@
     yad
     pavucontrol
     imagemagick
-    sqlitebrowser
-    gdbgui
-    dbvisualizer
     temurin-jre-bin
+    ipmiview
   ];
 }

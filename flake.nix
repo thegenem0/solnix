@@ -7,9 +7,9 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.45.0";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.45.0";
+      url = "github:outfoxxed/hy3?ref=hl0.49.0";
       inputs.hyprland.follows = "hyprland";
     };
     stylix.url = "github:danth/stylix";
@@ -18,7 +18,7 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # solnix-vim.url = "githun:thegenem0/solnix-vim";
+    # solnix-vim.url = "github:thegenem0/solnix-vim";
     # using local path for development
     solnix-vim = {
       url = "path:/home/solinaire/dev/personal/solnix-vim";
@@ -89,7 +89,7 @@
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                backupFileExtension = "back";
+                backupFileExtension = "bkup";
                 users.${username} = import ./hosts/${host}/home.nix;
               };
             }
