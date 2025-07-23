@@ -27,7 +27,6 @@
         jetbrains.webstorm
         jetbrains.pycharm-professional
         jetbrains.rust-rover
-        gimp
         lazygit
         lazydocker
         awscli2

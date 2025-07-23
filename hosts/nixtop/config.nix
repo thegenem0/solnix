@@ -143,11 +143,11 @@ in {
     };
   };
 
-  fileSystems."/mnt/vault" = {
-    device = "server:/Vault/thegenem0";
-    fsType = "nfs";
-  };
-
+  # fileSystems."/mnt/vault" = {
+  #   device = "server:/Vault/thegenem0";
+  #   fsType = "nfs";
+  # };
+  
   boot.supportedFilesystems = [ "nfs" ];
 
   programs = {

@@ -914,13 +914,13 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1752241304,
-        "narHash": "sha256-BDdLOybpYOxzJ+ogX63ltxyhqkSerYUBa6gc7LYUhh4=",
-        "path": "/home/solinaire/dev/personal/solnix-vim",
+        "lastModified": 1752618782,
+        "narHash": "sha256-lmg8/oNqNLMoHp5pDRm4+/WJ/ofUzFqY3dH0x8SGgTw=",
+        "path": "/home/thegenem0/dev/personal/solnix-vim",
         "type": "path"
       },
       "original": {
-        "path": "/home/solinaire/dev/personal/solnix-vim",
+        "path": "/home/thegenem0/dev/personal/solnix-vim",
         "type": "path"
       }
     },

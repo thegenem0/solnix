@@ -15,7 +15,7 @@
   };
   intel = { enable = false; };
   keyboardLayout = "us";
-  primaryMonitor = "DP-1";
+  primaryMonitor = "eDP-1";
   browser = "firefox";
   terminal = "kitty";
   containerizationPlatform = "docker";

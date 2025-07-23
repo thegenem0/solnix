@@ -21,7 +21,7 @@
     # solnix-vim.url = "github:thegenem0/solnix-vim";
     # using local path for development
     solnix-vim = {
-      url = "path:/home/solinaire/dev/personal/solnix-vim";
+      url = "path:/home/thegenem0/dev/personal/solnix-vim";
       # flake = false;
     };
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
@@ -34,8 +34,8 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "nixos";
-      username = "solinaire";
+      host = "nixtop";
+      username = "thegenem0";
     in {
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
